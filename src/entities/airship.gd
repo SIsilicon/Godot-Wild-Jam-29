@@ -25,8 +25,8 @@ func _input(event: InputEvent) -> void:
 		if event is InputEventKey and event.pressed:
 			if event.scancode == KEY_E and not nav_map.visible:
 				open_navigation()
-			if event.scancode == KEY_G:
-				go_sailing($"../Position3D".translation)
+#			if event.scancode == KEY_G:
+#				go_sailing($"../Position3D".translation)
 		if event.is_action_pressed("ui_cancel") and nav_map.visible:
 			close_navigation()
 
