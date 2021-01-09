@@ -21,3 +21,7 @@ config/icon="res://UI/icon.png"
 [autoload]
 
 Global="*res://src/globals/global.gd"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "Todo_Manager" )
