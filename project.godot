@@ -18,6 +18,6 @@ _global_script_class_icons={
 config/name="Godot- Wild- Jam- 29"
 config/icon="res://UI/icon.png"
 
-[rendering]
+[editor_plugins]
 
-environment/default_environment="res://levels/default_env.tres"
+enabled=PoolStringArray( "Todo_Manager" )

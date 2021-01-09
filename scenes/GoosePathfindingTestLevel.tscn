@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://scenes/GooseWalk.tscn" type="PackedScene" id=1]
+
+[sub_resource type="NavigationMesh" id=1]
+vertices = PoolVector3Array( -1.97499, 3, 2.00671, -2.97499, 3, -1.99329, -9.97499, 3, 0.00671387, -9.97499, 3, -8.99329, -9.97499, 3, 0.00671387, -2.97499, 3, -1.99329, 0.0250111, 3, -8.99329, 2.02501, 3, 1.00671, -1.97499, 3, 2.00671, 0.0250111, 3, 9.00671, 10.025, 3, 9.00671, 10.025, 3, 0.00671387, 0.0250111, 3, -8.99329, -2.97499, 3, -1.99329, 1.02501, 3, -2.99329, 0.0250111, 3, -8.99329, 1.02501, 3, -2.99329, 2.02501, 3, 1.00671, 10.025, 3, 0.00671387, 10.025, 3, -8.99329, -1.97499, 3, 2.00671, -9.97499, 3, 0.00671387, -9.97499, 3, 9.00671, 0.0250111, 3, 9.00671 )
+polygons = [ PoolIntArray( 0, 2, 1 ), PoolIntArray( 4, 3, 5 ), PoolIntArray( 5, 3, 6 ), PoolIntArray( 8, 7, 9 ), PoolIntArray( 9, 7, 10 ), PoolIntArray( 10, 7, 11 ), PoolIntArray( 14, 13, 12 ), PoolIntArray( 16, 15, 17 ), PoolIntArray( 17, 15, 18 ), PoolIntArray( 18, 15, 19 ), PoolIntArray( 21, 20, 22 ), PoolIntArray( 22, 20, 23 ) ]
+cell/size = 1.0
+cell/height = 1.0
+agent/radius = 1.0
+
+[sub_resource type="CubeMesh" id=2]
+size = Vector3( 10, 2, 10 )
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 0.223529, 0.105882, 0.105882, 1 )
+
+[sub_resource type="CubeMesh" id=4]
+
+[sub_resource type="SpatialMaterial" id=5]
+albedo_color = Color( 0.533333, 0.109804, 0.109804, 1 )
+
+[sub_resource type="CubeMesh" id=6]
+
+[node name="GoosePathfindingTestLevel" type="Spatial"]
+
+[node name="Navigation" type="Navigation" parent="."]
+
+[node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="Navigation"]
+navmesh = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Navigation/NavigationMeshInstance"]
+transform = Transform( 2.195, 0, 0, 0, 1, 0, 0, 0, 1.99866, 0, 0, 0 )
+mesh = SubResource( 2 )
+material/0 = SubResource( 3 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="Navigation/NavigationMeshInstance"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.98636, 0 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 5 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.834665, 0.550758, 0, -0.550758, 0.834665, 0, 7.67937, 12.0753 )
+fov = 82.3002
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.734, 3, 2.50989 )
+mesh = SubResource( 6 )
+material/0 = null
+
+[node name="GooseWalk" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.42844, 3, -2.51168 )
+navigation_node = NodePath("../Navigation")
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 7.46741, 0 )
