@@ -1,0 +1,111 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://src/Player/Player.gd" type="Script" id=1]
+[ext_resource path="res://UI/icon.png" type="Texture" id=2]
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 0.5
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_texture = ExtResource( 2 )
+
+[sub_resource type="CapsuleMesh" id=3]
+material = SubResource( 2 )
+radius = 0.5
+
+[sub_resource type="CubeMesh" id=4]
+size = Vector3( 0.2, 0.2, 1 )
+
+[sub_resource type="CylinderMesh" id=5]
+top_radius = 0.2
+bottom_radius = 0.1
+height = 1.0
+
+[sub_resource type="CubeMesh" id=6]
+size = Vector3( 0.5, 0.8, 0.25 )
+
+[sub_resource type="BoxShape" id=9]
+extents = Vector3( 2, 2, 2 )
+
+[sub_resource type="SphereShape" id=10]
+radius = 0.25
+
+[sub_resource type="CubeMesh" id=7]
+size = Vector3( 5, 0.2, 1.5 )
+
+[sub_resource type="CubeMesh" id=8]
+size = Vector3( 0.794, 0.378, 4.482 )
+
+[node name="PlayerCharacter" type="KinematicBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17414, -0.130334, 0.031321 )
+script = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 1, 0 )
+shape = SubResource( 1 )
+
+[node name="PlayerMesh" type="Spatial" parent="."]
+
+[node name="Body" type="MeshInstance" parent="PlayerMesh"]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 1, 0 )
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="Nose" type="MeshInstance" parent="PlayerMesh"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.29582, -0.895017 )
+mesh = SubResource( 4 )
+material/0 = null
+
+[node name="Vacuum" type="Spatial" parent="PlayerMesh"]
+
+[node name="VacuumGun" type="MeshInstance" parent="PlayerMesh/Vacuum"]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0.608137, 0.870528, -0.334133 )
+mesh = SubResource( 5 )
+material/0 = null
+
+[node name="VacuumBackpack" type="MeshInstance" parent="PlayerMesh/Vacuum"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.10811, 0.61735 )
+mesh = SubResource( 6 )
+material/0 = null
+
+[node name="PullingArea" type="Area" parent="PlayerMesh/Vacuum"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.59865, 0.866592, -0.83356 )
+monitorable = false
+collision_layer = 0
+collision_mask = 16
+
+[node name="SuckingArea" type="CollisionShape" parent="PlayerMesh/Vacuum/PullingArea"]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 0, -2.007 )
+shape = SubResource( 9 )
+
+[node name="Muzzle" type="Area" parent="PlayerMesh/Vacuum"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.612965, 0.868482, -0.833743 )
+monitorable = false
+collision_layer = 0
+collision_mask = 16
+
+[node name="MuzzleArea" type="CollisionShape" parent="PlayerMesh/Vacuum/Muzzle"]
+shape = SubResource( 10 )
+
+[node name="GoosePlaceholder" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.44408, 0 )
+
+[node name="GooseWings" type="MeshInstance" parent="GoosePlaceholder"]
+mesh = SubResource( 7 )
+material/0 = null
+
+[node name="GooseBody" type="MeshInstance" parent="GoosePlaceholder"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.735144 )
+mesh = SubResource( 8 )
+material/0 = null
+
+[node name="GimbalX" type="Spatial" parent="."]
+
+[node name="GimbalY" type="Spatial" parent="GimbalX"]
+
+[node name="CameraPosition" type="Spatial" parent="GimbalX/GimbalY"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.70055, 5.40486 )
+
+[node name="Camera" type="Camera" parent="GimbalX/GimbalY/CameraPosition"]
+far = 1000.0
+[connection signal="body_entered" from="PlayerMesh/Vacuum/Muzzle" to="." method="_on_Muzzle_body_entered"]

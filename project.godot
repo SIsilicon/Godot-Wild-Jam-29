@@ -9,13 +9,19 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "KinematicBody",
+"class": "Cloud",
+"language": "GDScript",
+"path": "res://src/entities/Cloud.gd"
+}, {
 "base": "Button",
 "class": "PauseMenuButton",
 "language": "GDScript",
 "path": "res://src/ui/pause_menu/button.gd"
 } ]
 _global_script_class_icons={
-"PauseMenuButton": ""
+"PauseMenuButton": "",
+"Cloud": ""
 }
 
 [application]
