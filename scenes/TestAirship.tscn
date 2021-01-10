@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scenes/entities/Airship.tscn" type="PackedScene" id=1]
+[ext_resource path="res://addons/free_look_test_camera.gd" type="Script" id=2]
+[ext_resource path="res://addons/kenney_prototype_textures/green/texture_04.png" type="Texture" id=3]
+
+[sub_resource type="PlaneMesh" id=1]
+size = Vector2( 500, 500 )
+
+[sub_resource type="SpatialMaterial" id=2]
+flags_unshaded = true
+albedo_texture = ExtResource( 3 )
+uv1_scale = Vector3( 50, 50, 1 )
+
+[sub_resource type="SphereMesh" id=3]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = SubResource( 1 )
+material/0 = SubResource( 2 )
+
+[node name="Ship" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -200, 0, 0 )
+max_speed = 80.0
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( -1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 9.80578, -32.7535 )
+far = 1000.0
+script = ExtResource( 2 )
+
+[node name="Position3D" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 32.4943, 3.8147e-06, -20.5506 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Position3D"]
+mesh = SubResource( 3 )
+material/0 = null

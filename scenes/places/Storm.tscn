@@ -1,0 +1,223 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://addons/kenney_particle_pack/smoke_03.png" type="Texture" id=1]
+[ext_resource path="res://addons/kenney_particle_pack/smoke_07.png" type="Texture" id=2]
+
+[sub_resource type="CylinderMesh" id=1]
+top_radius = 500.0
+bottom_radius = 750.0
+height = 3000.0
+rings = 64
+
+[sub_resource type="Shader" id=17]
+code = "shader_type spatial;
+render_mode diffuse_lambert_wrap;
+
+uniform sampler2D cloud_texture;
+uniform sampler2D color_ramp;
+uniform sampler2D alpha_falloff;
+
+uniform vec2 uv_scale = vec2(1.0, 6.0);
+
+uniform float alpha = 1.0;
+uniform float grow;
+uniform vec2 cloud_dir = vec2(1.0, 0.5);
+
+
+float get_cloud(vec2 uv, float time) {
+	return texture(cloud_texture, uv * uv_scale - time * 0.06 * cloud_dir).r;
+}
+
+void vertex() {
+	UV.y *= 2.0;
+	
+	VERTEX.xz *= pow(UV.y * 2.0 - 1.0, 5.0) * 5.0 + 1.0;
+	VERTEX += NORMAL * grow;
+}
+
+void fragment() {
+	float cloud = get_cloud(UV, TIME);
+	ALBEDO = texture(color_ramp, vec2(cloud)).rgb;
+	
+	ALPHA = pow(texture(alpha_falloff, UV.yy).a, 2.0);
+	
+	ROUGHNESS = 0.5;
+}"
+
+[sub_resource type="Gradient" id=4]
+offsets = PoolRealArray( 0, 0.104, 0.202, 0.734266, 0.9, 1 )
+colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 4 )
+
+[sub_resource type="OpenSimplexNoise" id=6]
+period = 15.1
+
+[sub_resource type="NoiseTexture" id=7]
+seamless = true
+noise = SubResource( 6 )
+
+[sub_resource type="Gradient" id=8]
+offsets = PoolRealArray( 0.190476, 1 )
+colors = PoolColorArray( 0.0820313, 0.0820313, 0.0820313, 1, 0.292969, 0.292969, 0.292969, 1 )
+
+[sub_resource type="GradientTexture" id=9]
+gradient = SubResource( 8 )
+
+[sub_resource type="ShaderMaterial" id=16]
+shader = SubResource( 17 )
+shader_param/uv_scale = Vector2( 1, 6 )
+shader_param/alpha = 0.297
+shader_param/grow = 50.0
+shader_param/cloud_dir = Vector2( 1, 0.5 )
+shader_param/cloud_texture = SubResource( 7 )
+shader_param/color_ramp = SubResource( 9 )
+shader_param/alpha_falloff = SubResource( 5 )
+
+[sub_resource type="Shader" id=3]
+code = "shader_type spatial;
+render_mode diffuse_lambert_wrap;
+
+uniform sampler2D cloud_texture;
+uniform sampler2D color_ramp;
+uniform sampler2D alpha_falloff;
+
+uniform vec2 uv_scale = vec2(1.0, 6.0);
+
+uniform float alpha = 1.0;
+uniform float grow;
+uniform vec2 cloud_dir = vec2(1.0, 0.5);
+
+void vertex() {
+	VERTEX.xz *= pow(UV.y * 4.0 - 1.0, 5.0) * 5.0 + 1.0;
+	VERTEX += NORMAL * grow;
+}
+
+void fragment() {
+	if(UV.y > 0.45 || UV.y < 0.05)
+		discard;
+	
+	ALBEDO = texture(cloud_texture, UV * uv_scale - TIME * 0.06 * cloud_dir).rgb;
+	ALBEDO = texture(color_ramp, ALBEDO.rr).rgb;
+	
+	ROUGHNESS = 0.5;
+}"
+
+[sub_resource type="ShaderMaterial" id=10]
+next_pass = SubResource( 16 )
+shader = SubResource( 3 )
+shader_param/uv_scale = Vector2( 1, 6 )
+shader_param/alpha = 1.0
+shader_param/grow = 0.0
+shader_param/cloud_dir = Vector2( 1, 0.5 )
+shader_param/cloud_texture = SubResource( 7 )
+shader_param/color_ramp = SubResource( 9 )
+shader_param/alpha_falloff = SubResource( 5 )
+
+[sub_resource type="Gradient" id=11]
+offsets = PoolRealArray( 0, 0.392593, 0.540741, 1 )
+colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=12]
+gradient = SubResource( 11 )
+
+[sub_resource type="ParticlesMaterial" id=13]
+emission_shape = 2
+emission_box_extents = Vector3( 300, 1000, 300 )
+flag_rotate_y = true
+gravity = Vector3( 0, 1, 0 )
+linear_accel = -1900.0
+tangential_accel = -2000.0
+scale = 8.15
+color_ramp = SubResource( 12 )
+
+[sub_resource type="SpatialMaterial" id=14]
+render_priority = -1
+flags_transparent = true
+vertex_color_use_as_albedo = true
+params_diffuse_mode = 1
+params_specular_mode = 4
+params_billboard_mode = 3
+params_billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 1 )
+transmission_enabled = true
+transmission = Color( 0.313726, 0.313726, 0.313726, 1 )
+proximity_fade_enable = true
+proximity_fade_distance = 100.0
+
+[sub_resource type="QuadMesh" id=15]
+material = SubResource( 14 )
+size = Vector2( 200, 200 )
+
+[sub_resource type="ParticlesMaterial" id=18]
+emission_shape = 2
+emission_box_extents = Vector3( 4000, 500, 4000 )
+flag_rotate_y = true
+gravity = Vector3( 0, 0, 0 )
+linear_accel = -2900.0
+tangential_accel = 3000.0
+scale = 20.82
+color_ramp = SubResource( 12 )
+
+[sub_resource type="SpatialMaterial" id=19]
+render_priority = -1
+flags_transparent = true
+flags_vertex_lighting = true
+vertex_color_use_as_albedo = true
+params_diffuse_mode = 1
+params_specular_mode = 4
+params_billboard_mode = 3
+params_billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_color = Color( 0.635294, 0.635294, 0.635294, 1 )
+albedo_texture = ExtResource( 2 )
+transmission_enabled = true
+transmission = Color( 0.313726, 0.313726, 0.313726, 1 )
+proximity_fade_enable = true
+proximity_fade_distance = 100.0
+
+[sub_resource type="QuadMesh" id=20]
+material = SubResource( 19 )
+size = Vector2( 200, 200 )
+
+[node name="Storm" type="MeshInstance"]
+mesh = SubResource( 1 )
+material/0 = SubResource( 10 )
+
+[node name="Particles" type="Particles" parent="."]
+amount = 64
+lifetime = 10.0
+preprocess = 10.0
+visibility_aabb = AABB( -1098.91, -1575.55, -1087.92, 2197.82, 3151.09, 2175.84 )
+draw_order = 2
+process_material = SubResource( 13 )
+draw_pass_1 = SubResource( 15 )
+
+[node name="BottomClouds" type="Particles" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2000, 0 )
+amount = 64
+lifetime = 10.0
+preprocess = 10.0
+visibility_aabb = AABB( -3507.33, -483.965, -3758.63, 7014.66, 967.93, 7517.26 )
+draw_order = 2
+process_material = SubResource( 18 )
+draw_pass_1 = SubResource( 20 )
+
+[node name="TopClouds" type="Particles" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2000, 0 )
+amount = 64
+lifetime = 10.0
+preprocess = 10.0
+visibility_aabb = AABB( -3507.33, -483.965, -3758.63, 7014.66, 967.93, 7517.26 )
+draw_order = 2
+process_material = SubResource( 18 )
+draw_pass_1 = SubResource( 20 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+editor_only = true
