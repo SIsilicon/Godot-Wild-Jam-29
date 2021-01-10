@@ -1,0 +1,999 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://UI/icon.png" type="Texture" id=1]
+[ext_resource path="res://models/PlayerCharacter/PlayerCharacter.tscn" type="PackedScene" id=2]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 500, 0.1, 500 )
+
+[sub_resource type="CubeMesh" id=2]
+size = Vector3( 1000, 0.2, 1000 )
+subdivide_width = 4
+subdivide_depth = 4
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_texture = ExtResource( 1 )
+
+[sub_resource type="BoxShape" id=4]
+
+[sub_resource type="CubeMesh" id=5]
+
+[sub_resource type="SpatialMaterial" id=6]
+albedo_color = Color( 0.266667, 0.796078, 0, 1 )
+
+[node name="TPP_Controler_TestScene" type="Spatial"]
+
+[node name="PlayerCharacter" parent="." instance=ExtResource( 2 )]
+
+[node name="Floor" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Floor"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Floor"]
+cast_shadow = 0
+mesh = SubResource( 2 )
+material/0 = SubResource( 3 )
+
+[node name="Boxes" type="Spatial" parent="."]
+
+[node name="Box1" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.80426, 1.04487, 0 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box1"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box1"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box2" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16.2548, 1.04487, 0 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box2"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box2"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box3" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 25.9764, 1.04487, 0 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box3"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box3"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box4" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 35.4269, 1.04487, 0 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box4"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box4"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box5" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -37.7977, 1.04487, 0 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box5"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box5"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box6" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -28.3472, 1.04487, 0 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box6"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box6"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box7" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18.6255, 1.04487, 0 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box7"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box7"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box8" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.17499, 1.04487, 0 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box8"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box8"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box9" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.80426, 1.04487, 25.9371 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box9"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box9"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box10" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16.2548, 1.04487, 25.9371 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box10"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box10"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box11" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 25.9764, 1.04487, 25.9371 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box11"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box11"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box12" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 35.4269, 1.04487, 25.9371 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box12"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box12"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box13" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -37.7977, 1.04487, 25.9371 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box13"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box13"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box14" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -28.3472, 1.04487, 25.9371 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box14"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box14"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box15" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18.6255, 1.04487, 25.9371 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box15"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box15"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box16" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.17499, 1.04487, 25.9371 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box16"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box16"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box17" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.80426, 1.04487, -44.28 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box17"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box17"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box18" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16.2548, 1.04487, -44.28 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box18"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box18"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box19" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 25.9764, 1.04487, -44.28 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box19"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box19"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box20" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 35.4269, 1.04487, -44.28 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box20"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box20"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box21" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -37.7977, 1.04487, -44.28 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box21"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box21"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box22" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -28.3472, 1.04487, -44.28 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box22"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box22"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box23" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18.6255, 1.04487, -44.28 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box23"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box23"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box24" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.17499, 1.04487, -44.28 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box24"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box24"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box25" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.80426, 1.04487, -18.343 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box25"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box25"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box26" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16.2548, 1.04487, -18.343 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box26"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box26"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box27" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 25.9764, 1.04487, -18.343 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box27"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box27"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box28" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 35.4269, 1.04487, -18.343 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box28"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box28"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box29" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -37.7977, 1.04487, -18.343 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box29"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box29"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box30" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -28.3472, 1.04487, -18.343 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box30"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box30"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box31" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18.6255, 1.04487, -18.343 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box31"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box31"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box32" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.17499, 1.04487, -18.343 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box32"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box32"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box33" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.80426, 43.2129, 0 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box33"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box33"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box34" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16.2548, 43.2129, 0 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box34"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box34"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box35" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 25.9764, 43.2129, 0 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box35"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box35"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box36" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 35.4269, 43.2129, 0 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box36"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box36"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box37" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -37.7977, 43.2129, 0 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box37"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box37"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box38" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -28.3472, 43.2129, 0 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box38"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box38"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box39" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18.6255, 43.2129, 0 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box39"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box39"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box40" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.17499, 43.2129, 0 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box40"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box40"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box41" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.80426, 43.2129, 25.9371 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box41"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box41"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box42" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16.2548, 43.2129, 25.9371 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box42"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box42"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box43" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 25.9764, 43.2129, 25.9371 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box43"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box43"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box44" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 35.4269, 43.2129, 25.9371 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box44"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box44"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box45" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -37.7977, 43.2129, 25.9371 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box45"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box45"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box46" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -28.3472, 43.2129, 25.9371 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box46"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box46"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box47" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18.6255, 43.2129, 25.9371 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box47"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box47"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box48" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.17499, 43.2129, 25.9371 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box48"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box48"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box49" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.80426, 43.2129, -44.28 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box49"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box49"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box50" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16.2548, 43.2129, -44.28 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box50"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box50"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box51" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 25.9764, 43.2129, -44.28 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box51"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box51"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box52" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 35.4269, 43.2129, -44.28 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box52"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box52"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box53" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -37.7977, 43.2129, -44.28 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box53"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box53"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box54" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -28.3472, 43.2129, -44.28 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box54"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box54"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box55" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18.6255, 43.2129, -44.28 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box55"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box55"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box56" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.17499, 43.2129, -44.28 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box56"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box56"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box57" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.80426, 43.2129, -18.343 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box57"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box57"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box58" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16.2548, 43.2129, -18.343 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box58"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box58"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box59" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 25.9764, 43.2129, -18.343 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box59"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box59"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box60" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 35.4269, 43.2129, -18.343 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box60"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box60"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box61" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -37.7977, 43.2129, -18.343 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box61"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box61"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box62" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -28.3472, 43.2129, -18.343 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box62"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box62"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box63" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18.6255, 43.2129, -18.343 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box63"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box63"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Box64" type="RigidBody" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.17499, 43.2129, -18.343 )
+mass = 10.0
+sleeping = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box64"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box64"]
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
