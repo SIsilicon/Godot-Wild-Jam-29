@@ -34,6 +34,12 @@ var look_dir: Vector3
 onready var player_mesh: Spatial = $PlayerMesh
 onready var goose: Spatial = $GoosePlaceholder
 
+# Cloud collector #
+onready var vacuum_muzzle: Area = $PlayerMesh/Vacuum/PullingArea
+onready var spawn_cloud = preload("res://scenes/entities/TestCloud.tscn")
+
+var isSucking: bool = false
+var isShooting: bool = false
 
 
 func _ready() -> void:
@@ -103,11 +109,31 @@ func _input(event):
 		
 		gimbal_y.rotation_degrees.x = clamp(gimbal_y.rotation_degrees.x, -75, 40)
 
-
+	# VACUUM ON/OFF #
+	if event is InputEventMouseButton:
+		match event.button_index:
+			
+			1: # LMB
+				if event.is_pressed():
+					isShooting = true
+					isSucking = false
+					
+				else:
+					isShooting = false
+			
+			2: # RMB
+				if event.is_pressed():
+					isSucking = true
+					isShooting = false
+					
+				else:
+					isSucking = false
 
 func _physics_process(delta : float) -> void:
 	process_input(delta)
 	process_movement(delta)
+	process_actions(delta)
+	
 
 
 
@@ -353,8 +379,36 @@ func process_movement(delta : float) -> void:
 				enter_state(States.IDLE)
 
 
+func process_actions(_delta : float) -> void:
+	
+	if isSucking:
+		pull_clouds()
+		
+	if isShooting:
+		shoot_clouds()
+
+func pull_clouds():
+	var clouds_in_area = vacuum_muzzle.get_overlapping_bodies()
+	
+	if clouds_in_area.size() > 0:
+		for cloud in clouds_in_area:
+			cloud.pull(vacuum_muzzle.global_transform.origin)
+	else:
+		pass
+
+func shoot_clouds():
+	var cloud: Cloud = spawn_cloud.instance()
+	
+	owner.add_child(cloud)
+	cloud.global_transform.origin = vacuum_muzzle.global_transform.origin
+	cloud.shoot(-vacuum_muzzle.global_transform.basis.z)
 
 
 
 
 
+func _on_Muzzle_body_entered(body):
+	if isSucking:
+		
+		# TODO: store clouds somewhere
+		body.call_deferred("free")
