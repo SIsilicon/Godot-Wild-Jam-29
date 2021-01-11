@@ -1,755 +1,734 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/entities/PlayerCharacter.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/entities/TestCloud.tscn" type="PackedScene" id=2]
-[ext_resource path="res://UI/icon.png" type="Texture" id=3]
+[ext_resource path="res://scenes/places/Island1.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/places/Island2.tscn" type="PackedScene" id=4]
 
-[sub_resource type="BoxShape" id=1]
-extents = Vector3( 500, 0.1, 500 )
-
-[sub_resource type="CubeMesh" id=2]
-size = Vector3( 250, 0.2, 250 )
-subdivide_width = 4
-subdivide_depth = 4
-
-[sub_resource type="SpatialMaterial" id=3]
-albedo_texture = ExtResource( 3 )
-
-[sub_resource type="CubeMesh" id=4]
+[sub_resource type="CubeMesh" id=1]
 
 [node name="Vacuum_Test_Scene" type="Spatial"]
-
-[node name="Floor" type="StaticBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0 )
-
-[node name="CollisionShape" type="CollisionShape" parent="Floor"]
-shape = SubResource( 1 )
-
-[node name="MeshInstance" type="MeshInstance" parent="Floor"]
-cast_shadow = 0
-mesh = SubResource( 2 )
-material/0 = SubResource( 3 )
 
 [node name="Boxes" type="Spatial" parent="."]
 
 [node name="MeshInstance" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1, 0 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance2" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 1, 0 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance3" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1, 20 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance4" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 1, 20 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance5" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1, -20 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance6" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 1, -20 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance7" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 21, 0 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance8" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 21, 0 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance9" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 21, 20 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance10" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 21, 20 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance11" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 21, -20 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance12" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 21, -20 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance13" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 1, 0 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance14" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1, 0 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance15" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 1, 20 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance16" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1, 20 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance17" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 1, -20 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance18" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1, -20 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance19" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 21, 0 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance20" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 21, 0 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance21" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 21, 20 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance22" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 21, 20 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance23" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 21, -20 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance24" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 21, -20 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance25" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1, -60 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance26" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 1, -60 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance27" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1, -40 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance28" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 1, -40 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance29" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1, -80 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance30" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 1, -80 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance31" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 21, -60 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance32" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 21, -60 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance33" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 21, -40 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance34" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 21, -40 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance35" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 21, -80 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance36" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 21, -80 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance37" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 1, -60 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance38" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1, -60 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance39" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 1, -40 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance40" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1, -40 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance41" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 1, -80 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance42" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1, -80 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance43" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 21, -60 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance44" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 21, -60 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance45" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 21, -40 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance46" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 21, -40 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance47" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 21, -80 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance48" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 21, -80 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance49" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1, 60 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance50" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 1, 60 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance51" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1, 80 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance52" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 1, 80 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance53" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1, 40 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance54" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 1, 40 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance55" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 21, 60 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance56" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 21, 60 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance57" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 21, 80 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance58" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 21, 80 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance59" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 21, 40 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance60" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 21, 40 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance61" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 1, 60 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance62" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1, 60 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance63" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 1, 80 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance64" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1, 80 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance65" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 1, 40 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance66" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1, 40 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance67" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 21, 60 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance68" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 21, 60 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance69" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 21, 80 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance70" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 21, 80 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance71" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 21, 40 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance72" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 21, 40 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance73" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 41, 0 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance74" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 41, 0 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance75" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 41, 20 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance76" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 41, 20 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance77" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 41, -20 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance78" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 41, -20 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance79" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 61, 0 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance80" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 61, 0 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance81" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 61, 20 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance82" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 61, 20 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance83" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 61, -20 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance84" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 61, -20 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance85" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 41, 0 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance86" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 41, 0 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance87" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 41, 20 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance88" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 41, 20 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance89" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 41, -20 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance90" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 41, -20 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance91" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 61, 0 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance92" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 61, 0 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance93" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 61, 20 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance94" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 61, 20 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance95" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 61, -20 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance96" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 61, -20 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance97" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 41, -60 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance98" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 41, -60 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance99" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 41, -40 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance100" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 41, -40 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance101" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 41, -80 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance102" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 41, -80 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance103" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 61, -60 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance104" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 61, -60 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance105" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 61, -40 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance106" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 61, -40 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance107" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 61, -80 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance108" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 61, -80 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance109" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 41, -60 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance110" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 41, -60 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance111" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 41, -40 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance112" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 41, -40 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance113" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 41, -80 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance114" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 41, -80 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance115" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 61, -60 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance116" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 61, -60 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance117" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 61, -40 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance118" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 61, -40 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance119" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 61, -80 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance120" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 61, -80 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance121" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 41, 60 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance122" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 41, 60 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance123" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 41, 80 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance124" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 41, 80 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance125" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 41, 40 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance126" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 41, 40 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance127" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 61, 60 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance128" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 61, 60 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance129" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 61, 80 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance130" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 61, 80 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance131" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 61, 40 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance132" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 61, 40 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance133" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 41, 60 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance134" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 41, 60 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance135" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 41, 80 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance136" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 41, 80 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance137" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 41, 40 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance138" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 41, 40 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance139" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 61, 60 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance140" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 61, 60 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance141" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 61, 80 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance142" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 61, 80 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance143" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 61, 40 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance144" type="MeshInstance" parent="Boxes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 61, 40 )
-mesh = SubResource( 4 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="PlayerCharacter" parent="." instance=ExtResource( 1 )]
@@ -777,3 +756,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0301182, 3.17048, -8.5478 )
 
 [node name="Cloud8" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.62116, 3.17048, -10.6474 )
+
+[node name="Islands" parent="." instance=ExtResource( 3 )]
+
+[node name="Island2" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -110.524, 45.5271, -306.116 )
