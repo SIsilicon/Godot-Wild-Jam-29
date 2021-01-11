@@ -25,7 +25,7 @@ func toggle() -> void:
 
 func set_state(new_state : int) -> void:
 	state = new_state
-	emit_signal("toggled", state)
+	emit_signal("toggled")
 
 
 
