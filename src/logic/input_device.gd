@@ -30,5 +30,8 @@ func set_state(new_state : int) -> void:
 
 
 func _ready() -> void:
-	output_device.add_input_device(self)
-	connect("toggled", output_device, "update_state")
+	if output_device != null:
+		output_device.add_input_device(self)
+		connect("toggled", output_device, "update_state")
+	else:
+		print("-----Untracked Output-----\nInput device:\n\tName: %s\n\tID: %s\n\nScene:\n\tName: %s\n-----Untracked Output-----" % [self.name, self, get_tree().current_scene.name])
