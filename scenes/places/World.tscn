@@ -1,25 +1,104 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scenes/places/Storm.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/places/Region1.tscn" type="PackedScene" id=2]
 [ext_resource path="res://addons/free_look_test_camera.gd" type="Script" id=3]
+[ext_resource path="res://addons/cloud/Cloud.gd" type="Script" id=4]
+[ext_resource path="res://addons/cloud/Cloud.shader" type="Shader" id=6]
 
-[sub_resource type="SphereShape" id=6]
+[sub_resource type="SphereShape" id=1]
 
-[sub_resource type="ProceduralSky" id=4]
-sky_top_color = Color( 0.219608, 0.254902, 0.27451, 1 )
-sky_horizon_color = Color( 0.560784, 0.619608, 0.662745, 1 )
-ground_bottom_color = Color( 0.219608, 0.270588, 0.298039, 1 )
-ground_horizon_color = Color( 0.560784, 0.619608, 0.662745, 1 )
+[sub_resource type="ShaderMaterial" id=4]
+render_priority = -124
+shader = ExtResource( 6 )
+shader_param/seed = 0.0
+shader_param/speed = Vector2( 2, 0 )
+shader_param/transform_speed = Vector2( 0.002, 0 )
+shader_param/min_density = 0.3
+shader_param/max_density = 6.0
+shader_param/altitude = 2000.0
+shader_param/color = Color( 0.568627, 0.698039, 0.878431, 1 )
+shader_param/detail_noise = true
+shader_param/upper_enabled = true
+shader_param/lower_enabled = true
+
+[sub_resource type="ShaderMaterial" id=5]
+render_priority = -125
+next_pass = SubResource( 4 )
+shader = ExtResource( 6 )
+shader_param/seed = 0.0
+shader_param/speed = Vector2( 2, 0 )
+shader_param/transform_speed = Vector2( 0.002, 0 )
+shader_param/min_density = 0.182443
+shader_param/max_density = 9.52671
+shader_param/altitude = 2025.0
+shader_param/color = Color( 0.757353, 0.830147, 0.931617, 1 )
+shader_param/detail_noise = false
+shader_param/upper_enabled = true
+shader_param/lower_enabled = true
+
+[sub_resource type="ShaderMaterial" id=6]
+render_priority = -126
+next_pass = SubResource( 5 )
+shader = ExtResource( 6 )
+shader_param/seed = 0.0
+shader_param/speed = Vector2( 2, 0 )
+shader_param/transform_speed = Vector2( 0.002, 0 )
+shader_param/min_density = 0.109789
+shader_param/max_density = 11.7063
+shader_param/altitude = 2050.0
+shader_param/color = Color( 0.892157, 0.92451, 0.969608, 1 )
+shader_param/detail_noise = false
+shader_param/upper_enabled = true
+shader_param/lower_enabled = true
+
+[sub_resource type="ShaderMaterial" id=7]
+render_priority = -127
+next_pass = SubResource( 6 )
+shader = ExtResource( 6 )
+shader_param/seed = 0.0
+shader_param/speed = Vector2( 2, 0 )
+shader_param/transform_speed = Vector2( 0.002, 0 )
+shader_param/min_density = 0.109789
+shader_param/max_density = 11.7063
+shader_param/altitude = 2075.0
+shader_param/color = Color( 0.973039, 0.981127, 0.992402, 1 )
+shader_param/detail_noise = false
+shader_param/upper_enabled = true
+shader_param/lower_enabled = true
+
+[sub_resource type="ShaderMaterial" id=8]
+render_priority = -128
+next_pass = SubResource( 7 )
+shader = ExtResource( 6 )
+shader_param/seed = 0.0
+shader_param/speed = Vector2( 2, 0 )
+shader_param/transform_speed = Vector2( 0.002, 0 )
+shader_param/min_density = 0.182443
+shader_param/max_density = 9.52671
+shader_param/altitude = 2100.0
+shader_param/color = Color( 1, 1, 1, 1 )
+shader_param/detail_noise = false
+shader_param/upper_enabled = true
+shader_param/lower_enabled = true
+
+[sub_resource type="CubeMesh" id=9]
+flip_faces = true
+
+[sub_resource type="ProceduralSky" id=2]
+sky_top_color = Color( 0.384314, 0.698039, 0.870588, 1 )
+sky_horizon_color = Color( 0.74902, 0.819608, 0.87451, 1 )
+ground_bottom_color = Color( 0.176471, 0.396078, 0.513726, 1 )
+ground_horizon_color = Color( 0.74902, 0.819608, 0.87451, 1 )
 sun_longitude = 180.0
 sun_energy = 0.2
 
-[sub_resource type="Environment" id=5]
+[sub_resource type="Environment" id=3]
 background_mode = 2
-background_sky = SubResource( 4 )
-ambient_light_color = Color( 0.411765, 0.411765, 0.411765, 1 )
+background_sky = SubResource( 2 )
+ambient_light_color = Color( 0.721569, 0.670588, 0.670588, 1 )
 ambient_light_energy = 1.83
-ambient_light_sky_contribution = 0.8
+ambient_light_sky_contribution = 0.86
 
 [node name="World" type="Spatial"]
 
@@ -36,7 +115,7 @@ collision_layer = 8
 collision_mask = 4
 
 [node name="CollisionShape" type="CollisionShape" parent="Camera/Area"]
-shape = SubResource( 6 )
+shape = SubResource( 1 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.692924, 0.721011, 0, -0.721011, 0.692924, 0, 0, -1003.55 )
@@ -45,5 +124,20 @@ light_energy = 0.92
 [node name="Region1" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1411.3, -24.8924, -1399.69 )
 
+[node name="CloudDome" type="MeshInstance" parent="."]
+transform = Transform( 5000.02, 0, 0, 0, 5000.02, 0, 0, 0, 5000.02, -1830.59, 263.482, -1647.14 )
+material_override = SubResource( 8 )
+mesh = SubResource( 9 )
+material/0 = null
+script = ExtResource( 4 )
+draw_count = 5
+cloud_seed = 0.0
+cloud_transform_speed = Vector2( 0.002, 0 )
+cloud_thickness = 100.0
+cloud_altitude = 2000.0
+cloud_min_density_low = 0.1
+cloud_min_density_high = 0.3
+cloud_lower_enabled = true
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 5 )
+environment = SubResource( 3 )

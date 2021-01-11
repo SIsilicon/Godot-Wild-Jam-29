@@ -32,10 +32,12 @@ var mouse_camera_sensitivity: float = 0.2
 var look_dir: Vector3
 
 onready var player_mesh: Spatial = $PlayerMesh
+onready var anim_tree: AnimationTree = $PlayerMesh/AnimationTree
+onready var anim_state_machine: AnimationNodeStateMachinePlayback = anim_tree.get("parameters/state_machine/playback")
 onready var goose: Spatial = $GoosePlaceholder
 
 # Cloud collector #
-onready var vacuum_muzzle: Area = $PlayerMesh/Vacuum/PullingArea
+onready var vacuum_muzzle: Area = $PlayerMesh/PullingArea
 onready var spawn_cloud = preload("res://scenes/entities/TestCloud.tscn")
 
 var isSucking: bool = false
@@ -47,11 +49,13 @@ func _ready() -> void:
 	# enable mouse to rotate camera
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
+	$PlayerMesh/AnimationPlayer.get_animation("Armature|Idle").loop = true
+	$PlayerMesh/AnimationPlayer.get_animation("Armature|Walk").loop = true
 	# enter IDLE state at the beggining of the game
 	enter_state(States.IDLE)
 
 
-func enter_state(new_state):
+func enter_state(new_state) -> void:
 	
 	#change current state to new state
 	state = new_state
@@ -59,49 +63,40 @@ func enter_state(new_state):
 	match state:
 		
 		States.IDLE:
-			
 			# TODO: Despawn goose glider
 			goose.visible = false
 			mouse_camera_sensitivity = DEFAULT_ROTATION_SPEED
-			
-			# TODO: Play idle animation
-			pass
-		
+			anim_tree.set("parameters/speed/scale", 1.0)
+			anim_state_machine.travel("idle")
 		
 		States.RUNNING:
-			# TODO: Play run animation
-			pass
-		
+			anim_tree.set("parameters/speed/scale", 5.0)
+			anim_state_machine.travel("running")
 		
 		States.JUMPING:
-			
 			# add velocity up to jump
-			velocity.y = JUMP_SPEED
-			
-			# TODO: Play jumping animation
-			
-			
+			velocity.y += JUMP_SPEED
+			anim_tree.set("parameters/speed/scale", 5.0)
+			anim_state_machine.travel("jump")
+		
 		States.FALLING:
-			
 			# TODO: Despawn goose glider
 			goose.visible = false
 			mouse_camera_sensitivity = DEFAULT_ROTATION_SPEED
-			
-			# TODO: Play falling animation
-			
-			
+			anim_tree.set("parameters/speed/scale", 5.0)
+			anim_state_machine.travel("falling")
+		
 		States.FLYING:
-			
 			# TODO: Spawn goose glider
 			goose.visible = true
-			# TODO: Play flying animation
+			anim_tree.set("parameters/speed/scale", 5.0)
+			anim_state_machine.travel("goose_grab")
 			
 			# change camera rotation speed
 			mouse_camera_sensitivity = FLYING_ROTATION_SPEED
 
 
-func _input(event):
-	
+func _input(event: InputEvent) -> void:
 	# use mouse to rotate view
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		gimbal_x.rotate_y(deg2rad(-event.relative.x * mouse_camera_sensitivity))
@@ -129,18 +124,16 @@ func _input(event):
 				else:
 					isSucking = false
 
-func _physics_process(delta : float) -> void:
+
+func _physics_process(delta: float) -> void:
 	process_input(delta)
 	process_movement(delta)
 	process_actions(delta)
-	
 
 
-
-func process_input(_delta : float) -> void:
-	
+func process_input(_delta: float) -> void:
 	input_movement_vector = Vector2.ZERO
-			
+	
 	input_movement_vector.y += int(Input.is_action_pressed("move_forward")) - int(Input.is_action_pressed("move_backward"))
 	input_movement_vector.x += int(Input.is_action_pressed("move_right")) - int(Input.is_action_pressed("move_left"))
 	
@@ -184,8 +177,8 @@ func process_input(_delta : float) -> void:
 			if input_movement_vector != Vector2.ZERO:
 				look_dir.x = lerp_angle(look_dir.x, direction.x, 0.1)
 				look_dir.z = lerp_angle(look_dir.z, direction.z, 0.1)
-			
-				player_mesh.look_at(transform.origin + look_dir, Vector3.UP)
+				
+				player_mesh.look_at(player_mesh.global_transform.origin - look_dir, Vector3.UP)
 		#-----------------------------------------------------------------------
 		
 		#-----------------------------------------------------------------------
@@ -255,7 +248,7 @@ func process_input(_delta : float) -> void:
 			look_dir.x = lerp_angle(look_dir.x, direction.x, 0.1)
 			look_dir.z = lerp_angle(look_dir.z, direction.z, 0.1)
 			
-			player_mesh.look_at(global_transform.origin + look_dir, Vector3.UP)
+			player_mesh.look_at(player_mesh.global_transform.origin - look_dir, Vector3.UP)
 			
 			if input_movement_vector.y < 0:
 				goose.look_at(goose.global_transform.origin + Vector3(direction.x, 0, direction.z), Vector3.UP)
@@ -273,9 +266,8 @@ func process_input(_delta : float) -> void:
 		#-----------------------------------------------------------------------
 	
 	############################################################################
-	
-	
-	
+
+
 func process_movement(delta : float) -> void:
 	
 	match state:
@@ -379,15 +371,15 @@ func process_movement(delta : float) -> void:
 				enter_state(States.IDLE)
 
 
-func process_actions(_delta : float) -> void:
-	
+func process_actions(_delta: float) -> void:
 	if isSucking:
 		pull_clouds()
 		
 	if isShooting:
 		shoot_clouds()
 
-func pull_clouds():
+
+func pull_clouds() -> void:
 	var clouds_in_area = vacuum_muzzle.get_overlapping_bodies()
 	
 	if clouds_in_area.size() > 0:
@@ -396,7 +388,8 @@ func pull_clouds():
 	else:
 		pass
 
-func shoot_clouds():
+
+func shoot_clouds() -> void:
 	var cloud: Cloud = spawn_cloud.instance()
 	
 	owner.add_child(cloud)
@@ -404,11 +397,7 @@ func shoot_clouds():
 	cloud.shoot(-vacuum_muzzle.global_transform.basis.z)
 
 
-
-
-
-func _on_Muzzle_body_entered(body):
+func _on_Muzzle_body_entered(body: Node) -> void:
 	if isSucking:
-		
 		# TODO: store clouds somewhere
 		body.call_deferred("free")
