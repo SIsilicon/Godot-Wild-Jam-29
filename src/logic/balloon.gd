@@ -42,6 +42,11 @@ func update_balloon() -> void:
 	tween.interpolate_property(balloon, "scale", balloon.scale, target_scale, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	tween.interpolate_property(balloon, "translation:y", balloon.translation.y, target_y, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	tween.start()
+	
+	if size == required_clouds:
+		set_state(States.ENABLED)
+	else:
+		set_state(States.DISABLED)
 
 
 
