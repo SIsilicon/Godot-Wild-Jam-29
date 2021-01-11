@@ -9,7 +9,12 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Node",
+"base": "KinematicBody",
+"class": "Cloud",
+"language": "GDScript",
+"path": "res://src/entities/Cloud.gd"
+}, {
+"base": "Spatial",
 "class": "InputDevice",
 "language": "GDScript",
 "path": "res://src/logic/input_device.gd"
@@ -18,11 +23,6 @@ _global_script_classes=[ {
 "class": "OutputDevice",
 "language": "GDScript",
 "path": "res://src/logic/output_device.gd"
-}, {
-"base": "KinematicBody",
-"class": "Cloud",
-"language": "GDScript",
-"path": "res://src/entities/Cloud.gd"
 }, {
 "base": "Button",
 "class": "PauseMenuButton",
@@ -35,12 +35,11 @@ _global_script_classes=[ {
 "path": "res://src/places/region.gd"
 } ]
 _global_script_class_icons={
+"Cloud": "",
 "InputDevice": "",
 "OutputDevice": "",
 "PauseMenuButton": "",
-"Region": "",
-"PauseMenuButton": "",
-"Cloud": ""
+"Region": ""
 }
 
 [application]
