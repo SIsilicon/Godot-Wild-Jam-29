@@ -1,23 +1,29 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/logic/Door.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/logic/PressurePad.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/logic/Balloon.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/entities/TestCloud.tscn" type="PackedScene" id=4]
 
 [node name="Spatial" type="Spatial"]
 
 [node name="Door" parent="." instance=ExtResource( 1 )]
-gate = 1
 
 [node name="PressurePad" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -2, -5.97798 )
-output_device_path = NodePath("../Door")
 
 [node name="PressurePad2" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -2, -5.97798 )
-output_device_path = NodePath("../Door")
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( -0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, -0.965926, 4, 0, -13 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 0.866025, 0.25, 0.433013, 0, -0.866025, 0.5, 0.5, -0.433013, -0.75, 0, 8.14456, 0 )
+
+[node name="TestCloud" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.820525, 0, -2.04303 )
+
+[node name="Balloon" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.973262, -3.57628e-07, -2.57877 )
+output_device_path = NodePath("../Door")
