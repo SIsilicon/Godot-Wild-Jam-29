@@ -1,6 +1,5 @@
+class_name Player
 extends KinematicBody
-
-
 
 # StateMachine #
 enum States {IDLE, RUNNING, JUMPING, FALLING, FLYING}

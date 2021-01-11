@@ -7,115 +7,116 @@
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
 
-[sub_resource type="AnimationNodeTimeScale" id=11]
+[sub_resource type="AnimationNodeTimeScale" id=2]
 
-[sub_resource type="AnimationNodeAnimation" id=12]
+[sub_resource type="AnimationNodeAnimation" id=3]
 animation = "Armature|Falling"
 
-[sub_resource type="AnimationNodeAnimation" id=30]
+[sub_resource type="AnimationNodeAnimation" id=4]
 animation = "Armature|Goosegrab"
 
-[sub_resource type="AnimationNodeAnimation" id=13]
+[sub_resource type="AnimationNodeAnimation" id=5]
 animation = "Armature|Idle"
 
-[sub_resource type="AnimationNodeAnimation" id=14]
+[sub_resource type="AnimationNodeAnimation" id=6]
 animation = "Armature|Jump"
 
-[sub_resource type="AnimationNodeAnimation" id=15]
+[sub_resource type="AnimationNodeAnimation" id=7]
 animation = "Armature|Walk"
 
-[sub_resource type="AnimationNodeAnimation" id=16]
+[sub_resource type="AnimationNodeAnimation" id=8]
 animation = "Armature|Idle"
 
-[sub_resource type="AnimationNodeBlendSpace1D" id=17]
-blend_point_0/node = SubResource( 15 )
+[sub_resource type="AnimationNodeBlendSpace1D" id=9]
+blend_point_0/node = SubResource( 7 )
 blend_point_0/pos = 1.0
-blend_point_1/node = SubResource( 16 )
+blend_point_1/node = SubResource( 8 )
 blend_point_1/pos = 0.0
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=18]
+[sub_resource type="AnimationNodeStateMachineTransition" id=10]
 xfade_time = 0.3
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=19]
+[sub_resource type="AnimationNodeStateMachineTransition" id=11]
 xfade_time = 0.3
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=20]
+[sub_resource type="AnimationNodeStateMachineTransition" id=12]
 xfade_time = 0.2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=21]
+[sub_resource type="AnimationNodeStateMachineTransition" id=13]
 switch_mode = 2
 auto_advance = true
 xfade_time = 0.2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=22]
+[sub_resource type="AnimationNodeStateMachineTransition" id=14]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+[sub_resource type="AnimationNodeStateMachineTransition" id=15]
 xfade_time = 0.1
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=24]
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=31]
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=32]
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=33]
+[sub_resource type="AnimationNodeStateMachineTransition" id=19]
 
-[sub_resource type="AnimationNodeStateMachine" id=25]
-states/falling/node = SubResource( 12 )
+[sub_resource type="AnimationNodeStateMachine" id=20]
+states/falling/node = SubResource( 3 )
 states/falling/position = Vector2( 264, 142 )
-states/goose_grab/node = SubResource( 30 )
+states/goose_grab/node = SubResource( 4 )
 states/goose_grab/position = Vector2( 377, 230 )
-states/idle/node = SubResource( 13 )
+states/idle/node = SubResource( 5 )
 states/idle/position = Vector2( 264, 50 )
-states/jump/node = SubResource( 14 )
+states/jump/node = SubResource( 6 )
 states/jump/position = Vector2( 482, 142 )
-states/running/node = SubResource( 17 )
+states/running/node = SubResource( 9 )
 states/running/position = Vector2( 482, 50 )
-transitions = [ "idle", "running", SubResource( 18 ), "running", "idle", SubResource( 19 ), "running", "jump", SubResource( 20 ), "jump", "falling", SubResource( 21 ), "falling", "running", SubResource( 22 ), "falling", "idle", SubResource( 23 ), "idle", "jump", SubResource( 24 ), "jump", "goose_grab", SubResource( 31 ), "goose_grab", "falling", SubResource( 32 ), "falling", "goose_grab", SubResource( 33 ) ]
+transitions = [ "idle", "running", SubResource( 10 ), "running", "idle", SubResource( 11 ), "running", "jump", SubResource( 12 ), "jump", "falling", SubResource( 13 ), "falling", "running", SubResource( 14 ), "falling", "idle", SubResource( 15 ), "idle", "jump", SubResource( 16 ), "jump", "goose_grab", SubResource( 17 ), "goose_grab", "falling", SubResource( 18 ), "falling", "goose_grab", SubResource( 19 ) ]
 start_node = "idle"
 graph_offset = Vector2( 49, 50 )
 
-[sub_resource type="AnimationNodeBlendTree" id=26]
+[sub_resource type="AnimationNodeBlendTree" id=21]
 graph_offset = Vector2( -354, 43 )
-nodes/speed/node = SubResource( 11 )
+nodes/speed/node = SubResource( 2 )
 nodes/speed/position = Vector2( 100, 120 )
-nodes/state_machine/node = SubResource( 25 )
+nodes/state_machine/node = SubResource( 20 )
 nodes/state_machine/position = Vector2( -340, 100 )
 node_connections = [ "speed", 0, "state_machine", "output", 0, "speed" ]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=27]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=22]
 
-[sub_resource type="SphereShape" id=28]
+[sub_resource type="SphereShape" id=23]
 radius = 0.25
 
-[sub_resource type="BoxShape" id=29]
+[sub_resource type="BoxShape" id=24]
 extents = Vector3( 2, 2, 2 )
 
-[sub_resource type="SpatialMaterial" id=2]
+[sub_resource type="SpatialMaterial" id=25]
 albedo_texture = ExtResource( 2 )
 
-[sub_resource type="CapsuleMesh" id=3]
-material = SubResource( 2 )
+[sub_resource type="CapsuleMesh" id=26]
+material = SubResource( 25 )
 radius = 0.5
 
-[sub_resource type="CubeMesh" id=4]
+[sub_resource type="CubeMesh" id=27]
 size = Vector3( 0.2, 0.2, 1 )
 
-[sub_resource type="CylinderMesh" id=5]
+[sub_resource type="CylinderMesh" id=28]
 top_radius = 0.2
 bottom_radius = 0.1
 height = 1.0
 
-[sub_resource type="CubeMesh" id=6]
+[sub_resource type="CubeMesh" id=29]
 size = Vector3( 0.5, 0.8, 0.25 )
 
-[sub_resource type="CubeMesh" id=9]
+[sub_resource type="CubeMesh" id=30]
 size = Vector3( 5, 0.2, 1.5 )
 
-[sub_resource type="CubeMesh" id=10]
+[sub_resource type="CubeMesh" id=31]
 size = Vector3( 0.794, 0.378, 4.482 )
 
 [node name="PlayerCharacter" type="KinematicBody"]
+collision_mask = 22
 script = ExtResource( 1 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
@@ -129,11 +130,11 @@ transform = Transform( -0.086, 0, -2.80224e-08, 0, 0.086, 0, 2.80224e-08, 0, -0.
 transform = Transform( 100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 4.01565e-16, 1.80849, -3.91307 )
 
 [node name="AnimationTree" type="AnimationTree" parent="PlayerMesh"]
-tree_root = SubResource( 26 )
+tree_root = SubResource( 21 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/speed/scale = 1.0
-parameters/state_machine/playback = SubResource( 27 )
+parameters/state_machine/playback = SubResource( 22 )
 parameters/state_machine/running/blend_position = 0.992683
 
 [node name="Muzzle" type="Area" parent="PlayerMesh"]
@@ -143,53 +144,53 @@ collision_layer = 0
 collision_mask = 16
 
 [node name="MuzzleArea" type="CollisionShape" parent="PlayerMesh/Muzzle"]
-shape = SubResource( 28 )
+shape = SubResource( 23 )
 
 [node name="PullingArea" type="Area" parent="PlayerMesh"]
 transform = Transform( -11.6279, 0, 4.52807e-06, 0, 11.6279, 0, -4.52807e-06, 0, -11.6279, -6.96105, 2.56632, 5.85704 )
 monitorable = false
-collision_layer = 0
-collision_mask = 16
+collision_layer = 2
+collision_mask = 2
 
 [node name="SuckingArea" type="CollisionShape" parent="PlayerMesh/PullingArea"]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 0, -2.007 )
-shape = SubResource( 29 )
+shape = SubResource( 24 )
 
 [node name="DEPRECATED" type="Spatial" parent="."]
 visible = false
 
 [node name="Body" type="MeshInstance" parent="DEPRECATED"]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 1, 0 )
-mesh = SubResource( 3 )
+mesh = SubResource( 26 )
 material/0 = null
 
 [node name="Nose" type="MeshInstance" parent="DEPRECATED"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.29582, -0.895017 )
-mesh = SubResource( 4 )
+mesh = SubResource( 27 )
 material/0 = null
 
 [node name="Vacuum" type="Spatial" parent="DEPRECATED"]
 
 [node name="VacuumGun" type="MeshInstance" parent="DEPRECATED/Vacuum"]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0.608137, 0.870528, -0.334133 )
-mesh = SubResource( 5 )
+mesh = SubResource( 28 )
 material/0 = null
 
 [node name="VacuumBackpack" type="MeshInstance" parent="DEPRECATED/Vacuum"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.10811, 0.61735 )
-mesh = SubResource( 6 )
+mesh = SubResource( 29 )
 material/0 = null
 
 [node name="GoosePlaceholder" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.44408, 0 )
 
 [node name="GooseWings" type="MeshInstance" parent="GoosePlaceholder"]
-mesh = SubResource( 9 )
+mesh = SubResource( 30 )
 material/0 = null
 
 [node name="GooseBody" type="MeshInstance" parent="GoosePlaceholder"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.735144 )
-mesh = SubResource( 10 )
+mesh = SubResource( 31 )
 material/0 = null
 
 [node name="GimbalX" type="Spatial" parent="."]

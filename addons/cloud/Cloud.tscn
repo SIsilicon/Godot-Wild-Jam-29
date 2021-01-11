@@ -15,6 +15,8 @@ shader_param/max_density = 6.0
 shader_param/altitude = 2000.0
 shader_param/color = Color( 0.568627, 0.698039, 0.878431, 1 )
 shader_param/detail_noise = true
+shader_param/upper_enabled = true
+shader_param/lower_enabled = false
 
 [sub_resource type="ShaderMaterial" id=2]
 render_priority = -124
@@ -28,6 +30,8 @@ shader_param/max_density = 8.89052
 shader_param/altitude = 2031.2
 shader_param/color = Color( 0.723921, 0.806745, 0.922196, 1 )
 shader_param/detail_noise = false
+shader_param/upper_enabled = true
+shader_param/lower_enabled = false
 
 [sub_resource type="ShaderMaterial" id=3]
 render_priority = -125
@@ -41,6 +45,8 @@ shader_param/max_density = 11.066
 shader_param/altitude = 2062.4
 shader_param/color = Color( 0.844706, 0.891294, 0.956235, 1 )
 shader_param/detail_noise = false
+shader_param/upper_enabled = true
+shader_param/lower_enabled = false
 
 [sub_resource type="ShaderMaterial" id=4]
 render_priority = -126
@@ -54,6 +60,8 @@ shader_param/max_density = 11.9882
 shader_param/altitude = 2093.6
 shader_param/color = Color( 0.93098, 0.951686, 0.980549, 1 )
 shader_param/detail_noise = false
+shader_param/upper_enabled = true
+shader_param/lower_enabled = false
 
 [sub_resource type="ShaderMaterial" id=5]
 render_priority = -127
@@ -67,6 +75,8 @@ shader_param/max_density = 11.429
 shader_param/altitude = 2124.8
 shader_param/color = Color( 0.982745, 0.987922, 0.995137, 1 )
 shader_param/detail_noise = false
+shader_param/upper_enabled = true
+shader_param/lower_enabled = false
 
 [sub_resource type="ShaderMaterial" id=6]
 render_priority = -128
@@ -80,6 +90,8 @@ shader_param/max_density = 9.52671
 shader_param/altitude = 2156.0
 shader_param/color = Color( 1, 1, 1, 1 )
 shader_param/detail_noise = false
+shader_param/upper_enabled = true
+shader_param/lower_enabled = false
 
 [node name="Cloud" type="MeshInstance"]
 transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0 )
