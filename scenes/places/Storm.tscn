@@ -1,7 +1,8 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://addons/kenney_particle_pack/smoke_03.png" type="Texture" id=1]
 [ext_resource path="res://addons/kenney_particle_pack/smoke_07.png" type="Texture" id=2]
+[ext_resource path="res://textures/lightning_bolt.jpg" type="Texture" id=3]
 
 [sub_resource type="CylinderMesh" id=1]
 top_radius = 500.0
@@ -24,8 +25,8 @@ uniform float grow;
 uniform vec2 cloud_dir = vec2(1.0, 0.5);
 
 
-float get_cloud(vec2 uv, float time) {
-	return texture(cloud_texture, uv * uv_scale - time * 0.06 * cloud_dir).r;
+vec3 get_cloud(vec2 uv, float time) {
+	return texture(cloud_texture, uv * uv_scale - time * 0.06 * cloud_dir).rgb;
 }
 
 void vertex() {
@@ -36,7 +37,8 @@ void vertex() {
 }
 
 void fragment() {
-	float cloud = get_cloud(UV, TIME);
+	NORMALMAP = get_cloud(UV, TIME);
+	float cloud = 0.5;
 	ALBEDO = texture(color_ramp, vec2(cloud)).rgb;
 	
 	ALPHA = pow(texture(alpha_falloff, UV.yy).a, 2.0);
@@ -52,10 +54,13 @@ colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1
 gradient = SubResource( 4 )
 
 [sub_resource type="OpenSimplexNoise" id=6]
+octaves = 2
 period = 15.1
 
-[sub_resource type="NoiseTexture" id=7]
+[sub_resource type="NoiseTexture" id=21]
 seamless = true
+as_normalmap = true
+bump_strength = 2.5
 noise = SubResource( 6 )
 
 [sub_resource type="Gradient" id=8]
@@ -66,12 +71,13 @@ colors = PoolColorArray( 0.0820313, 0.0820313, 0.0820313, 1, 0.292969, 0.292969,
 gradient = SubResource( 8 )
 
 [sub_resource type="ShaderMaterial" id=16]
+render_priority = -2
 shader = SubResource( 17 )
 shader_param/uv_scale = Vector2( 1, 6 )
 shader_param/alpha = 0.297
 shader_param/grow = 50.0
 shader_param/cloud_dir = Vector2( 1, 0.5 )
-shader_param/cloud_texture = SubResource( 7 )
+shader_param/cloud_texture = SubResource( 21 )
 shader_param/color_ramp = SubResource( 9 )
 shader_param/alpha_falloff = SubResource( 5 )
 
@@ -98,7 +104,7 @@ void fragment() {
 	if(UV.y > 0.45 || UV.y < 0.05)
 		discard;
 	
-	ALBEDO = texture(cloud_texture, UV * uv_scale - TIME * 0.06 * cloud_dir).rgb;
+	NORMALMAP = texture(cloud_texture, UV * uv_scale - TIME * 0.06 * cloud_dir).rgb;
 	ALBEDO = texture(color_ramp, ALBEDO.rr).rgb;
 	
 	ROUGHNESS = 0.5;
@@ -111,7 +117,7 @@ shader_param/uv_scale = Vector2( 1, 6 )
 shader_param/alpha = 1.0
 shader_param/grow = 0.0
 shader_param/cloud_dir = Vector2( 1, 0.5 )
-shader_param/cloud_texture = SubResource( 7 )
+shader_param/cloud_texture = SubResource( 21 )
 shader_param/color_ramp = SubResource( 9 )
 shader_param/alpha_falloff = SubResource( 5 )
 
@@ -128,7 +134,9 @@ emission_box_extents = Vector3( 300, 1000, 300 )
 flag_rotate_y = true
 gravity = Vector3( 0, 1, 0 )
 linear_accel = -1900.0
-tangential_accel = -2000.0
+tangential_accel = -1975.0
+angle = 720.0
+angle_random = 1.0
 scale = 8.15
 color_ramp = SubResource( 12 )
 
@@ -153,6 +161,60 @@ proximity_fade_distance = 100.0
 material = SubResource( 14 )
 size = Vector2( 200, 200 )
 
+[sub_resource type="Gradient" id=22]
+offsets = PoolRealArray( 0, 0.0962963 )
+colors = PoolColorArray( 1, 1, 1, 1, 0, 0, 0, 1 )
+
+[sub_resource type="GradientTexture" id=23]
+gradient = SubResource( 22 )
+
+[sub_resource type="ParticlesMaterial" id=24]
+emission_shape = 2
+emission_box_extents = Vector3( 600, 1000, 600 )
+gravity = Vector3( 0, 0, 0 )
+angle = 360.0
+angle_random = 1.0
+scale = 0.0
+scale_random = 0.9
+color_ramp = SubResource( 23 )
+
+[sub_resource type="Shader" id=25]
+code = "shader_type spatial;
+render_mode blend_add, unshaded;
+
+uniform sampler2D texture_ramp;
+uniform sampler2D texture_albedo : hint_albedo;
+
+void vertex() {
+	mat4 mat_world = mat4(normalize(CAMERA_MATRIX[0])*length(WORLD_MATRIX[0]),normalize(CAMERA_MATRIX[1])*length(WORLD_MATRIX[0]),normalize(CAMERA_MATRIX[2])*length(WORLD_MATRIX[2]),WORLD_MATRIX[3]);
+	mat_world = mat_world * mat4( vec4(cos(INSTANCE_CUSTOM.x),-sin(INSTANCE_CUSTOM.x), 0.0, 0.0), vec4(sin(INSTANCE_CUSTOM.x), cos(INSTANCE_CUSTOM.x), 0.0, 0.0),vec4(0.0, 0.0, 1.0, 0.0),vec4(0.0, 0.0, 0.0, 1.0));
+	MODELVIEW_MATRIX = INV_CAMERA_MATRIX * mat_world;
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+	vec4 albedo_tex = texture(texture_ramp, texture(texture_albedo,base_uv).rr);
+	albedo_tex *= COLOR;
+	ALBEDO = albedo_tex.rgb;
+}
+"
+
+[sub_resource type="Gradient" id=26]
+offsets = PoolRealArray( 0, 0.238095, 0.721088 )
+colors = PoolColorArray( 1, 1, 1, 1, 0.535873, 0.675781, 0.672502, 1, 0, 0, 0, 1 )
+
+[sub_resource type="GradientTexture" id=27]
+gradient = SubResource( 26 )
+
+[sub_resource type="ShaderMaterial" id=28]
+shader = SubResource( 25 )
+shader_param/texture_ramp = SubResource( 27 )
+shader_param/texture_albedo = ExtResource( 3 )
+
+[sub_resource type="QuadMesh" id=29]
+material = SubResource( 28 )
+size = Vector2( 400, 500 )
+
 [sub_resource type="ParticlesMaterial" id=18]
 emission_shape = 2
 emission_box_extents = Vector3( 4000, 500, 4000 )
@@ -160,11 +222,13 @@ flag_rotate_y = true
 gravity = Vector3( 0, 0, 0 )
 linear_accel = -2900.0
 tangential_accel = 3000.0
+angle = 720.0
+angle_random = 1.0
 scale = 20.82
 color_ramp = SubResource( 12 )
 
 [sub_resource type="SpatialMaterial" id=19]
-render_priority = -1
+render_priority = -3
 flags_transparent = true
 flags_vertex_lighting = true
 vertex_color_use_as_albedo = true
@@ -180,17 +244,18 @@ albedo_texture = ExtResource( 2 )
 transmission_enabled = true
 transmission = Color( 0.313726, 0.313726, 0.313726, 1 )
 proximity_fade_enable = true
-proximity_fade_distance = 100.0
+proximity_fade_distance = 300.0
 
 [sub_resource type="QuadMesh" id=20]
 material = SubResource( 19 )
 size = Vector2( 200, 200 )
 
 [node name="Storm" type="MeshInstance"]
+extra_cull_margin = 2114.47
 mesh = SubResource( 1 )
 material/0 = SubResource( 10 )
 
-[node name="Particles" type="Particles" parent="."]
+[node name="CloseClouds" type="Particles" parent="."]
 amount = 64
 lifetime = 10.0
 preprocess = 10.0
@@ -199,8 +264,16 @@ draw_order = 2
 process_material = SubResource( 13 )
 draw_pass_1 = SubResource( 15 )
 
+[node name="Lightning" type="Particles" parent="."]
+amount = 32
+preprocess = 1.0
+visibility_aabb = AABB( -803.603, -1575.55, -823.2, 1607.21, 3151.09, 1646.4 )
+draw_order = 2
+process_material = SubResource( 24 )
+draw_pass_1 = SubResource( 29 )
+
 [node name="BottomClouds" type="Particles" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2000, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1959.78, 0 )
 amount = 64
 lifetime = 10.0
 preprocess = 10.0

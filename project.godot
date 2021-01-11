@@ -9,6 +9,16 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "InputDevice",
+"language": "GDScript",
+"path": "res://src/logic/input_device.gd"
+}, {
+"base": "Spatial",
+"class": "OutputDevice",
+"language": "GDScript",
+"path": "res://src/logic/output_device.gd"
+}, {
 "base": "KinematicBody",
 "class": "Cloud",
 "language": "GDScript",
@@ -18,8 +28,17 @@ _global_script_classes=[ {
 "class": "PauseMenuButton",
 "language": "GDScript",
 "path": "res://src/ui/pause_menu/button.gd"
+}, {
+"base": "Area",
+"class": "Region",
+"language": "GDScript",
+"path": "res://src/places/region.gd"
 } ]
 _global_script_class_icons={
+"InputDevice": "",
+"OutputDevice": "",
+"PauseMenuButton": "",
+"Region": "",
 "PauseMenuButton": "",
 "Cloud": ""
 }
@@ -64,6 +83,13 @@ move_jump={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"unicode":0,"echo":false,"script":null)
  ]
 }
+
+[layer_names]
+
+3d_physics/layer_1="Player"
+3d_physics/layer_2="Entity"
+3d_physics/layer_3="World"
+3d_physics/layer_4="Camera"
 
 [rendering]
 
