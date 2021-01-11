@@ -383,7 +383,8 @@ func pull_clouds() -> void:
 	
 	if clouds_in_area.size() > 0:
 		for cloud in clouds_in_area:
-			cloud.pull(vacuum_muzzle.global_transform.origin)
+			if cloud.has_method("pull"):
+				cloud.pull(vacuum_muzzle.global_transform.origin)
 	else:
 		pass
 
