@@ -115,7 +115,9 @@ size = Vector3( 5, 0.2, 1.5 )
 [sub_resource type="CubeMesh" id=31]
 size = Vector3( 0.794, 0.378, 4.482 )
 
-[node name="PlayerCharacter" type="KinematicBody"]
+[node name="PlayerCharacter" type="KinematicBody" groups=[
+"pushes_pressure_pad",
+]]
 collision_mask = 22
 script = ExtResource( 1 )
 
