@@ -17,6 +17,18 @@ signal toggled(state)
 
 # Methods to be used outside/inside of script
 
+func enable() -> void:
+	state = States.ACTIVE
+	_on_enabled()
+
+
+
+func disable() -> void:
+	state = States.INACTIVE
+	_on_disabled()
+
+
+
 func add_input_device(new_input_device) -> void:
 	input_devices.append(new_input_device)
 
@@ -38,9 +50,9 @@ func update_state() -> void:
 					locked = true
 			
 			if !locked:
-				if state != States.ACTIVE: _on_enabled()
+				if state != States.ACTIVE: enable()
 			else:
-				if state != States.INACTIVE: _on_disabled()
+				if state != States.INACTIVE: disable()
 		
 		GateTypes.OR:
 			var locked : bool = true
@@ -50,9 +62,9 @@ func update_state() -> void:
 					break
 			
 			if !locked:
-				if state != States.ACTIVE: _on_enabled()
+				if state != States.ACTIVE: enable()
 			else:
-				if state != States.INACTIVE: _on_disabled()
+				if state != States.INACTIVE: disable()
 		
 		GateTypes.NAND:
 			var locked : bool = false
@@ -67,9 +79,9 @@ func update_state() -> void:
 				locked = true
 			
 			if !locked:
-				if state != States.ACTIVE: _on_enabled()
+				if state != States.ACTIVE: enable()
 			else:
-				if state != States.INACTIVE: _on_disabled()
+				if state != States.INACTIVE: disable()
 		
 		GateTypes.NOR:
 			var locked : bool = false
@@ -80,9 +92,9 @@ func update_state() -> void:
 					break
 			
 			if !locked:
-				if state != States.ACTIVE: _on_enabled()
+				if state != States.ACTIVE: enable()
 			else:
-				if state != States.INACTIVE: _on_disabled()
+				if state != States.INACTIVE: disable()
 
 
 
