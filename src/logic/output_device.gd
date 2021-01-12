@@ -4,7 +4,7 @@ class_name OutputDevice
 
 
 enum States { INACTIVE, ACTIVE }
-enum GateTypes { AND, OR }
+enum GateTypes { AND, OR, NAND, NOR }
 
 export (GateTypes) var gate : int = GateTypes.AND
 export (States) var state : int = States.INACTIVE
@@ -47,11 +47,43 @@ func update_state() -> void:
 			for input_device in input_devices:
 				if input_device.state == InputDevice.States.ENABLED:
 					locked = false
+					break
 			
 			if !locked:
 				if state != States.ACTIVE: _on_enabled()
 			else:
 				if state != States.INACTIVE: _on_disabled()
+		
+		GateTypes.NAND:
+			var locked : bool = false
+			var required : int = len(input_devices)
+			var achieved : int = 0
+			
+			for input_device in input_devices:
+				if input_device.state == InputDevice.States.ENABLED:
+					achieved += 1
+			
+			if achieved == required:
+				locked = true
+			
+			if !locked:
+				if state != States.ACTIVE: _on_enabled()
+			else:
+				if state != States.INACTIVE: _on_disabled()
+		
+		GateTypes.NOR:
+			var locked : bool = false
+			
+			for input_device in input_devices:
+				if input_device.state == InputDevice.States.ENABLED:
+					locked = true
+					break
+			
+			if !locked:
+				if state != States.ACTIVE: _on_enabled()
+			else:
+				if state != States.INACTIVE: _on_disabled()
+
 
 
 # Virtuals
