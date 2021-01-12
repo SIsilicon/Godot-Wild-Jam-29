@@ -24,10 +24,6 @@ func _process(_delta) -> void:
 
 
 
-func _input(event) -> void:
-	if event.is_action_pressed("ui_accept"):
-		update_balloon()
-
 func update_balloon() -> void:
 	var target_scale : Vector3 = Vector3.ZERO
 	var target_y : float = 0.0
