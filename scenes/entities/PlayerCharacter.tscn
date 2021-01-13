@@ -1,8 +1,9 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://src/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://UI/icon.png" type="Texture" id=2]
 [ext_resource path="res://models/mc/char_mc.fbx" type="PackedScene" id=3]
+[ext_resource path="res://UI/e_button.png" type="Texture" id=4]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -115,6 +116,10 @@ size = Vector3( 5, 0.2, 1.5 )
 [sub_resource type="CubeMesh" id=31]
 size = Vector3( 0.794, 0.378, 4.482 )
 
+[sub_resource type="ViewportTexture" id=32]
+flags = 4
+viewport_path = NodePath("StartNavigate/Viewport")
+
 [node name="PlayerCharacter" type="KinematicBody" groups=[
 "pushes_pressure_pad",
 ]]
@@ -203,7 +208,40 @@ material/0 = null
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.70055, 5.40486 )
 
 [node name="Camera" type="Camera" parent="GimbalX/GimbalY/CameraPosition"]
-far = 1000.0
+far = 8000.0
+
+[node name="StartNavigate" type="Sprite3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.00041, 0 )
+visible = false
+flip_v = true
+pixel_size = 0.0172
+billboard = 1
+texture = SubResource( 32 )
+
+[node name="Viewport" type="Viewport" parent="StartNavigate"]
+size = Vector2( 128, 128 )
+transparent_bg = true
+hdr = false
+usage = 0
+render_target_update_mode = 3
+
+[node name="TextureRect" type="TextureRect" parent="StartNavigate/Viewport"]
+anchor_left = 0.3
+anchor_top = 0.3
+anchor_right = 0.7
+anchor_bottom = 0.7
+texture = ExtResource( 4 )
+expand = true
+
+[node name="Label" type="Label" parent="StartNavigate/Viewport"]
+anchor_top = 0.7
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_as_outline = 0
+text = "Start Navigating"
+align = 1
 [connection signal="body_entered" from="PlayerMesh/Muzzle" to="." method="_on_Muzzle_body_entered"]
 
 [editable path="PlayerMesh"]

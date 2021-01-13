@@ -65,7 +65,7 @@ noise = SubResource( 5 )
 
 [sub_resource type="Gradient" id=7]
 offsets = PoolRealArray( 0.190476, 1 )
-colors = PoolColorArray( 0.0820313, 0.0820313, 0.0820313, 1, 0.292969, 0.292969, 0.292969, 1 )
+colors = PoolColorArray( 0.0820313, 0.0820313, 0.0820313, 1, 0.129395, 0.129395, 0.129395, 1 )
 
 [sub_resource type="GradientTexture" id=8]
 gradient = SubResource( 7 )
@@ -151,11 +151,15 @@ params_billboard_keep_scale = true
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = false
+albedo_color = Color( 0.8, 0.8, 0.8, 1 )
 albedo_texture = ExtResource( 1 )
 transmission_enabled = true
 transmission = Color( 0.313726, 0.313726, 0.313726, 1 )
 proximity_fade_enable = true
 proximity_fade_distance = 100.0
+distance_fade_mode = 1
+distance_fade_min_distance = 0.0
+distance_fade_max_distance = 200.0
 
 [sub_resource type="QuadMesh" id=16]
 material = SubResource( 15 )
@@ -239,11 +243,15 @@ params_billboard_keep_scale = true
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = false
+albedo_color = Color( 0.764706, 0.764706, 0.764706, 1 )
 albedo_texture = ExtResource( 2 )
 transmission_enabled = true
 transmission = Color( 0.313726, 0.313726, 0.313726, 1 )
 proximity_fade_enable = true
 proximity_fade_distance = 300.0
+distance_fade_mode = 1
+distance_fade_min_distance = 0.0
+distance_fade_max_distance = 200.0
 
 [sub_resource type="QuadMesh" id=27]
 material = SubResource( 26 )
@@ -258,6 +266,7 @@ material/0 = SubResource( 11 )
 amount = 64
 lifetime = 10.0
 preprocess = 10.0
+fixed_fps = 60
 visibility_aabb = AABB( -1098.91, -1575.55, -1087.92, 2197.82, 3151.09, 2175.84 )
 draw_order = 2
 process_material = SubResource( 14 )
@@ -266,6 +275,7 @@ draw_pass_1 = SubResource( 16 )
 [node name="Lightning" type="Particles" parent="."]
 amount = 32
 preprocess = 1.0
+fixed_fps = 60
 visibility_aabb = AABB( -803.603, -1575.55, -823.2, 1607.21, 3151.09, 1646.4 )
 draw_order = 2
 process_material = SubResource( 19 )
@@ -276,6 +286,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1959.78, 0 )
 amount = 64
 lifetime = 10.0
 preprocess = 10.0
+fixed_fps = 60
 visibility_aabb = AABB( -3507.33, -113.819, -3758.63, 7014.66, 2301.51, 7517.26 )
 draw_order = 2
 process_material = SubResource( 25 )
@@ -286,6 +297,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2000, 0 )
 amount = 64
 lifetime = 10.0
 preprocess = 10.0
+fixed_fps = 60
 visibility_aabb = AABB( -3507.33, -1688.32, -3758.63, 7014.66, 967.93, 7517.26 )
 draw_order = 2
 process_material = SubResource( 25 )
