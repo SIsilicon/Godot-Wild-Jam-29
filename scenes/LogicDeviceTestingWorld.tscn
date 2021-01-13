@@ -3,7 +3,7 @@
 [ext_resource path="res://scenes/logic/Door.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/logic/PressurePad.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/logic/Pushable.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/entities/TestCloud.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/logic/Balloon.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/entities/PlayerCharacter.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/logic/Lever.tscn" type="PackedScene" id=6]
 
@@ -16,12 +16,10 @@ size = Vector3( 32, 3, 32 )
 [node name="Spatial" type="Spatial"]
 
 [node name="Door" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
-transform = Transform( 0.866025, 0.25, 0.433013, 0, -0.866025, 0.5, 0.5, -0.433013, -0.75, 0, 8.14456, 0 )
-
-[node name="TestCloud" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.820525, 0, -2.04303 )
+transform = Transform( -0.0853998, 0.498174, 0.862861, 0, -0.866025, 0.5, 0.996347, 0.0426999, 0.0739584, 0, 8.14456, 0 )
 
 [node name="StaticBody" type="StaticBody" parent="."]
 
@@ -45,5 +43,10 @@ output_device_path = NodePath("../Door")
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.73911, -1.44248, 6.80483 )
 
 [node name="Lever" parent="." instance=ExtResource( 6 )]
-transform = Transform( -1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, 4, -1, 0 )
+transform = Transform( -1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, 4, -1, -4.87095 )
 output_device_path = NodePath("../Door")
+
+[node name="Balloon" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.20811, -1.70886, -1.22936 )
+output_device_path = NodePath("../Door")
+required_clouds = 100.0

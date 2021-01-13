@@ -20,7 +20,7 @@ const MAX_BALLOON_SCALE : Vector3 = Vector3(1.0, 1.0, 1.0)
 # Functions that should not be used outside of script
 
 func _process(_delta) -> void:
-	pull_clouds()
+	if size < required_clouds: pull_clouds()
 
 
 
@@ -38,6 +38,8 @@ func update_balloon() -> void:
 	tween.interpolate_property(balloon, "scale", balloon.scale, target_scale, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	tween.interpolate_property(balloon, "translation:y", balloon.translation.y, target_y, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	tween.start()
+	
+	size = min(size, required_clouds)
 	
 	if size == required_clouds:
 		set_state(States.ENABLED)
