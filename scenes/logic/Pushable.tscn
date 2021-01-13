@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://src/logic/pushable.gd" type="Script" id=1]
+
+[sub_resource type="CylinderMesh" id=5]
+
+[sub_resource type="CylinderShape" id=6]
+
+[sub_resource type="CylinderShape" id=7]
+radius = 1.5
+
+[sub_resource type="CylinderShape" id=8]
+height = 1.9
+
+[node name="Pushable" type="KinematicBody" groups=[
+"pushes_pressure_pad",
+]]
+script = ExtResource( 1 )
+push_speed = 0.4
+do_camera = false
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = SubResource( 5 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 6 )
+
+[node name="PushArea" type="Area" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="PushArea"]
+shape = SubResource( 7 )
+
+[node name="TestPushArea" type="Area" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="TestPushArea"]
+shape = SubResource( 8 )
+
+[node name="Tween" type="Tween" parent="."]
