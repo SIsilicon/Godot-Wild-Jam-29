@@ -8,17 +8,20 @@ var state : int = States.IDLE
 # Movement Variables #
 const GRAVITY: int = -40
 var velocity: Vector3= Vector3.ZERO
-const MAX_SPEED: int = 25
-const JUMP_SPEED: int = 20
+const MAX_SPEED: int = 15
+const JUMP_SPEED: int = 10
 const ACCELERATION: int = 6
-const DEACCELERATION: int = 50
+const DEACCELERATION: int = 25
 const MAX_SLOPE_ANGLE: int = 40
-const FLYING_SPEED: int = 50
-const HOVER_SPEED: int = 20
+const FLYING_SPEED: int = 15
+const HOVER_SPEED: int = 10
 
 var input_movement_vector: Vector2
 var direction := Vector3.ZERO
 var hover_dir: Vector3
+
+export var YaxisInversion_ON: bool = false
+var Y_axis_inverter: int = 0
 
 # Camera Variables #
 onready var gimbal_x := $GimbalX
@@ -66,16 +69,22 @@ func enter_state(new_state) -> void:
 			mouse_camera_sensitivity = DEFAULT_ROTATION_SPEED
 			anim_tree.set("parameters/speed/scale", 1.0)
 			anim_state_machine.travel("idle")
+			
+			Y_axis_inverter = 1
 		
 		States.RUNNING:
 			anim_tree.set("parameters/speed/scale", 5.0)
 			anim_state_machine.travel("running")
+			
+			Y_axis_inverter = 1
 		
 		States.JUMPING:
 			# add velocity up to jump
 			velocity.y += JUMP_SPEED
 			anim_tree.set("parameters/speed/scale", 5.0)
 			anim_state_machine.travel("jump")
+			
+			Y_axis_inverter = 1
 		
 		States.FALLING:
 			# TODO: Despawn goose glider
@@ -83,6 +92,8 @@ func enter_state(new_state) -> void:
 			mouse_camera_sensitivity = DEFAULT_ROTATION_SPEED
 			anim_tree.set("parameters/speed/scale", 5.0)
 			anim_state_machine.travel("falling")
+			
+			Y_axis_inverter = 1
 		
 		States.FLYING:
 			# TODO: Spawn goose glider
@@ -92,10 +103,15 @@ func enter_state(new_state) -> void:
 			
 			# change camera rotation speed
 			mouse_camera_sensitivity = FLYING_ROTATION_SPEED
+			
+			if YaxisInversion_ON:
+				Y_axis_inverter = -1
+			else:
+				Y_axis_inverter = 1
 		
 		States.STEERING:
 			# TODO: Add animation for steering
-			pass
+			Y_axis_inverter = 1
 	
 	shape_owner_set_disabled(get_shape_owners()[0], state == States.STEERING)
 
@@ -104,7 +120,7 @@ func _input(event: InputEvent) -> void:
 	# use mouse to rotate view
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		gimbal_x.rotate_y(deg2rad(-event.relative.x * mouse_camera_sensitivity))
-		gimbal_y.rotate_x(deg2rad(-event.relative.y * mouse_camera_sensitivity))
+		gimbal_y.rotate_x(deg2rad(-event.relative.y * mouse_camera_sensitivity * Y_axis_inverter))
 		
 		gimbal_y.rotation_degrees.x = clamp(gimbal_y.rotation_degrees.x, -75, 40)
 
@@ -179,8 +195,8 @@ func process_input(_delta: float) -> void:
 		
 			# Rotate to match looking direction if moving
 			if input_movement_vector != Vector2.ZERO:
-				look_dir.x = lerp_angle(look_dir.x, direction.x, 0.1)
-				look_dir.z = lerp_angle(look_dir.z, direction.z, 0.1)
+				look_dir.x = lerp_angle(look_dir.x, direction.x, 0.2)
+				look_dir.z = lerp_angle(look_dir.z, direction.z, 0.2)
 				
 				player_mesh.look_at(player_mesh.global_transform.origin - look_dir, Vector3.UP)
 		#-----------------------------------------------------------------------
