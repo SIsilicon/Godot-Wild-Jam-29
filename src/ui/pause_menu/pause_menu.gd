@@ -31,7 +31,8 @@ onready var credits_panel : Control = new_panel([
 	new_label("\t- SiSilicon"),
 	new_label("\t- Isaac Astell\n"),
 	new_label("Game design"),
-	new_label("\t- Everyone!")
+	new_label("\t- Everyone!"),
+	new_button("Return", null, ButtonTypes.RETURN)
 ])
 
 onready var main_panel : Control = new_panel([
