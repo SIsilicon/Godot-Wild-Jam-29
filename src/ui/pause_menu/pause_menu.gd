@@ -10,11 +10,35 @@ export var panel_size : float
 
 var panel_x_offset : float = 0
 var panels : Array = []
+var settings : Dictionary = {
+	"invert_y" : false
+}
 
-onready var options_panel : Control = new_panel([new_button("Back", null, ButtonTypes.RETURN)])
-onready var sub_debug_panel : Control = new_panel([new_button("Back", null, ButtonTypes.RETURN)])
-onready var debug_panel : Control = new_panel([new_label("Test Label"), new_button("Test Button"), new_button("Subdebug", sub_debug_panel), new_button("Back", null, true)])
-onready var main_panel : Control = new_panel([new_button("Debug", debug_panel), new_button("Options", options_panel), new_button("Quit", null, ButtonTypes.QUIT)])
+onready var settings_panel : Control = new_panel([
+	new_label("-[Settings]-"),
+	new_bool_button("invert-y", "Invert Y-Axis"),
+	new_button("Return", null, ButtonTypes.RETURN)
+])
+
+onready var credits_panel : Control = new_panel([
+	new_label("-[Credits]-\n"),
+	new_label("3D Modelling"),
+	new_label("\t- Chembini\n"),
+	new_label("Composing"),
+	new_label("\t- Isabella Lau\n"),
+	new_label("Programming"),
+	new_label("\t- Jestem Stefan"),
+	new_label("\t- SiSilicon"),
+	new_label("\t- Isaac Astell\n"),
+	new_label("Game design"),
+	new_label("\t- Everyone!")
+])
+
+onready var main_panel : Control = new_panel([
+	new_button("Settings", settings_panel),
+	new_button("Credits", credits_panel),
+	new_button("Quit", null, ButtonTypes.QUIT),
+])
 
 
 
@@ -65,7 +89,7 @@ func add_panel(panel : Control) -> void:
 	panels.append(panel)
 	
 	panel.visible = true
-	add_child(panel)
+	if not panel in get_children(): add_child(panel)
 	update_panel_selection()
 
 
@@ -131,6 +155,20 @@ func new_button(text : String, opens_panel : Control = null, button_type : int =
 
 
 
+func new_bool_button(setting : String, text : String, enabled : bool = false) -> HBoxContainer:
+	var button_packed : PackedScene = load("res://scenes/ui/BooleanButton.tscn")
+	var button : HBoxContainer = button_packed.instance()
+	
+	button.set_text(text)
+	button.set_state(enabled)
+	button.set_setting(setting)
+	
+	button.connect("toggled", self, "bool_button_toggled")
+	
+	return button
+
+
+
 func button_pressed(button : PauseMenuButton) -> void:
 	match button.button_type:
 		ButtonTypes.DEFAULT:
@@ -144,3 +182,14 @@ func button_pressed(button : PauseMenuButton) -> void:
 	
 	if button.opens_panel:
 		add_panel(button.opens_panel)
+
+
+
+func bool_button_toggled(button : HBoxContainer) -> void:
+	set_setting(button.setting, button.is_enabled())
+
+
+
+func set_setting(setting : String, value) -> void:
+	settings[setting] = value
+	print(settings)
