@@ -2,6 +2,8 @@ extends InputDevice
 
 
 
+onready var pad_mesh : MeshInstance = $MeshInstance
+
 var pushers : Array = []
 
 
@@ -10,8 +12,10 @@ var pushers : Array = []
 
 func update_pushers() -> void:
 	if len(pushers) > 0:
+		pad_mesh.translation.y = -pad_mesh.mesh.size.y / 2.0
 		set_state(States.ENABLED)
 	else:
+		pad_mesh.translation.y = 0
 		set_state(States.DISABLED)
 
 
