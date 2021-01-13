@@ -4,7 +4,8 @@ extends OutputDevice
 
 
 
-onready var animation_player = $AnimationPlayer
+onready var collision : CollisionShape = $Collision/CollisionShape
+onready var animation_player : AnimationPlayer = $AnimationPlayer
 
 
 
@@ -12,11 +13,13 @@ onready var animation_player = $AnimationPlayer
 
 
 func open() -> void:
+	collision.disabled = true
 	animation_player.play("open")
 
 
 
 func close() -> void:
+	collision.disabled = false
 	animation_player.play("close")
 
 
