@@ -12,17 +12,17 @@ var sfx_bus : Array = []
 var music_bus : Array = []
 var tags : Dictionary = {}
 var audio_paths : Dictionary = {
-	"jump_sound" : [ "JumpSound.ogg" ],
-	"goose_honk" : [ "GooseHonk1.ogg" ],
-	"goose_wing_flap" : [ "GooseWingFlap1.ogg", "GooseWingFlap2.ogg", "GooseWingFlap3.ogg", "GooseWingFlap4.ogg" ],
-	"grass_footstep" : [ "GrassFootstep1.ogg", "GrassFootstep2.ogg", "GrassFootstep3.ogg", "GrassFootstep4.ogg" ],
-	"ship_footstep" : [ "ShipFootstep1.ogg", "ShipFootstep2.ogg", "ShipFootstep3.ogg", "ShipFootstep4.ogg" ],
-	"grass_landing" : [ "GrassLandingSound1.ogg" ],
-	"ship_landing" : [ "ShipLandingSound1.ogg" ],
-	"ground_layer" : [ "GroundLayer1V1.ogg" ],
-	"goose_layer" : [ "GooseLayer2V1.ogg" ],
-	"ship_layer" : [ "ShipLayer3V1.ogg" ],
-	"ship_melody_layer" : [ "ShipMelodyLayer4V1.ogg" ]
+	"jump_sound" : [ "mpc_jump_sound.ogg" ],
+	"goose_honk" : [ "goose_honk_1.ogg" ],
+	"goose_wing_flap" : [ "goose_wing_flap_1.ogg", "goose_wing_flap_2.ogg", "goose_wing_flap_3.ogg", "goose_wing_flap_4.ogg" ],
+	"grass_footstep" : [ "mpc_grass_footstep_1.ogg", "mpc_grass_footstep_2.ogg", "mpc_grass_footstep_3.ogg", "mpc_grass_footstep_4.ogg" ],
+	"ship_footstep" : [ "mpc_ship_footstep_1.ogg", "mpc_ship_footstep_2.ogg", "mpc_ship_footstep_3.ogg", "mpc_ship_footstep_4.ogg" ],
+	"grass_landing" : [ "mpc_grass_landing_sound_1.ogg" ],
+	"ship_landing" : [ "mpc_ship_landing_sound.ogg" ],
+	"ground_layer" : [ "music_groundwalking_layer1_v1.ogg" ],
+	"goose_layer" : [ "music_gooseflight_layer2_v1.ogg" ],
+	"ship_layer" : [ "music_onship_layer3_v1.ogg" ],
+	"ship_melody_layer" : [ "music_onship_melody_layer4_v1.ogg" ]
 }
 
 
