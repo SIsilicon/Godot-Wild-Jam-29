@@ -3,7 +3,7 @@ extends InputDevice
 
 
 export var size : float
-export var required_clouds : float = 1.0
+export var required_clouds : float = 1000.0
 
 onready var balloon : MeshInstance = $Balloon
 onready var tween : Tween = $Tween
@@ -50,7 +50,7 @@ func update_balloon() -> void:
 
 func pull_clouds() -> void:
 	for cloud in clouds:
-		cloud.pull(global_transform.origin)
+		cloud.pull(global_transform.origin, 10)
 		
 		if global_transform.origin.distance_to(cloud.global_transform.origin) < 0.5:
 			clouds.erase(cloud)
