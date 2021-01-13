@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/audio/audio_piece.gd" type="Script" id=1]
+[ext_resource path="res://audio/ShipLayer3V1.ogg" type="AudioStream" id=2]
+
+[node name="AudioPiece" type="AudioStreamPlayer"]
+stream = ExtResource( 2 )
+script = ExtResource( 1 )
+[connection signal="finished" from="." to="." method="_on_AudioPiece_finished"]

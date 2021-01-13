@@ -2,14 +2,14 @@
 
 [ext_resource path="res://src/logic/pushable.gd" type="Script" id=1]
 
-[sub_resource type="CylinderMesh" id=5]
+[sub_resource type="CylinderMesh" id=1]
 
-[sub_resource type="CylinderShape" id=6]
+[sub_resource type="CylinderShape" id=2]
 
-[sub_resource type="CylinderShape" id=7]
+[sub_resource type="CylinderShape" id=3]
 radius = 1.5
 
-[sub_resource type="CylinderShape" id=8]
+[sub_resource type="CylinderShape" id=4]
 height = 1.9
 
 [node name="Pushable" type="KinematicBody" groups=[
@@ -18,22 +18,23 @@ height = 1.9
 script = ExtResource( 1 )
 push_speed = 0.4
 do_camera = false
+gravity = 15.0
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
-mesh = SubResource( 5 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-shape = SubResource( 6 )
+shape = SubResource( 2 )
 
 [node name="PushArea" type="Area" parent="."]
 
 [node name="CollisionShape" type="CollisionShape" parent="PushArea"]
-shape = SubResource( 7 )
+shape = SubResource( 3 )
 
 [node name="TestPushArea" type="Area" parent="."]
 
 [node name="CollisionShape" type="CollisionShape" parent="TestPushArea"]
-shape = SubResource( 8 )
+shape = SubResource( 4 )
 
 [node name="Tween" type="Tween" parent="."]
