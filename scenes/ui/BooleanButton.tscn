@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/ui/pause_menu/boolean_button.gd" type="Script" id=1]
+
+[node name="HBoxContainer" type="HBoxContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CheckButton" type="CheckButton" parent="."]
+margin_right = 76.0
+margin_bottom = 40.0
+
+[node name="Label" type="Label" parent="."]
+margin_left = 80.0
+margin_top = 13.0
+margin_right = 80.0
+margin_bottom = 27.0
+[connection signal="toggled" from="CheckButton" to="." method="_on_CheckButton_toggled"]
