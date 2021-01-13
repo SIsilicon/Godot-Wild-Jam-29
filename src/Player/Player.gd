@@ -2,7 +2,7 @@ class_name Player
 extends KinematicBody
 
 # StateMachine #
-enum States {IDLE, RUNNING, JUMPING, FALLING, FLYING}
+enum States {IDLE, RUNNING, JUMPING, FALLING, FLYING, STEERING}
 var state : int = States.IDLE
 
 # Movement Variables #
@@ -19,7 +19,6 @@ const HOVER_SPEED: int = 20
 var input_movement_vector: Vector2
 var direction := Vector3.ZERO
 var hover_dir: Vector3
-
 
 # Camera Variables #
 onready var gimbal_x := $GimbalX
@@ -93,6 +92,12 @@ func enter_state(new_state) -> void:
 			
 			# change camera rotation speed
 			mouse_camera_sensitivity = FLYING_ROTATION_SPEED
+		
+		States.STEERING:
+			# TODO: Add animation for steering
+			pass
+	
+	shape_owner_set_disabled(get_shape_owners()[0], state == States.STEERING)
 
 
 func _input(event: InputEvent) -> void:
