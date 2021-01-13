@@ -1,0 +1,89 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://scenes/places/S_Islands/S_Island1.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/logic/Pushable.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/places/Rocks/rock4.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/places/Rocks/rock1.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/entities/PlayerCharacter.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/places/Rocks/rock2.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/logic/PressurePad.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/logic/Lever.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/logic/Balloon.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/logic/Door.tscn" type="PackedScene" id=10]
+[ext_resource path="res://UI/font/regular.otf" type="DynamicFontData" id=11]
+
+[sub_resource type="DynamicFont" id=1]
+size = 24
+font_data = ExtResource( 11 )
+
+[node name="LogicDeviceExampleWorld" type="Spatial"]
+
+[node name="Instructions" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Instructions"]
+margin_right = 40.0
+margin_bottom = 14.0
+custom_fonts/font = SubResource( 1 )
+text = "Hooking up a logic input device (button, level, balloon, etc.)
+to an output device  (door) is pretty easy. All input devices have a
+necassary to fill in paramater called \"Output device path\". This is simply
+a NodePath to your output device of choice. It's as simple as that.
+
+
+Through the output device, you can define other paramaters such
+as it's starting state and the gate it uses (AND, OR, NAND, NOR)"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerCharacter" parent="." instance=ExtResource( 5 )]
+
+[node name="Pushable" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.73587, 1, -6.89567 )
+
+[node name="Environment" type="Spatial" parent="."]
+
+[node name="S_Island1" parent="Environment" instance=ExtResource( 1 )]
+
+[node name="rock1" parent="Environment" instance=ExtResource( 4 )]
+transform = Transform( 0.491466, 0, 0.870897, 0, 1, 0, -0.870897, 0, 0.491466, -3.90309, 0.217534, 9.84009 )
+
+[node name="rock4" parent="Environment/rock1" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14.912, -0.147592, -5.91753 )
+
+[node name="rock4" parent="Environment" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.6765, 0.113489, -2.55985 )
+
+[node name="rock2" parent="Environment/rock4" instance=ExtResource( 6 )]
+transform = Transform( 0.807815, 0, 0.589436, 0, 1, 0, -0.589436, 0, 0.807815, -16.6982, -0.291068, -7.98241 )
+
+[node name="Lights" type="Spatial" parent="."]
+
+[node name="DirectionalLight" type="DirectionalLight" parent="Lights"]
+transform = Transform( 0.68058, 0.326975, -0.655666, 0, 0.894895, 0.446276, 0.732674, -0.303727, 0.609048, 8.47971, 11.0592, 0 )
+
+[node name="DirectionalLight2" type="DirectionalLight" parent="Lights"]
+transform = Transform( -0.416617, 0.0263202, 0.908701, -0.870609, 0.276166, -0.407152, -0.261669, -0.96075, -0.0921409, 30.4387, 11.0592, 0 )
+
+[node name="LogicDevices" type="Spatial" parent="."]
+
+[node name="Door" parent="LogicDevices" instance=ExtResource( 10 )]
+transform = Transform( -0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 10.8739, 2, 9.74134 )
+
+[node name="PressurePad" parent="LogicDevices" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.98581, 0.0938834, 0.150161 )
+output_device_path = NodePath("../Door")
+
+[node name="Balloon" parent="LogicDevices" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.63681, 0.488745, -2.77152 )
+output_device_path = NodePath("../Door")
+required_clouds = 150.0
+
+[node name="Lever" parent="LogicDevices" instance=ExtResource( 8 )]
+transform = Transform( 0.254432, -0.489751, -0.833911, -0.0986132, 0.844655, -0.526149, 0.96205, 0.216104, 0.166612, -2.81025, 0.704367, 9.56835 )
+output_device_path = NodePath("../Door")
