@@ -8,10 +8,17 @@ onready var tween : Tween = $Tween
 
 export var push_speed : float = 0
 export var do_camera : bool = true
+export var gravity : float = 0
 
 
 
 # Methods to be used inside and outside of script
+
+func _physics_process(delta : float) -> void:
+	if !is_on_floor(): tween.stop_all()
+	move_and_slide(Vector3(0, -gravity, 0), Vector3.UP)
+
+
 
 func push(direction : Vector3) -> void:
 	direction *= 2
