@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/ui/pause_menu/boolean_button.gd" type="Script" id=1]
+[ext_resource path="res://UI/font/regular.otf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 24
+font_data = ExtResource( 2 )
 
 [node name="HBoxContainer" type="HBoxContainer"]
 margin_right = 40.0
@@ -16,7 +21,9 @@ margin_bottom = 40.0
 
 [node name="Label" type="Label" parent="."]
 margin_left = 80.0
-margin_top = 13.0
-margin_right = 80.0
-margin_bottom = 27.0
+margin_top = 8.0
+margin_right = 224.0
+margin_bottom = 31.0
+custom_fonts/font = SubResource( 1 )
+text = "sdfsdfsdfsdf"
 [connection signal="toggled" from="CheckButton" to="." method="_on_CheckButton_toggled"]
