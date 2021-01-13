@@ -55,7 +55,34 @@ func play_audio(audio_name : String, audio_type : int, tag : String = "") -> Aud
 
 
 
-func get_audio(tag : String) -> AudioStreamPlayer:
+func play_3d_audio(audio_name : String, audio_position : Vector3, audio_type : int, tag : String = "") -> AudioStreamPlayer3D:
+	var audio_packed : PackedScene = load("res://scenes/audio/AudioPiece3D.tscn")
+	var audio : AudioStreamPlayer3D = audio_packed.instance()
+	
+	var tracks : Array = audio_paths[audio_name]
+	var track : String = tracks[rand_range(0, len(tracks))]
+	
+	audio.stream = load(PATH + track)
+	audio.translation = audio_position
+	
+	match audio_type:
+		AudioType.SFX:
+			audio.stream.loop = false
+			sfx_bus.append(audio)
+		
+		AudioType.MUSIC:
+			if not tag in tags.keys() && tag != "":
+				tags[tag] = audio
+			music_bus.append(audio)
+	
+	add_child(audio)
+	audio.play()
+	
+	return audio
+
+
+
+func get_audio(tag : String) -> Node:
 	return tags[tag]
 
 
