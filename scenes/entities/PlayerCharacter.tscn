@@ -32,6 +32,9 @@ shape = SubResource( 1 )
 [node name="PlayerMesh" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.52735, -0.169452 )
 
+[node name="Skeleton" parent="PlayerMesh/Armature" index="0"]
+bones/46/bound_children = [  ]
+
 [node name="BoneAttachment" parent="PlayerMesh/Armature/Skeleton" index="1"]
 transform = Transform( 0.974957, -0.0303181, 0.220318, -0.0116797, 0.982317, 0.186863, -0.222087, -0.184756, 0.957363, -0.447849, 6.70969, -1.26839 )
 

@@ -68,7 +68,7 @@ config/icon="res://UI/icon.png"
 [autoload]
 
 Global="*res://src/globals/global.gd"
-Audio="*res://scenes/audio/AudioManager.tscn"
+AudioManager="*res://scenes/audio/AudioManager.tscn"
 
 [display]
 
