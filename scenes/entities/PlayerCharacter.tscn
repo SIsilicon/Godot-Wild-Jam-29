@@ -9,13 +9,13 @@
 radius = 0.4
 height = 1.5
 
-[sub_resource type="BoxShape" id=3]
+[sub_resource type="BoxShape" id=2]
 extents = Vector3( 3, 3, 3 )
 
-[sub_resource type="SphereShape" id=4]
+[sub_resource type="SphereShape" id=3]
 radius = 0.388733
 
-[sub_resource type="ViewportTexture" id=2]
+[sub_resource type="ViewportTexture" id=4]
 flags = 4
 viewport_path = NodePath("StartNavigate/Viewport")
 
@@ -33,7 +33,10 @@ shape = SubResource( 1 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.52735, -0.169452 )
 
 [node name="Skeleton" parent="PlayerMesh/Armature" index="0"]
-bones/46/bound_children = [ NodePath("BoneAttachment") ]
+bones/46/bound_children = [  ]
+
+[node name="BoneAttachment" parent="PlayerMesh/Armature/Skeleton" index="1"]
+transform = Transform( 0.974957, -0.0303181, 0.220318, -0.0116797, 0.982317, 0.186863, -0.222087, -0.184756, 0.957363, -0.447849, 6.70969, -1.26839 )
 
 [node name="PullingArea" type="Area" parent="PlayerMesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.344093, -0.515345, -0.0762738 )
@@ -42,7 +45,7 @@ collision_mask = 32
 
 [node name="VacuumRange" type="CollisionShape" parent="PlayerMesh/PullingArea"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.366989, -2.7979 )
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [node name="Muzzle" type="Area" parent="PlayerMesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.357105, -0.502481, -0.156695 )
@@ -50,7 +53,7 @@ collision_layer = 0
 collision_mask = 32
 
 [node name="CollisionShape" type="CollisionShape" parent="PlayerMesh/Muzzle"]
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 
 [node name="Goose_fixed" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.52735, -0.169452 )
@@ -71,7 +74,7 @@ visible = false
 flip_v = true
 pixel_size = 0.0172
 billboard = 1
-texture = SubResource( 2 )
+texture = SubResource( 4 )
 
 [node name="Viewport" type="Viewport" parent="StartNavigate"]
 size = Vector2( 128, 128 )

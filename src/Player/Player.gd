@@ -76,6 +76,7 @@ func enter_state(new_state) -> void:
 			
 			# TODO: Despawn goose glider
 			goose.visible = false
+			goose_anim_player.stop()
 			mouse_camera_sensitivity = DEFAULT_ROTATION_SPEED
 			
 			pull_strength = DEFAULT_PULL_STR
@@ -102,6 +103,7 @@ func enter_state(new_state) -> void:
 			play_animation("Fall")
 			# TODO: Despawn goose glider
 			goose.visible = false
+			goose_anim_player.stop()
 			mouse_camera_sensitivity = DEFAULT_ROTATION_SPEED
 			
 			pull_strength = DEFAULT_PULL_STR
