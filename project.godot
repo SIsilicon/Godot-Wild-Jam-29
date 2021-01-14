@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "StaticBody",
+"class": "Airship",
+"language": "GDScript",
+"path": "res://src/entities/airship.gd"
+}, {
 "base": "KinematicBody",
 "class": "Cloud",
 "language": "GDScript",
@@ -45,6 +50,7 @@ _global_script_classes=[ {
 "path": "res://src/places/region.gd"
 } ]
 _global_script_class_icons={
+"Airship": "",
 "Cloud": "",
 "CloudDome": "",
 "InputDevice": "",
@@ -62,6 +68,7 @@ config/icon="res://UI/icon.png"
 [autoload]
 
 Global="*res://src/globals/global.gd"
+Audio="*res://scenes/audio/AudioManager.tscn"
 
 [display]
 

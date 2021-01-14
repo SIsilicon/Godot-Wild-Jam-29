@@ -17,19 +17,24 @@ export var fuel := 0.0
 var speed := 0.0
 var pull_sailing_direction := Vector3.ZERO # This influences the direction the ship travels.
 
+var _map_region: Region
 var _player: KinematicBody
-var _clouds := []
 
 onready var tween: Tween = $Tween
 
 
 func _input(event: InputEvent) -> void:
-	if not tween.is_active():
-		if event.is_action_pressed("open_navigation") and _player:
-			if not in_map:
-				get_node("../../..").transition_to_map()
-			else:
-				get_node("../../..").transition_to_world()
+	if event.is_action_pressed("open_navigation"):
+		if not in_map and _player:
+			$CollisionShape.disabled = true
+			get_node("../../..").transition_to_map()
+		elif in_map:
+			$CollisionShape.disabled = false
+			$EKeyPopop.hide_popup()
+			$EKeyPopop.visible = false
+			get_node("../../..").transition_to_world()
+			yield(get_tree().create_timer(0.5), "timeout")
+			$EKeyPopop.visible = true
 
 
 func _physics_process(delta: float) -> void:
@@ -44,12 +49,6 @@ func _physics_process(delta: float) -> void:
 		$FuelGauge.visible = true
 		$FuelGauge3D.visible = false
 		$FuelGauge3D/Viewport.render_target_update_mode = Viewport.UPDATE_DISABLED
-	
-	for cloud in _clouds:
-		if not cloud:
-			continue
-		var to_ship: Vector3 = cloud.translation.direction_to(translation)
-		cloud.velocity += to_ship * delta * 40.0
 	
 	var direction := Vector3.ZERO
 	if fuel and in_map:
@@ -69,72 +68,56 @@ func _physics_process(delta: float) -> void:
 	
 	var moving := direction.length() > 0.0
 	speed = move_toward(speed, max_speed if moving else 0.0, delta * acceleration)
+	
+	var prev_fuel := fuel
 	fuel = max(fuel - consumption_rate * delta * float(moving), 0.0)
+	if prev_fuel != fuel and fuel == 0.0 and in_map:
+		tween.interpolate_callback($EKeyPopop, 1.0, "show_popup")
+		tween.start()
+	
 	translation += global_transform.basis.z.normalized() * speed * delta
 	if in_map and _player:
 		_player.transform = $PlayerWheelPos.transform
-	
-#	if sailing:
-#		var to_target := translation.direction_to(_target)
-#		var facing := transform.basis.z
-#		var target_angle = atan2(to_target.x, to_target.z)
-#		rotation.y = wrapf(lerp_angle(rotation.y, target_angle, delta * speed * 0.05), -PI, PI)
-#
-#		var moving := fuel > 0.0 and translation.distance_to(_target) > stop_distance
-#		speed = move_toward(speed, max_speed if moving else 0.0, delta * acceleration)
-#		fuel = max(fuel - consumption_rate * delta * float(moving), 0.0)
-#		translation += facing * speed * delta
-#
-#		if speed == 0.0:
-#			sailing = false
-#			emit_signal("navigation_finished")
-#
-#		if nav_map.visible:
-#			_update_map()
 
+# These next two function are connected by both area and body_entered
 
 func _on_FOI_body_entered(body: Node) -> void:
-	if body is Cloud:
-		var to_ship: Vector3 = body.translation.direction_to(translation)
-		var offset := to_ship.cross(Vector3.UP).rotated(to_ship, rand_range(0, 2*PI))
-		body.velocity = offset * 10.0
-		body.velocity += to_ship * 5.0
-		_clouds.append(body)
-	elif body is Player:
+	if body is Player:
 		tween.interpolate_property($FuelGauge, "rect_position:y", -30, 8, 0.3)
 		tween.start()
+	elif body is Region:
+		_map_region = body
+		$EKeyPopop.show_popup()
 
 
 func _on_FOI_body_exited(body: Node) -> void:
 	if body is Player:
 		tween.interpolate_property($FuelGauge, "rect_position:y", 8, -30, 0.3)
 		tween.start()
+	elif body is Region:
+		_map_region = null
+		$EKeyPopop.hide_popup()
 
 
 func _on_Steering_body_entered(body: Node) -> void:
-	if body is Cloud:
-		fuel = min(fuel+0.5, MAX_FUEL)
-		body.queue_free()
-		if _clouds.has(body):
-			_clouds.erase(body)
-	elif body is Player:
+	if body is Player:
 		_player = body
 #		if in_map:
 #			_player.set_process_input(false)
 #			_player.set_physics_process(false)
 #			_player.set_process(false)
 		if not in_map:
-			var navigate_icon: Sprite3D = _player.get_node("StartNavigate")
-			tween.interpolate_property(navigate_icon, "scale", Vector3.ZERO, Vector3.ONE, 0.3, Tween.TRANS_CUBIC, Tween.EASE_OUT)
-			tween.interpolate_callback(navigate_icon, 0.0, "show")
-			tween.start()
+			_player.get_node("StartNavigate").show_popup()
 
 
 func _on_Steering_body_exited(body: Node) -> void:
 	if body is Player:
 		if not in_map:
-			var navigate_icon: Sprite3D = _player.get_node("StartNavigate")
-			tween.interpolate_property(navigate_icon, "scale", Vector3.ONE, Vector3.ZERO, 0.3, Tween.TRANS_CUBIC, Tween.EASE_IN)
-			tween.interpolate_callback(navigate_icon, 0.3, "hide")
-			tween.start()
+			_player.get_node("StartNavigate").hide_popup()
 		_player = null
+
+
+func _on_Collector_body_entered(body: Node) -> void:
+	if body is Cloud:
+		fuel = min(fuel+0.5, MAX_FUEL)
+		body.queue_free()

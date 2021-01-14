@@ -59,6 +59,8 @@ func _ready() -> void:
 	# enable mouse to rotate camera
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
+	$PlayerMesh/AnimationPlayer.get_animation("Idle").loop = true
+	$PlayerMesh/AnimationPlayer.get_animation("Walk").loop = true
 	# enter IDLE state at the beggining of the game
 	enter_state(States.IDLE)
 	vacuum_play_animation("OFF")
@@ -446,7 +448,7 @@ func pull_clouds() -> void:
 func shoot_clouds() -> void:
 	var cloud: Cloud = spawn_cloud.instance()
 	
-	owner.add_child(cloud)
+	get_parent().add_child(cloud)
 	cloud.global_transform.origin = vacuum_muzzle.global_transform.origin
 	cloud.shoot(-player_mesh.global_transform.basis.z, shoot_speed)
 

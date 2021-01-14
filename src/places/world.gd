@@ -11,13 +11,23 @@ var in_map := false
 onready var tween: Tween = $Tween
 onready var player: Player = $Level/Viewport/Player
 onready var airship: Airship = $Level/Viewport/Airship
-onready var current_region := $Level/Viewport/Region1
+onready var current_region := $Level/Viewport/Region
+onready var current_map_region := $Map/Viewport/Region1
 
 func _ready() -> void:
 	$Level.show()
 	$Map.show()
+	$Level/Viewport.own_world = true
+	$Map/Viewport.own_world = true
 	$Map.modulate.a = 0.0
 	set_paused($Map/Viewport, true)
+	
+	airship.translation += current_map_region.translation
+	player.translation += current_map_region.translation
+	current_region.translation += current_map_region.translation
+	
+	# Regio_PuzzleIsland1 comes with a player. Delet this!
+	$Level/Viewport/Region/PlayerCharacter.queue_free()
 
 
 func _process(delta: float) -> void:
@@ -37,6 +47,15 @@ func _process(delta: float) -> void:
 
 func transition_to_world() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
+	current_map_region = airship._map_region
+	if current_map_region:
+		current_region = current_map_region.region_scene.instance()
+		# Regio_PuzzleIsland1 comes with a player. Delet this!
+		current_region.get_node("PlayerCharacter").queue_free()
+		current_region.translation = current_map_region.translation
+		airship.translation = current_map_region.translation
+		$Level/Viewport.add_child(current_region)
 	
 	$Map/Viewport.remove_child(airship)
 	$Level/Viewport.add_child(airship)

@@ -3,19 +3,19 @@
 [ext_resource path="res://src/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://models/MC/PlayerMesh.tscn" type="PackedScene" id=2]
 [ext_resource path="res://models/Goose/Goose.tscn" type="PackedScene" id=3]
-[ext_resource path="res://UI/e_button.png" type="Texture" id=4]
+[ext_resource path="res://UI/EKeyPopup.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.4
 height = 1.5
 
-[sub_resource type="BoxShape" id=3]
+[sub_resource type="BoxShape" id=2]
 extents = Vector3( 3, 3, 3 )
 
-[sub_resource type="SphereShape" id=4]
+[sub_resource type="SphereShape" id=3]
 radius = 0.388733
 
-[sub_resource type="ViewportTexture" id=2]
+[sub_resource type="ViewportTexture" id=4]
 flags = 4
 viewport_path = NodePath("StartNavigate/Viewport")
 
@@ -32,8 +32,8 @@ shape = SubResource( 1 )
 [node name="PlayerMesh" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.52735, -0.169452 )
 
-[node name="Skeleton" parent="PlayerMesh/Armature" index="0"]
-bones/46/bound_children = [ NodePath("BoneAttachment") ]
+[node name="BoneAttachment" parent="PlayerMesh/Armature/Skeleton" index="1"]
+transform = Transform( 0.974957, -0.0303181, 0.220318, -0.0116797, 0.982317, 0.186863, -0.222087, -0.184756, 0.957363, -0.447849, 6.70969, -1.26839 )
 
 [node name="PullingArea" type="Area" parent="PlayerMesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.344093, -0.515345, -0.0762738 )
@@ -42,7 +42,7 @@ collision_mask = 32
 
 [node name="VacuumRange" type="CollisionShape" parent="PlayerMesh/PullingArea"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.366989, -2.7979 )
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [node name="Muzzle" type="Area" parent="PlayerMesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.357105, -0.502481, -0.156695 )
@@ -50,7 +50,7 @@ collision_layer = 0
 collision_mask = 32
 
 [node name="CollisionShape" type="CollisionShape" parent="PlayerMesh/Muzzle"]
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 
 [node name="Goose_fixed" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.52735, -0.169452 )
@@ -65,40 +65,17 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.70055, 5.40486 )
 [node name="Camera" type="Camera" parent="GimbalX/GimbalY/CameraPosition"]
 far = 8000.0
 
-[node name="StartNavigate" type="Sprite3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.00041, 0 )
-visible = false
-flip_v = true
-pixel_size = 0.0172
-billboard = 1
-texture = SubResource( 2 )
+[node name="StartNavigate" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.20955, 0 )
+texture = SubResource( 4 )
+message = "Start Navigating"
 
-[node name="Viewport" type="Viewport" parent="StartNavigate"]
-size = Vector2( 128, 128 )
-transparent_bg = true
-hdr = false
-usage = 0
-render_target_update_mode = 3
-
-[node name="TextureRect" type="TextureRect" parent="StartNavigate/Viewport"]
-anchor_left = 0.3
-anchor_top = 0.3
-anchor_right = 0.7
-anchor_bottom = 0.7
-texture = ExtResource( 4 )
-expand = true
-
-[node name="Label" type="Label" parent="StartNavigate/Viewport"]
-anchor_top = 0.7
-anchor_right = 1.0
-anchor_bottom = 1.0
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-custom_constants/shadow_as_outline = 0
+[node name="Label" parent="StartNavigate/Viewport" index="1"]
 text = "Start Navigating"
-align = 1
 [connection signal="body_entered" from="PlayerMesh/Muzzle" to="." method="_on_Muzzle_body_entered"]
 
 [editable path="PlayerMesh"]
 
 [editable path="Goose_fixed"]
+
+[editable path="StartNavigate"]
