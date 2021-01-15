@@ -11,8 +11,8 @@ var in_map := false
 onready var tween: Tween = $Tween
 onready var player: Player = $Level/Viewport/Player
 onready var airship: Airship = $Level/Viewport/Airship
-onready var current_region := $Level/Viewport/Region
-onready var current_map_region := $Map/Viewport/Region1
+onready var current_region := $Level/Viewport/Island_of_The_Storm
+onready var current_map_region := $Map/Viewport/StormIsland
 
 func _ready() -> void:
 	$Level.show()
