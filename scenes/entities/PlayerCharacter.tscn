@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://models/MC/PlayerMesh.tscn" type="PackedScene" id=2]
 [ext_resource path="res://models/Goose/Goose.tscn" type="PackedScene" id=3]
 [ext_resource path="res://UI/EKeyPopup.tscn" type="PackedScene" id=4]
+[ext_resource path="res://audio/mpc_grass_footstep_1.ogg" type="AudioStream" id=5]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.4
@@ -32,11 +33,11 @@ shape = SubResource( 1 )
 [node name="PlayerMesh" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.52735, -0.169452 )
 
-[node name="Skeleton" parent="PlayerMesh/Armature" index="0"]
-bones/46/bound_children = [  ]
-
 [node name="BoneAttachment" parent="PlayerMesh/Armature/Skeleton" index="1"]
-transform = Transform( 0.974957, -0.0303181, 0.220318, -0.0116797, 0.982317, 0.186863, -0.222087, -0.184756, 0.957363, -0.447849, 6.70969, -1.26839 )
+transform = Transform( 0.985822, 0.0202369, 0.166573, 0.0280632, 0.958835, -0.282573, -0.165435, 0.283242, 0.944673, -0.526262, 10.8993, -1.67942 )
+
+[node name="AudioStreamPlayer3D" parent="PlayerMesh" index="2"]
+stream = ExtResource( 5 )
 
 [node name="PullingArea" type="Area" parent="PlayerMesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.344093, -0.515345, -0.0762738 )
@@ -75,6 +76,9 @@ message = "Start Navigating"
 
 [node name="Label" parent="StartNavigate/Viewport" index="1"]
 text = "Start Navigating"
+
+[node name="Listener" type="Listener" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.64487, 0 )
 [connection signal="body_entered" from="PlayerMesh/Muzzle" to="." method="_on_Muzzle_body_entered"]
 
 [editable path="PlayerMesh"]
