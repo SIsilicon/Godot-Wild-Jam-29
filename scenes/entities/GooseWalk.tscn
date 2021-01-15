@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/entities/goose_walk.gd" type="Script" id=1]
+[ext_resource path="res://models/Goose/Goose.tscn" type="PackedScene" id=2]
+
+[node name="GooseWalk" type="KinematicBody"]
+script = ExtResource( 1 )
+walk_speed = 5.0
+
+[node name="Goose_fixed" parent="." instance=ExtResource( 2 )]
