@@ -26,6 +26,7 @@ var tags : Dictionary = {}
 var audio_paths : Dictionary = {
 	"jump_sound" : [ "mpc_jump_sound.ogg" ],
 	"goose_honk" : [ "goose_honk_1.ogg" ],
+	"goose_spawn": ["goose_spawn2.ogg"],
 	"goose_wing_flap" : [ "goose_wing_flap_1.ogg", "goose_wing_flap_2.ogg", "goose_wing_flap_3.ogg", "goose_wing_flap_4.ogg" ],
 	"grass_footstep" : [ "mpc_grass_footstep_1.ogg", "mpc_grass_footstep_2.ogg", "mpc_grass_footstep_3.ogg", "mpc_grass_footstep_4.ogg" ],
 	"ship_footstep" : [ "mpc_ship_footstep_1.ogg", "mpc_ship_footstep_2.ogg", "mpc_ship_footstep_3.ogg", "mpc_ship_footstep_4.ogg" ],
@@ -179,6 +180,7 @@ func _ready() -> void:
 	
 	
 func __test__() -> void:
+	update_volumes()
 	play_audio("ground_layer", AudioType.MUSIC, "ground")
 	play_audio("goose_layer", AudioType.MUSIC, "goose")
 	play_audio("ship_layer", AudioType.MUSIC, "ship")
