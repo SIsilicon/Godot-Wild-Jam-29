@@ -8,6 +8,8 @@ export var walk_speed : float = 0
 export (NodePath) var navigation_node : String # This means `Navigation`, as in the actual `Navigation` node. Not `NavigationMeshInstance`!
 
 onready var navigator : Navigation = get_node(navigation_node)
+onready var mesh_animation : AnimationPlayer = $Goose_fixed/AnimationPlayer
+onready var goose_visual : Spatial = $Goose_fixed
 
 var path : PoolVector3Array = []
 var path_index : int = 0
@@ -42,6 +44,11 @@ func move_to_target(target : Spatial) -> void:
 
 # Internal functions you shouldn't be using outside of this script
 
+func _ready():
+	move_to_target($"../MeshInstance")
+
+
+
 func _physics_process(_delta : float) -> void:
 	move_state_machine()
 
@@ -50,9 +57,12 @@ func _physics_process(_delta : float) -> void:
 func move_state_machine() -> void:
 	match move_state:
 		MoveStates.STAND:
-			pass
+			mesh_animation.play("Goose_Idle")
 		
 		MoveStates.WALK:
+			goose_visual.look_at(path[path_index], Vector3.UP)
+			mesh_animation.play("Goose_Walk")
+			
 			var direction : Vector3 = path[path_index] - global_transform.origin
 			
 			if direction.length() < 0.01 * walk_speed: # Multiplied by `walk_speed` so that it doesn't accidentally get stuck by overshooting target

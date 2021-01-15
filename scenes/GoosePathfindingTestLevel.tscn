@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/entities/GooseWalk.tscn" type="PackedScene" id=1]
-
 
 [sub_resource type="NavigationMesh" id=1]
 vertices = PoolVector3Array( -1.97499, 3, 2.00671, -2.97499, 3, -1.99329, -9.97499, 3, 0.00671387, -9.97499, 3, -8.99329, -9.97499, 3, 0.00671387, -2.97499, 3, -1.99329, 0.0250111, 3, -8.99329, 2.02501, 3, 1.00671, -1.97499, 3, 2.00671, 0.0250111, 3, 9.00671, 10.025, 3, 9.00671, 10.025, 3, 0.00671387, 0.0250111, 3, -8.99329, -2.97499, 3, -1.99329, 1.02501, 3, -2.99329, 0.0250111, 3, -8.99329, 1.02501, 3, -2.99329, 2.02501, 3, 1.00671, 10.025, 3, 0.00671387, 10.025, 3, -8.99329, -1.97499, 3, 2.00671, -9.97499, 3, 0.00671387, -9.97499, 3, 9.00671, 0.0250111, 3, 9.00671 )
@@ -21,7 +20,12 @@ albedo_color = Color( 0.223529, 0.105882, 0.105882, 1 )
 [sub_resource type="SpatialMaterial" id=5]
 albedo_color = Color( 0.533333, 0.109804, 0.109804, 1 )
 
+[sub_resource type="SpatialMaterial" id=7]
+flags_transparent = true
+albedo_color = Color( 1, 1, 1, 0.231373 )
+
 [sub_resource type="CubeMesh" id=6]
+material = SubResource( 7 )
 
 [node name="GoosePathfindingTestLevel" type="Spatial"]
 
