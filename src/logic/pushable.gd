@@ -5,6 +5,7 @@ extends KinematicBody
 onready var push_area : Area = $PushArea
 onready var test_push_area : Area = $TestPushArea
 onready var tween : Tween = $Tween
+onready var mesh : MeshInstance = $object_cylinderpiece
 
 export var push_speed : float = 0
 export var do_camera : bool = true
@@ -13,6 +14,13 @@ export var gravity : float = 0
 
 
 # Methods to be used inside and outside of script
+
+func _ready() -> void:
+	var material : SpatialMaterial = SpatialMaterial.new()
+	material.albedo_texture = load("res://textures/puzzlestuff/cylinder_diffuse.png")
+	mesh.set_surface_material(0, material)
+
+
 
 func _physics_process(delta : float) -> void:
 	if !is_on_floor(): tween.stop_all()
