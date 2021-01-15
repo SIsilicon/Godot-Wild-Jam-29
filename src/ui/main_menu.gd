@@ -21,7 +21,7 @@ func _ready() -> void:
 
 func setup() -> void:
 	var material : SpatialMaterial = SpatialMaterial.new()
-	material.albedo_texture = load("res://models/Objects/airship/airship_Base_Color.png")
+	material.albedo_texture = load("res://textures/airship/airship_base_color.png")
 	airship_mesh.set_surface_material(0, material)
 
 

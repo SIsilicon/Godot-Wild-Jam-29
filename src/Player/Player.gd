@@ -36,7 +36,10 @@ onready var player_mesh: Spatial = $PlayerMesh
 onready var character_anim_player: AnimationPlayer = $PlayerMesh/AnimationPlayer
 onready var goose_anim_player: AnimationPlayer = $Goose_fixed/AnimationPlayer
 onready var vacuum_anim_player: AnimationPlayer = $PlayerMesh/Armature/Skeleton/BoneAttachment/CloudCollector/AnimationPlayer
+
+onready var vacuum_audio_player: AudioStreamPlayer3D = $PlayerMesh/Armature/Skeleton/BoneAttachment/CloudCollector/Vacuum_AudioStreamPlayer3D
 onready var goose: Spatial = $Goose_fixed
+onready var goose_spawn_particle: Particles = $Goose_Spawn_Particle
 
 # Cloud collector #
 onready var vacuum_muzzle: Area = $PlayerMesh/PullingArea
@@ -74,6 +77,7 @@ func enter_state(new_state) -> void:
 	match state:
 		
 		States.IDLE:
+			
 			play_animation("Idle")
 			
 			# TODO: Despawn goose glider
@@ -102,8 +106,10 @@ func enter_state(new_state) -> void:
 			Y_axis_inverter = 1
 		
 		States.FALLING:
+			
 			play_animation("Fall")
 			# TODO: Despawn goose glider
+			
 			goose.visible = false
 			goose_anim_player.stop()
 			mouse_camera_sensitivity = DEFAULT_ROTATION_SPEED
@@ -115,6 +121,9 @@ func enter_state(new_state) -> void:
 		States.FLYING:
 			play_animation("Flying")
 			# TODO: Spawn goose glider
+			AudioManager.play_3d_audio("goose_spawn", global_transform.origin, 0)
+			goose_spawn_particle.restart()
+			goose_spawn_particle.set_emitting(true)
 			goose.visible = true
 			
 			# change camera rotation speed
@@ -314,6 +323,8 @@ func process_input(_delta: float) -> void:
 			
 			# Cancel flying
 			if Input.is_action_just_pressed("move_jump"):
+					goose_spawn_particle.restart()
+					goose_spawn_particle.set_emitting(true)
 					enter_state(States.FALLING)
 		#-----------------------------------------------------------------------
 	
@@ -499,6 +510,7 @@ func vacuum_play_animation(anim_name: String):
 	match anim_name:
 		
 		"OFF":
+			vacuum_audio_player._set_playing(false)
 			vacuum_anim_player.play("vacuum_dissapear")
 			vacuum_anim_player.set_speed_scale(5)
 			
@@ -509,6 +521,11 @@ func vacuum_play_animation(anim_name: String):
 		"Suck":
 			vacuum_anim_player.play("vacuum_suck")
 			vacuum_anim_player.set_speed_scale(2)
+			
+			if isSucking:
+				vacuum_audio_player._set_playing(true)
+			else:
+				vacuum_audio_player._set_playing(false)
 
 
 # Vacuum animation player

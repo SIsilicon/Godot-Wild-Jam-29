@@ -77,6 +77,8 @@ size = Vector2( 1366, 768 )
 own_world = true
 handle_input_locally = false
 render_target_update_mode = 0
+audio_listener_enable_2d = true
+audio_listener_enable_3d = true
 
 [node name="Player" parent="Level/Viewport" instance=ExtResource( 5 )]
 transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -7.11436, 7.96813, 3.10979e-07 )
@@ -101,6 +103,8 @@ size = Vector2( 512, 300 )
 own_world = true
 msaa = 2
 keep_3d_linear = true
+audio_listener_enable_2d = true
+audio_listener_enable_3d = true
 
 [node name="Camera" type="Camera" parent="Level/Viewport/Background/Viewport"]
 near = 5.0
@@ -128,6 +132,8 @@ size = Vector2( 1366, 768 )
 own_world = true
 handle_input_locally = false
 render_target_update_mode = 0
+audio_listener_enable_2d = true
+audio_listener_enable_3d = true
 
 [node name="CamRoot" type="Spatial" parent="Map/Viewport"]
 transform = Transform( -8.14603e-07, 0, 5, 0, 5, 0, -5, 0, -8.14603e-07, 0, 0, 0 )

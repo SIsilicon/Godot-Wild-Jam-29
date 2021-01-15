@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://models/MC/MC.material" type="Material" id=1]
+[ext_resource path="res://audio/vacuum_cloud.ogg" type="AudioStream" id=2]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "Cylinder"
@@ -205,6 +206,7 @@ tracks/6/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 0.0682988, 0.0103462, 
 resource_name = "vacuum_suck"
 length = 2.5
 loop = true
+step = 0.02
 tracks/0/type = "transform"
 tracks/0/path = NodePath("vacuum/Skeleton:bone_6")
 tracks/0/interp = 1
@@ -308,3 +310,8 @@ anims/root = SubResource( 3 )
 anims/vacuum_dissapear = SubResource( 4 )
 anims/vacuum_emerge = SubResource( 5 )
 anims/vacuum_suck = SubResource( 6 )
+
+[node name="Vacuum_AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.361085, -0.508369, -0.100108 )
+stream = ExtResource( 2 )
+unit_db = -20.0

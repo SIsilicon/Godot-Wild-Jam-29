@@ -1,10 +1,9 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://models/MC/PlayerMesh.tscn" type="PackedScene" id=2]
 [ext_resource path="res://models/Goose/Goose.tscn" type="PackedScene" id=3]
 [ext_resource path="res://UI/EKeyPopup.tscn" type="PackedScene" id=4]
-[ext_resource path="res://audio/mpc_grass_footstep_1.ogg" type="AudioStream" id=5]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.4
@@ -20,6 +19,28 @@ radius = 0.388733
 flags = 4
 viewport_path = NodePath("StartNavigate/Viewport")
 
+[sub_resource type="Curve" id=5]
+_data = [ Vector2( 0.002331, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.0675991, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.271591 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=6]
+curve = SubResource( 5 )
+
+[sub_resource type="ParticlesMaterial" id=7]
+emission_shape = 2
+emission_box_extents = Vector3( 1, 0.199, 1 )
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 5.0
+initial_velocity_random = 1.0
+damping = 6.34
+scale_curve = SubResource( 6 )
+
+[sub_resource type="SphereMesh" id=8]
+radius = 0.5
+height = 1.0
+radial_segments = 8
+rings = 4
+
 [node name="PlayerCharacter" type="KinematicBody" groups=[
 "pushes_pressure_pad",
 ]]
@@ -34,10 +55,7 @@ shape = SubResource( 1 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.52735, -0.169452 )
 
 [node name="BoneAttachment" parent="PlayerMesh/Armature/Skeleton" index="1"]
-transform = Transform( 0.985822, 0.0202369, 0.166573, 0.0280632, 0.958835, -0.282573, -0.165435, 0.283242, 0.944673, -0.526262, 10.8993, -1.67942 )
-
-[node name="AudioStreamPlayer3D" parent="PlayerMesh" index="2"]
-stream = ExtResource( 5 )
+transform = Transform( 0.974957, -0.0303181, 0.220318, -0.0116797, 0.982317, 0.186863, -0.222087, -0.184756, 0.957363, -0.447849, 6.70969, -1.26839 )
 
 [node name="PullingArea" type="Area" parent="PlayerMesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.344093, -0.515345, -0.0762738 )
@@ -79,9 +97,23 @@ text = "Start Navigating"
 
 [node name="Listener" type="Listener" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.64487, 0 )
+
+[node name="Goose_Spawn_Particle" type="Particles" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.21844, 0 )
+emitting = false
+amount = 16
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+visibility_aabb = AABB( -2.64529, -1.04889, -2.0085, 5.29058, 2.09778, 4.017 )
+process_material = SubResource( 7 )
+draw_pass_1 = SubResource( 8 )
+[connection signal="animation_finished" from="PlayerMesh/Armature/Skeleton/BoneAttachment/CloudCollector/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="body_entered" from="PlayerMesh/Muzzle" to="." method="_on_Muzzle_body_entered"]
 
 [editable path="PlayerMesh"]
+
+[editable path="PlayerMesh/Armature/Skeleton/BoneAttachment/CloudCollector"]
 
 [editable path="Goose_fixed"]
 
