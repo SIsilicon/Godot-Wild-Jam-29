@@ -369,10 +369,13 @@ func process_movement(delta : float) -> void:
 			new_velocity = new_velocity.linear_interpolate(target, ACCELERATION * delta)
 			velocity.x = new_velocity.x
 			velocity.z = new_velocity.z
+			
 			velocity = move_and_slide(velocity, Vector3.UP, 0.05, 4, deg2rad(MAX_SLOPE_ANGLE))
 			
 			if !is_on_floor():
 				enter_state(States.FALLING)
+			
+			
 	
 	#############################################################################
 		States.JUMPING:
@@ -475,7 +478,7 @@ func play_animation(anim_name: String) -> void:
 		
 		"Run":
 			character_anim_player.play("Walk")
-			character_anim_player.set_speed_scale(3)
+			character_anim_player.set_speed_scale(3.5)
 			
 		"Jump":
 			character_anim_player.play("Jump")
