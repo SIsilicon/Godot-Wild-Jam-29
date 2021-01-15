@@ -2,10 +2,9 @@ extends InputDevice
 
 
 
-onready var pivot : Spatial = $Pivot
+onready var lever : Spatial = $object_lever
+onready var lever_anim : AnimationPlayer = $object_lever/AnimationPlayer
 onready var area : Area = $Area
-
-export var handle_degrees : float = 0
 
 
 
@@ -29,7 +28,7 @@ func _input(event : InputEvent) -> void:
 func update() -> void:
 	match state:
 		States.ENABLED:
-			pivot.rotation_degrees.x = -handle_degrees
+			lever_anim.play("lever_down")
 		
 		States.DISABLED:
-			pivot.rotation_degrees.x = handle_degrees
+			lever_anim.play("lever_up")
