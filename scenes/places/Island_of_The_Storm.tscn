@@ -1,8 +1,24 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/places/S_Islands/S_Island4.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/places/M_Islands/M_Island1.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/places/S_Islands/S_Island3.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/places/S_Islands/S_Island2.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/entities/Altar.tscn" type="PackedScene" id=6]
 
 [node name="Island_of_The_Storm" type="Spatial"]
 
 [node name="S_Island4" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.00743, -0.341034, -47.5867 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -34.2114, -0.341034, -17.7933 )
+
+[node name="M_Island1" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.83974, -56.0529 )
+
+[node name="S_Island3" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 38.5399, -39.4865, -26.6058 )
+
+[node name="S_Island2" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -52.5363, 51.6725, -114.784 )
+
+[node name="Altar" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.72263, -75.5293 )
