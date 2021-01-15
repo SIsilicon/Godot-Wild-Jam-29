@@ -1,0 +1,241 @@
+[gd_scene load_steps=26 format=2]
+
+[ext_resource path="res://scenes/places/Storm.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/places/S_Islands/S_Island1.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/places/S_Islands/S_Island4.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/places/M_Islands/M_Island1.tscn" type="PackedScene" id=4]
+[ext_resource path="res://models/Objects/airship/object_airship.obj" type="ArrayMesh" id=5]
+[ext_resource path="res://models/MC/char_mc.glb" type="PackedScene" id=6]
+[ext_resource path="res://scenes/places/Rocks/rock1.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/places/Rocks/rock4.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/places/Rocks/rock2.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/places/S_Islands/S_Island3.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/places/L_Islands/Island4.tscn" type="PackedScene" id=11]
+
+[sub_resource type="ProceduralSky" id=1]
+sky_top_color = Color( 0.647059, 0.945098, 0.839216, 1 )
+ground_bottom_color = Color( 0.866667, 0.839216, 0.768627, 1 )
+ground_horizon_color = Color( 0.839216, 0.917647, 0.980392, 1 )
+
+[sub_resource type="Environment" id=2]
+background_mode = 2
+background_sky = SubResource( 1 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "float"
+length = 8.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4, 8 ),
+"transitions": PoolRealArray( -2, -2, -2 ),
+"update": 0,
+"values": [ Vector3( -23.0871, 1.41202, -2.85979 ), Vector3( -23.087, 1.893, -2.86 ), Vector3( -23.0871, 1.41202, -2.85979 ) ]
+}
+
+[sub_resource type="CylinderMesh" id=4]
+top_radius = 500.0
+bottom_radius = 750.0
+height = 3000.0
+rings = 64
+
+[sub_resource type="Shader" id=5]
+code = "shader_type spatial;
+render_mode diffuse_lambert_wrap;
+
+uniform sampler2D cloud_texture;
+uniform sampler2D color_ramp;
+uniform sampler2D alpha_falloff;
+
+uniform vec2 uv_scale = vec2(1.0, 6.0);
+
+uniform float alpha = 1.0;
+uniform float grow;
+uniform vec2 cloud_dir = vec2(1.0, 0.5);
+
+
+vec3 get_cloud(vec2 uv, float time) {
+	return texture(cloud_texture, uv * uv_scale - time * 0.06 * cloud_dir).rgb;
+}
+
+void vertex() {
+	UV.y *= 2.0;
+	
+	VERTEX.xz *= pow(UV.y * 2.0 - 1.0, 5.0) * 5.0 + 1.0;
+	VERTEX += NORMAL * grow;
+}
+
+void fragment() {
+	NORMALMAP = get_cloud(UV, TIME);
+	float cloud = 0.5;
+	ALBEDO = texture(color_ramp, vec2(cloud)).rgb;
+	
+	ALPHA = pow(texture(alpha_falloff, UV.yy).a, 2.0);
+	
+	ROUGHNESS = 0.5;
+}"
+
+[sub_resource type="Gradient" id=6]
+offsets = PoolRealArray( 0, 0.104, 0.202, 0.734266, 0.9, 1 )
+colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=7]
+gradient = SubResource( 6 )
+
+[sub_resource type="OpenSimplexNoise" id=8]
+octaves = 2
+period = 21.5
+
+[sub_resource type="NoiseTexture" id=9]
+seamless = true
+as_normalmap = true
+bump_strength = 2.5
+noise = SubResource( 8 )
+
+[sub_resource type="Gradient" id=10]
+offsets = PoolRealArray( 0.190476, 1 )
+colors = PoolColorArray( 0.0820313, 0.0820313, 0.0820313, 1, 0.129395, 0.129395, 0.129395, 1 )
+
+[sub_resource type="GradientTexture" id=11]
+gradient = SubResource( 10 )
+
+[sub_resource type="ShaderMaterial" id=12]
+render_priority = -2
+shader = SubResource( 5 )
+shader_param/uv_scale = Vector2( 1, 6 )
+shader_param/alpha = 0.297
+shader_param/grow = 50.0
+shader_param/cloud_dir = Vector2( 1, 0.5 )
+shader_param/cloud_texture = SubResource( 9 )
+shader_param/color_ramp = SubResource( 11 )
+shader_param/alpha_falloff = SubResource( 7 )
+
+[sub_resource type="Shader" id=13]
+code = "shader_type spatial;
+render_mode diffuse_lambert_wrap;
+
+uniform sampler2D cloud_texture;
+uniform sampler2D color_ramp;
+uniform sampler2D alpha_falloff;
+
+uniform vec2 uv_scale = vec2(1.0, 6.0);
+
+uniform float alpha = 1.0;
+uniform float grow;
+uniform vec2 cloud_dir = vec2(1.0, 0.5);
+
+void vertex() {
+	VERTEX.xz *= pow(UV.y * 4.0 - 1.0, 5.0) * 5.0 + 1.0;
+	VERTEX += NORMAL * grow;
+}
+
+void fragment() {
+	if(UV.y > 0.45 || UV.y < 0.05)
+		discard;
+	
+	NORMALMAP = texture(cloud_texture, UV * uv_scale - TIME * 0.06 * cloud_dir).rgb;
+	ALBEDO = texture(color_ramp, ALBEDO.rr).rgb;
+	
+	ROUGHNESS = 0.5;
+}"
+
+[sub_resource type="ShaderMaterial" id=14]
+next_pass = SubResource( 12 )
+shader = SubResource( 13 )
+shader_param/uv_scale = Vector2( 1, 5 )
+shader_param/alpha = 1.0
+shader_param/grow = 0.0
+shader_param/cloud_dir = Vector2( 1, 0.404 )
+shader_param/cloud_texture = SubResource( 9 )
+shader_param/color_ramp = SubResource( 11 )
+shader_param/alpha_falloff = SubResource( 7 )
+
+[node name="EndGameScene" type="Spatial"]
+
+[node name="Environment" type="Spatial" parent="."]
+
+[node name="Islands" type="Spatial" parent="Environment"]
+
+[node name="S_Island1" type="StaticBody" parent="Environment/Islands" instance=ExtResource( 2 )]
+
+[node name="S_Island2" type="StaticBody" parent="Environment/Islands" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 91.3657, 33.2913, -76.4194 )
+
+[node name="S_Island3" type="StaticBody" parent="Environment/Islands" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -128.51, 58.513, -236.766 )
+
+[node name="S_Island4" type="StaticBody" parent="Environment/Islands" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 125.446, 52.6412, -372.384 )
+
+[node name="S_Island5" type="StaticBody" parent="Environment/Islands" instance=ExtResource( 3 )]
+transform = Transform( 0.277969, 0, -0.96059, 0, 1, 0, 0.96059, 0, 0.277969, 170.86, 114.847, -450.667 )
+
+[node name="S_Island6" type="StaticBody" parent="Environment/Islands" instance=ExtResource( 3 )]
+transform = Transform( 0.955196, 0, -0.295975, 0, 1, 0, 0.295975, 0, 0.955196, 395.811, 140.812, -462.247 )
+
+[node name="S_Island7" type="StaticBody" parent="Environment/Islands" instance=ExtResource( 3 )]
+transform = Transform( 0.955196, 0, -0.295975, 0, 1, 0, 0.295975, 0, 0.955196, 289.127, 114.847, -346.897 )
+
+[node name="Island4" type="StaticBody" parent="Environment/Islands" instance=ExtResource( 11 )]
+transform = Transform( 0.765955, 0, 0.642895, 0, 1, 0, -0.642895, 0, 0.765955, 264.67, 87.794, -421.292 )
+
+[node name="M_Island1" type="StaticBody" parent="Environment/Islands" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -184.535, 72.39, -273.539 )
+
+[node name="Rocks" type="Spatial" parent="Environment"]
+
+[node name="rock1" type="StaticBody" parent="Environment/Rocks" instance=ExtResource( 7 )]
+transform = Transform( 0.799758, -0.600323, 0, 0.600323, 0.799758, 0, 0, 0, 1, 11.4785, -0.18035, -6.12272 )
+
+[node name="rock6" type="StaticBody" parent="Environment/Rocks" instance=ExtResource( 7 )]
+transform = Transform( 0.664862, -0.591225, -0.45652, 0.48739, 0.806507, -0.334661, 0.566047, 0, 0.824373, 10.1971, -0.00146294, -7.27003 )
+
+[node name="rock4" type="StaticBody" parent="Environment/Rocks" instance=ExtResource( 8 )]
+transform = Transform( 0.917192, 0, 0.398445, 0, 1, 0, -0.398445, 0, 0.917192, -10.5139, -0.296421, -3.32568 )
+
+[node name="rock2" type="StaticBody" parent="Environment/Rocks" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 0.663743, -0.74796, 0, 0.74796, 0.663743, -12.2427, 0.377572, -4.87198 )
+
+[node name="rock3" type="StaticBody" parent="Environment/Rocks" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.91365, 0.527804, 4.80477 )
+
+[node name="rock5" type="StaticBody" parent="Environment/Rocks" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.7514, 0.340015, -2.96195 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource( 2 )
+
+[node name="Lights" type="Spatial" parent="."]
+visible = false
+
+[node name="DirectionalLight" type="DirectionalLight" parent="Lights"]
+transform = Transform( 0.818009, 0.506379, 0.272839, -0.575205, 0.72013, 0.38801, 0, -0.474334, 0.880345, 0, 11.6294, 0 )
+
+[node name="Misc" type="Spatial" parent="."]
+
+[node name="Camera" type="Camera" parent="Misc"]
+transform = Transform( 0.993256, 0, 0.115943, 0, 1, 0, -0.115943, 0, 0.993256, -1.20614, 1.51728, 9.86038 )
+far = 1000.0
+
+[node name="object_airship" type="MeshInstance" parent="Misc"]
+transform = Transform( 0.913666, 0, -0.406466, 0, 1, 0, 0.406466, 0, 0.913666, -23.087, 1.66085, -2.8599 )
+mesh = ExtResource( 5 )
+material/0 = null
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Misc/object_airship"]
+autoplay = "float"
+anims/float = SubResource( 3 )
+
+[node name="Storm" type="MeshInstance" parent="Misc" instance=ExtResource( 1 )]
+transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 88.141, -350.602 )
+extra_cull_margin = 2114.47
+mesh = SubResource( 4 )
+material/0 = SubResource( 14 )
+
+[node name="char_mc" type="Spatial" parent="Misc" instance=ExtResource( 6 )]
+transform = Transform( 0.0722032, 0, -0.0344484, 0, 0.08, 0, 0.0344484, 0, 0.0722032, -1.70596, 0.609096, 6.65622 )

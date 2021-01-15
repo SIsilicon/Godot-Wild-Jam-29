@@ -31,10 +31,10 @@ var audio_paths : Dictionary = {
 	"ship_footstep" : [ "mpc_ship_footstep_1.ogg", "mpc_ship_footstep_2.ogg", "mpc_ship_footstep_3.ogg", "mpc_ship_footstep_4.ogg" ],
 	"grass_landing" : [ "mpc_grass_landing_sound_1.ogg" ],
 	"ship_landing" : [ "mpc_ship_landing_sound.ogg" ],
-	"ground_layer" : [ "music_groundwalking_layer1_v1.ogg" ],
-	"goose_layer" : [ "music_gooseflight_layer2_v1.ogg" ],
-	"ship_layer" : [ "music_onship_layer3_v1.ogg" ],
-	"ship_melody_layer" : [ "music_onship_melody_layer4_v1.ogg" ]
+	"ground_layer" : [ "music_groundwalking_layer1_v3.ogg" ],
+	"goose_layer" : [ "music_gooseflight_layer2_v3.ogg" ],
+	"ship_layer" : [ "music_onship_layer3_v3.ogg" ],
+	"ship_melody_layer" : [ "music_onship_melody_layer4_v3.ogg" ]
 }
 
 
@@ -173,14 +173,18 @@ func update_volumes() -> void:
 
 
 # Private methods
-func _ready() -> void: __test__()
+func _ready() -> void:
+	pass
+	__test__()
+	
+	
 func __test__() -> void:
 	play_audio("ground_layer", AudioType.MUSIC, "ground")
 	play_audio("goose_layer", AudioType.MUSIC, "goose")
 	play_audio("ship_layer", AudioType.MUSIC, "ship")
 	play_audio("ship_melody_layer", AudioType.MUSIC, "ship_melody")
 	
-	fade_out_audio("ground")
+	#fade_out_audio("ground")
 
 
 

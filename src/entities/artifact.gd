@@ -1,3 +1,4 @@
+class_name ArtifactPiece
 extends Area
 
 enum Type {
@@ -23,3 +24,8 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	rotation.y += delta * 0.5
+
+
+func _on_Artifact_body_entered(body):
+	if body is Player:
+		GameState.add_artifact_piece(self)

@@ -27,7 +27,7 @@ func _ready() -> void:
 	current_region.translation += current_map_region.translation
 	
 	# Regio_PuzzleIsland1 comes with a player. Delet this!
-	$Level/Viewport/Region/PlayerCharacter.queue_free()
+#	$Level/Viewport/Region/PlayerCharacter.queue_free()
 
 
 func _process(delta: float) -> void:
@@ -52,7 +52,7 @@ func transition_to_world() -> void:
 	if current_map_region:
 		current_region = current_map_region.region_scene.instance()
 		# Regio_PuzzleIsland1 comes with a player. Delet this!
-		current_region.get_node("PlayerCharacter").queue_free()
+		#current_region.get_node("PlayerCharacter").queue_free()
 		current_region.translation = current_map_region.translation
 		airship.translation = current_map_region.translation
 		$Level/Viewport.add_child(current_region)

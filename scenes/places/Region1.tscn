@@ -31,24 +31,30 @@ collision_layer = 4
 script = ExtResource( 3 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
+visible = false
 shape = SubResource( 1 )
 
 [node name="LOD-0" type="StaticBody" parent="."]
+visible = false
 collision_layer = 4
 collision_mask = 3
 
 [node name="CollisionShape" type="CollisionShape" parent="LOD-0"]
+visible = false
 shape = SubResource( 2 )
 
 [node name="CSGBox2" type="CSGBox" parent="LOD-0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.89027, 24.1951, 0 )
+visible = false
 material = SubResource( 3 )
 
 [node name="CSGBox" type="CSGBox" parent="LOD-0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25.9873, 0 )
+visible = false
 material = SubResource( 3 )
 
 [node name="MeshInstance" type="MeshInstance" parent="LOD-0"]
+visible = false
 mesh = SubResource( 4 )
 material/0 = SubResource( 5 )
 
