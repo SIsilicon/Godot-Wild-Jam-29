@@ -6,6 +6,7 @@ export var size : float
 export var required_clouds : float = 1000.0
 
 onready var balloon : Spatial = $object_balloon
+onready var base : MeshInstance = $object_cylinderpiece
 onready var tween : Tween = $Tween
 
 var clouds : Array = []
@@ -20,6 +21,10 @@ const MAX_BALLOON_SCALE : Vector3 = Vector3(1.0, 1.0, 1.0)
 # Functions that should not be used outside of script
 
 func _ready() -> void:
+	var material : SpatialMaterial = SpatialMaterial.new()
+	material.albedo_texture = load("res://textures/puzzlestuff/cylinder_diffuse.png")
+	base.set_surface_material(0, material)
+	
 	balloon.get_node("AnimationPlayer").play("balloon_inflate")
 	update_balloon()
 
