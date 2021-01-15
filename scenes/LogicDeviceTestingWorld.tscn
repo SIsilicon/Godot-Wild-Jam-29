@@ -40,7 +40,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.4, 2 )
 output_device_path = NodePath("../Door")
 
 [node name="Pushable" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.73911, -1.44248, 6.80483 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.739, -1, 6.805 )
 
 [node name="Lever" parent="." instance=ExtResource( 6 )]
 transform = Transform( -1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, 4, -1, -4.87095 )
