@@ -5,8 +5,20 @@ extends Spatial
 enum AudioType { SFX, MUSIC }
 enum Buses { MASTER, SFX, MUSIC }
 
+export var fade_time : float
+
 const PATH : String = "res://audio/"
-const MIN_DB : int = -40
+const MIN_DB : int = -20
+const MAX_DB : int = 0
+const SILENCED_DB : int = -69420
+
+onready var tween : Tween = $Tween
+
+var sfx_volume : float = 0.0
+var music_volume : float = 0.0
+var master_volume : float = 0.0
+
+var silenced : Array = []
 
 var sfx_bus : Array = []
 var music_bus : Array = []
@@ -41,12 +53,16 @@ func play_audio(audio_name : String, audio_type : int, tag : String = "") -> Aud
 	match audio_type:
 		AudioType.SFX:
 			audio.stream.loop = false
+			audio.connect("ended", self, "sfx_ended")
 			sfx_bus.append(audio)
 		
 		AudioType.MUSIC:
-			if not tag in tags.keys() && tag != "":
-				tags[tag] = audio
 			music_bus.append(audio)
+	
+	
+	if not tag in tags.keys() && tag != "":
+		tags[tag] = audio
+		audio.tag = tag
 	
 	add_child(audio)
 	audio.play()
@@ -68,12 +84,16 @@ func play_3d_audio(audio_name : String, audio_position : Vector3, audio_type : i
 	match audio_type:
 		AudioType.SFX:
 			audio.stream.loop = false
+			audio.connect("ended", self, "sfx_3d_ended")
 			sfx_bus.append(audio)
 		
 		AudioType.MUSIC:
-			if not tag in tags.keys() && tag != "":
-				tags[tag] = audio
 			music_bus.append(audio)
+	
+	
+	if not tag in tags.keys() && tag != "":
+		tags[tag] = audio
+		audio.tag = tag
 	
 	add_child(audio)
 	audio.play()
@@ -87,6 +107,36 @@ func get_audio(tag : String) -> Node:
 
 
 
+func end_audio(tag : String) -> void:
+	get_audio(tag).end()
+
+
+
+func fade_in_audio(tag : String) -> void:
+	tween.interpolate_property(get_audio(tag), "volume_db", MIN_DB, MAX_DB, fade_time)
+	tween.start()
+
+
+
+func fade_out_audio(tag : String) -> void:
+	tween.interpolate_property(get_audio(tag), "volume_db", get_audio(tag).volume_db, MIN_DB, fade_time)
+	tween.start()
+
+
+
+func unsilence(tag : String) -> void:
+	silenced.erase(get_audio(tag))
+	update_volumes()
+
+
+
+func silence(tag : String) -> void:
+	get_audio(tag).volume_db = MIN_DB
+	silenced.append(get_audio(tag))
+	update_volumes()
+
+
+
 func set_volume(bus : int, percentage : float) -> void:
 	var decibals : float = percentage * abs(MIN_DB)
 	decibals -= MIN_DB
@@ -97,28 +147,53 @@ func set_volume(bus : int, percentage : float) -> void:
 
 func set_volume_db(bus : int, decibals : float) -> void:
 	match bus:
-		Buses.MASTER:
-			set_volume_db(Buses.SFX, decibals)
-			set_volume_db(Buses.MUSIC, decibals)
+		Buses.MASTER: master_volume = decibals
+		Buses.MUSIC: music_volume = decibals
+		Buses.SFX: sfx_volume = decibals
+	
+	update_volumes()
+
+
+
+func update_volumes() -> void:
+	for audio in sfx_bus:
+		if not audio in silenced:
+			audio.volume_db = master_volume - sfx_volume
 		
-		Buses.SFX:
-			for audio in sfx_bus:
-				audio.volume_db = decibals
+		if audio.volume_db <= MIN_DB:
+			audio.volume_db = SILENCED_DB
+	
+	for audio in music_bus:
+		if not audio in silenced:
+			audio.volume_db = master_volume - music_volume
 		
-		Buses.MUSIC:
-			for audio in music_bus:
-				audio.volume_db = decibals
+		if audio.volume_db <= MIN_DB:
+			audio.volume_db = SILENCED_DB
 
 
 
 # Private methods
-
+func _ready() -> void: __test__()
 func __test__() -> void:
-	play_audio("ground_layer", AudioType.MUSIC, "ground layer WOOH!")
-	play_audio("goose_layer", AudioType.MUSIC)
-	play_audio("ship_layer", AudioType.MUSIC)
-	play_audio("ship_melody_layer", AudioType.MUSIC)
-	print(tags)
-	while true:
-		play_audio("grass_footstep", AudioType.SFX)
-		yield(get_tree().create_timer(1), "timeout")
+	play_audio("ground_layer", AudioType.MUSIC, "ground")
+	play_audio("goose_layer", AudioType.MUSIC, "goose")
+	play_audio("ship_layer", AudioType.MUSIC, "ship")
+	play_audio("ship_melody_layer", AudioType.MUSIC, "ship_melody")
+	
+	fade_out_audio("ground")
+
+
+
+func _on_Tween_tween_completed(object : Object, _key) -> void:
+	silence(object.tag)
+	update_volumes()
+
+
+
+func sfx_ended(sfx : AudioStreamPlayer) -> void:
+	sfx_bus.erase(sfx)
+
+
+
+func sfx_3d_ended(sfx : AudioStreamPlayer3D) -> void:
+	sfx_bus.erase(sfx)
