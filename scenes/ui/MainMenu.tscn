@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://scenes/places/S_Islands/S_Island1.tscn" type="PackedScene" id=1]
 [ext_resource path="res://models/airship/airship.obj" type="ArrayMesh" id=2]
@@ -14,18 +14,26 @@
 [ext_resource path="res://scenes/places/Rocks/rock2.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scenes/places/Rocks/rock1.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scenes/places/World.tscn" type="PackedScene" id=14]
+[ext_resource path="res://textures/airship/airship_base_color.png" type="Texture" id=15]
+[ext_resource path="res://textures/airship/airship_normal.png" type="Texture" id=16]
 
-[sub_resource type="ProceduralSky" id=1]
+[sub_resource type="ProceduralSky" id=4]
 sky_top_color = Color( 0.647059, 0.945098, 0.839216, 1 )
 ground_bottom_color = Color( 0.866667, 0.839216, 0.768627, 1 )
 ground_horizon_color = Color( 0.839216, 0.917647, 0.980392, 1 )
 
-[sub_resource type="Environment" id=2]
+[sub_resource type="Environment" id=5]
 background_mode = 2
-background_sky = SubResource( 1 )
+background_sky = SubResource( 4 )
 
-[sub_resource type="Animation" id=3]
-resource_name = "float"
+[sub_resource type="SpatialMaterial" id=3]
+albedo_texture = ExtResource( 15 )
+roughness = 0.72
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 16 )
+
+[sub_resource type="Animation" id=6]
 length = 8.0
 loop = true
 tracks/0/type = "value"
@@ -41,11 +49,11 @@ tracks/0/keys = {
 "values": [ Vector3( -23.0871, 1.41202, -2.85979 ), Vector3( -23.087, 1.893, -2.86 ), Vector3( -23.0871, 1.41202, -2.85979 ) ]
 }
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=7]
 size = 24
 font_data = ExtResource( 5 )
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=8]
 length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:color")
@@ -116,13 +124,14 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.91365, 0.527804, 4.80477 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.7514, 0.340015, -2.96195 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
-environment = SubResource( 2 )
+environment = SubResource( 5 )
 
 [node name="Lights" type="Spatial" parent="."]
-visible = false
 
 [node name="DirectionalLight" type="DirectionalLight" parent="Lights"]
 transform = Transform( 0.818009, 0.506379, 0.272839, -0.575205, 0.72013, 0.38801, 0, -0.474334, 0.880345, 0, 11.6294, 0 )
+light_energy = 2.0
+shadow_enabled = true
 
 [node name="Misc" type="Spatial" parent="."]
 
@@ -133,11 +142,11 @@ far = 1000.0
 [node name="object_airship" type="MeshInstance" parent="Misc"]
 transform = Transform( 0.913666, 0, -0.406466, 0, 1, 0, 0.406466, 0, 0.913666, -23.087, 1.893, -2.86 )
 mesh = ExtResource( 2 )
-material/0 = null
+material/0 = SubResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Misc/object_airship"]
 autoplay = "float"
-anims/float = SubResource( 3 )
+anims/float = SubResource( 6 )
 
 [node name="Storm" parent="Misc" instance=ExtResource( 4 )]
 transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 88.141, -350.602 )
@@ -169,7 +178,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="UI/VBoxContainer"]
 margin_right = 240.0
 margin_bottom = 23.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 7 )
 text = "Hit 'Enter' to start"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -179,7 +188,7 @@ __meta__ = {
 margin_top = 38.0
 margin_right = 240.0
 margin_bottom = 61.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 7 )
 text = "Hit 'Escape' to quit"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -194,4 +203,4 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="UI/Fade"]
-anims/fade_in = SubResource( 5 )
+anims/fade_in = SubResource( 8 )

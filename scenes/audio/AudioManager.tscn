@@ -3,6 +3,7 @@
 [ext_resource path="res://src/audio/audio_manager.gd" type="Script" id=1]
 
 [node name="AudioManager" type="Spatial"]
+pause_mode = 2
 script = ExtResource( 1 )
 fade_time = 2.0
 

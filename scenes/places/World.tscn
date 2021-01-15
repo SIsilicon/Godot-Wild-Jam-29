@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://scenes/places/Environment.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/places/M_Islands/M_Island1.tscn" type="PackedScene" id=2]
@@ -9,8 +9,9 @@
 [ext_resource path="res://src/places/world.gd" type="Script" id=7]
 [ext_resource path="res://scenes/entities/Airship.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/places/Region_PuzzleIsland2.tscn" type="PackedScene" id=9]
-[ext_resource path="res://scenes/places/Region1.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/ui/PauseMenu.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/places/Island_of_The_Storm.tscn" type="PackedScene" id=11]
+[ext_resource path="res://UI/font/regular.otf" type="DynamicFontData" id=12]
 
 [sub_resource type="QuadMesh" id=1]
 size = Vector2( 2, 2 )
@@ -27,7 +28,17 @@ void vertex() {
 }
 
 void fragment() {
-	ALBEDO = texture(background, SCREEN_UV).rgb;
+	ALBEDO = vec3(0.0);
+	ALPHA = 0.0;
+	
+	vec2 inv_tex_size = 1.0 / vec2(textureSize(background, 0));
+	for(int y = -1; y <= 1; y++)
+		for(int x = -1; x <= 1; x++) {
+			ALBEDO += texture(background, SCREEN_UV + vec2(ivec2(x, y)) * inv_tex_size).rgb;
+			ALPHA += 1.0
+		}
+	ALBEDO /= ALPHA;
+	ALPHA = 1.0;
 }"
 
 [sub_resource type="ViewportTexture" id=3]
@@ -36,6 +47,7 @@ viewport_path = NodePath("Level/Viewport/Background/Viewport")
 
 [sub_resource type="ShaderMaterial" id=4]
 resource_local_to_scene = true
+render_priority = -10
 shader = SubResource( 2 )
 shader_param/background = SubResource( 3 )
 
@@ -58,13 +70,44 @@ ambient_light_sky_contribution = 0.86
 radius = 300.0
 height = 573.18
 
+[sub_resource type="StyleBoxFlat" id=10]
+bg_color = Color( 0, 0, 0, 0.372549 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 40
+font_data = ExtResource( 12 )
+
+[sub_resource type="Animation" id=9]
+resource_name = "display_objective"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Objective:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.7, 4, 5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
 [node name="World" type="Spatial"]
+pause_mode = 2
 process_priority = 5
 script = ExtResource( 7 )
 
-[node name="Tween" type="Tween" parent="."]
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Level" type="ViewportContainer" parent="."]
+pause_mode = 1
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -82,7 +125,7 @@ audio_listener_enable_2d = true
 audio_listener_enable_3d = true
 
 [node name="Player" parent="Level/Viewport" instance=ExtResource( 5 )]
-transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -7.11436, 7.96813, 3.10979e-07 )
+transform = Transform( 1, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 1, 4.47236, 4.87386, 4.76837e-07 )
 collision_layer = 2147483649
 
 [node name="Airship" parent="Level/Viewport" instance=ExtResource( 8 )]
@@ -108,6 +151,7 @@ audio_listener_enable_2d = true
 audio_listener_enable_3d = true
 
 [node name="Camera" type="Camera" parent="Level/Viewport/Background/Viewport"]
+transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 1500, 0, 1500 )
 near = 5.0
 far = 10000.0
 
@@ -118,8 +162,11 @@ environment = SubResource( 6 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="Level/Viewport"]
 transform = Transform( 0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 0, 0, 0 )
+light_energy = 2.0
+shadow_enabled = true
 
 [node name="Map" type="ViewportContainer" parent="."]
+pause_mode = 1
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -182,9 +229,11 @@ collision_mask = 0
 [node name="CollisionShape" type="CollisionShape" parent="Map/Viewport/Region1"]
 shape = SubResource( 7 )
 
-[node name="Region2" parent="Map/Viewport" instance=ExtResource( 10 )]
+[node name="Region2" type="Area" parent="Map/Viewport"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 263.929, -24.8923, 1967.61 )
+collision_layer = 4
 collision_mask = 16
+script = ExtResource( 4 )
 region_scene = ExtResource( 9 )
 
 [node name="M_Island3" parent="Map/Viewport/Region2" instance=ExtResource( 6 )]
@@ -195,3 +244,24 @@ shape = SubResource( 7 )
 __meta__ = {
 "_editor_description_": ""
 }
+
+[node name="PauseMenu" parent="." instance=ExtResource( 10 )]
+visible = false
+
+[node name="Objective" type="Label" parent="."]
+anchor_right = 1.0
+margin_bottom = 37.0
+grow_vertical = 0
+custom_styles/normal = SubResource( 10 )
+custom_fonts/font = SubResource( 8 )
+text = "Collect the artifacts and destroy the storm!"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+pause_mode = 1
+anims/display_objective = SubResource( 9 )

@@ -89,8 +89,12 @@ far = 8000.0
 
 [node name="StartNavigate" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.20955, 0 )
+pixel_size = 0.0086
 texture = SubResource( 4 )
 message = "Start Navigating"
+
+[node name="Viewport" parent="StartNavigate" index="0"]
+render_target_update_mode = 1
 
 [node name="Label" parent="StartNavigate/Viewport" index="1"]
 text = "Start Navigating"

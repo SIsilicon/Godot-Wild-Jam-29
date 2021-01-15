@@ -5,8 +5,13 @@ var velocity: Vector3 = Vector3.ZERO
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	rotation += Vector3(
+		rand_range(0, TAU),
+		rand_range(0, TAU),
+		rand_range(0, TAU)
+	)
 
+	
 func _physics_process(delta):
 	velocity = lerp(velocity, Vector3.ZERO, 0.02)
 	move_and_slide(velocity)

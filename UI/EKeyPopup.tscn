@@ -1,11 +1,19 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://UI/e_button.png" type="Texture" id=1]
+[ext_resource path="res://UI/e_key.svg" type="Texture" id=1]
 [ext_resource path="res://UI/e_key_popup.gd" type="Script" id=2]
+[ext_resource path="res://UI/font/regular_cozy.otf" type="DynamicFontData" id=3]
 
 [sub_resource type="ViewportTexture" id=1]
 flags = 4
 viewport_path = NodePath("Viewport")
+
+[sub_resource type="DynamicFont" id=2]
+size = 30
+outline_size = 1
+outline_color = Color( 0.027451, 0.0235294, 0.0235294, 1 )
+use_filter = true
+font_data = ExtResource( 3 )
 
 [node name="EKeyPopop" type="Sprite3D"]
 flip_v = true
@@ -15,11 +23,10 @@ texture = SubResource( 1 )
 script = ExtResource( 2 )
 
 [node name="Viewport" type="Viewport" parent="."]
-size = Vector2( 128, 128 )
+size = Vector2( 256, 256 )
 transparent_bg = true
 hdr = false
 usage = 0
-render_target_update_mode = 3
 
 [node name="TextureRect" type="TextureRect" parent="Viewport"]
 anchor_left = 0.3
@@ -28,15 +35,22 @@ anchor_right = 0.7
 anchor_bottom = 0.7
 texture = ExtResource( 1 )
 expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Label" type="Label" parent="Viewport"]
 anchor_top = 0.7
 anchor_right = 1.0
 anchor_bottom = 1.0
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_as_outline = 0
 text = "Action"
 align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Tween" type="Tween" parent="."]

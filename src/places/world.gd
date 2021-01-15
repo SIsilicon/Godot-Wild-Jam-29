@@ -8,6 +8,9 @@ const MAP_LIMIT_MARGIN = 500.0
 
 var in_map := false
 
+var _transitioning := true
+var _mouse_mode_prior_pause := Input.get_mouse_mode()
+
 onready var tween: Tween = $Tween
 onready var player: Player = $Level/Viewport/Player
 onready var airship: Airship = $Level/Viewport/Airship
@@ -15,19 +18,42 @@ onready var current_region := $Level/Viewport/Island_of_The_Storm
 onready var current_map_region := $Map/Viewport/StormIsland
 
 func _ready() -> void:
+	Global.connect("setting_changed", self, "_on_Global_setting_changed")
+	get_tree().connect("screen_resized", self, "_on_tree_screen_resized")
+	_on_Global_setting_changed("msaa", Global.get_setting("msaa", 0))
+	_on_tree_screen_resized()
+	
 	$Level.show()
 	$Map.show()
-	$Level/Viewport.own_world = true
-	$Map/Viewport.own_world = true
 	$Map.modulate.a = 0.0
 	set_paused($Map/Viewport, true)
+	$AnimationPlayer.play("display_objective")
 	
 	airship.translation += current_map_region.translation
 	player.translation += current_map_region.translation
 	current_region.translation += current_map_region.translation
 	
-	# Regio_PuzzleIsland1 comes with a player. Delet this!
-#	$Level/Viewport/Region/PlayerCharacter.queue_free()
+	if _transitioning:
+		$Level.modulate.a = 0.0
+		tween.interpolate_property($Level, "modulate:a", 0.0, 1.0, 0.4)
+		tween.start()
+		yield(tween, "tween_all_completed")
+		_transitioning = false
+
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel"):
+		if $PauseMenu.visible:
+			Input.set_mouse_mode(_mouse_mode_prior_pause)
+			$PauseMenu.unpause()
+			get_tree().paused = false
+			$Level/Viewport/Background/Viewport.render_target_update_mode = Viewport.UPDATE_WHEN_VISIBLE
+		elif not _transitioning:
+			$Level/Viewport/Background/Viewport.render_target_update_mode = Viewport.UPDATE_DISABLED
+			get_tree().paused = true
+			$PauseMenu.pause()
+			_mouse_mode_prior_pause = Input.get_mouse_mode()
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 
 func _process(delta: float) -> void:
@@ -46,13 +72,15 @@ func _process(delta: float) -> void:
 
 
 func transition_to_world() -> void:
+	if _transitioning:
+		return
+	
+	_transitioning = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 	current_map_region = airship._map_region
 	if current_map_region:
 		current_region = current_map_region.region_scene.instance()
-		# Regio_PuzzleIsland1 comes with a player. Delet this!
-		#current_region.get_node("PlayerCharacter").queue_free()
 		current_region.translation = current_map_region.translation
 		airship.translation = current_map_region.translation
 		$Level/Viewport.add_child(current_region)
@@ -86,18 +114,25 @@ func transition_to_world() -> void:
 	tween.interpolate_callback(self, 0.5, "set_paused", airship, false)
 	tween.interpolate_callback(self, 0.5, "set", "in_map", false)
 	tween.start()
+	
+	yield(tween, "tween_all_completed")
+	_transitioning = false
 
 
 func transition_to_map() -> void:
+	if _transitioning:
+		return
+	
+	_transitioning = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	if current_region:
 		current_region.queue_free()
 	
+	airship.in_map = true
 	$Level/Viewport.remove_child(airship)
 	$Map/Viewport.add_child(airship)
 	airship.rotation_degrees = Vector3(0, 90, 0)
 	airship.scale = Vector3(5, 5, 5)
-	airship.in_map = true
 	
 	$Level/Viewport.remove_child(player)
 	airship.add_child(player)
@@ -119,6 +154,9 @@ func transition_to_map() -> void:
 	tween.interpolate_callback(self, 0.5, "set_paused", airship, false)
 	tween.interpolate_callback(self, 0.5, "set", "in_map", true)
 	tween.start()
+	
+	yield(tween, "tween_all_completed")
+	_transitioning = false
 
 
 func set_paused(node: Node, paused: bool, recursive:=true) -> void:
@@ -163,3 +201,16 @@ func set_paused(node: Node, paused: bool, recursive:=true) -> void:
 	if recursive:
 		for child in node.get_children():
 			set_paused(child, paused)
+
+
+func _on_tree_screen_resized() -> void:
+	$Level/Viewport.size = OS.window_size
+	$Map/Viewport.size = OS.window_size
+	$Level/Viewport/Background/Viewport.size = $Level/Viewport.size / 2
+
+
+func _on_Global_setting_changed(setting: String, value) -> void:
+	if setting == "msaa":
+		$Level/Viewport.msaa = value
+		$Map/Viewport.msaa = value
+		$Level/Viewport/Background/Viewport.msaa = value

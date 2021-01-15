@@ -1,18 +1,27 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/entities/Cloud.gd" type="Script" id=1]
+[ext_resource path="res://addons/kenney_particle_pack/smoke_04.png" type="Texture" id=2]
 
 [sub_resource type="SphereShape" id=1]
 radius = 0.25
 
-[sub_resource type="SphereMesh" id=2]
-radius = 0.25
-height = 0.5
-radial_segments = 8
-rings = 4
+[sub_resource type="QuadMesh" id=2]
 
 [sub_resource type="SpatialMaterial" id=3]
-albedo_color = Color( 0.584314, 0.584314, 0.584314, 1 )
+flags_transparent = true
+params_billboard_mode = 1
+params_billboard_keep_scale = true
+albedo_color = Color( 1.5, 1.5, 1.5, 1 )
+albedo_texture = ExtResource( 2 )
+roughness = 0.7
+transmission_enabled = true
+transmission = Color( 0.603922, 0.603922, 0.603922, 1 )
+proximity_fade_enable = true
+proximity_fade_distance = 1.0
+distance_fade_mode = 1
+distance_fade_min_distance = 0.1
+distance_fade_max_distance = 0.5
 
 [node name="TestCloud" type="KinematicBody"]
 collision_layer = 32
@@ -24,5 +33,6 @@ shape = SubResource( 1 )
 
 [node name="CloudMesh" type="MeshInstance" parent="."]
 layers = 16
+extra_cull_margin = 0.5
 mesh = SubResource( 2 )
 material/0 = SubResource( 3 )

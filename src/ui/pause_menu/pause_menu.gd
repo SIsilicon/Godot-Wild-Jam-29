@@ -28,7 +28,7 @@ onready var credits_panel : Control = new_panel([
 	new_label("\t- Isabella Lau\n"),
 	new_label("Programming"),
 	new_label("\t- Jestem Stefan"),
-	new_label("\t- SiSilicon"),
+	new_label("\t- SISilicon"),
 	new_label("\t- Isaac Astell\n"),
 	new_label("Game design"),
 	new_label("\t- Everyone!"),
@@ -47,7 +47,6 @@ onready var main_panel : Control = new_panel([
 
 func pause() -> void:
 	visible = true
-	add_panel(main_panel)
 
 
 
@@ -59,7 +58,8 @@ func unpause() -> void:
 # Methods to be used inside of script only
 
 func _ready() -> void:
-	pause()
+	add_panel(main_panel)
+#	pause()
 
 
 

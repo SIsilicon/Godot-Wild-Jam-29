@@ -31,10 +31,7 @@ func _input(event: InputEvent) -> void:
 		elif in_map:
 			$CollisionShape.disabled = false
 			$EKeyPopop.hide_popup()
-			$EKeyPopop.visible = false
 			get_node("../../..").transition_to_world()
-			yield(get_tree().create_timer(0.5), "timeout")
-			$EKeyPopop.visible = true
 
 
 func _physics_process(delta: float) -> void:
@@ -72,6 +69,7 @@ func _physics_process(delta: float) -> void:
 	var prev_fuel := fuel
 	fuel = max(fuel - consumption_rate * delta * float(moving), 0.0)
 	if prev_fuel != fuel and fuel == 0.0 and in_map:
+		_player.get_node("StartNavigate").message = "Return to Ship"
 		tween.interpolate_callback($EKeyPopop, 1.0, "show_popup")
 		tween.start()
 	
@@ -87,6 +85,7 @@ func _on_FOI_body_entered(body: Node) -> void:
 		tween.start()
 	elif body is Region:
 		_map_region = body
+		$EKeyPopop.message = "Go to Region"
 		$EKeyPopop.show_popup()
 
 
@@ -107,6 +106,7 @@ func _on_Steering_body_entered(body: Node) -> void:
 #			_player.set_physics_process(false)
 #			_player.set_process(false)
 		if not in_map:
+			_player.get_node("StartNavigate").message = "Start Navigating"
 			_player.get_node("StartNavigate").show_popup()
 
 
@@ -114,7 +114,7 @@ func _on_Steering_body_exited(body: Node) -> void:
 	if body is Player:
 		if not in_map:
 			_player.get_node("StartNavigate").hide_popup()
-		_player = null
+			_player = null
 
 
 func _on_Collector_body_entered(body: Node) -> void:

@@ -44,8 +44,8 @@ func move_to_target(target : Spatial) -> void:
 
 # Internal functions you shouldn't be using outside of this script
 
-func _ready():
-	move_to_target($"../MeshInstance")
+#func _ready():
+#	move_to_target($"../MeshInstance")
 
 
 

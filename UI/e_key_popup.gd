@@ -15,6 +15,7 @@ func _ready() -> void:
 func set_message(val: String) -> void:
 	message = val
 	$Viewport/Label.text = message
+	$Viewport.render_target_update_mode = Viewport.UPDATE_ONCE
 
 
 func show_popup() -> void:
