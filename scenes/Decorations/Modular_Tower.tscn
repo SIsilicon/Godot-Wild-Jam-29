@@ -1,0 +1,428 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://models/modularwalls/modular_window2x.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://models/modularwalls/modular_wall.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://scenes/Decorations/Modlar2x2.material" type="Material" id=3]
+[ext_resource path="res://models/modularwalls/modular_wall2x.obj" type="ArrayMesh" id=4]
+[ext_resource path="res://models/modularwalls/modular_pillar2x.obj" type="ArrayMesh" id=5]
+[ext_resource path="res://models/modularwalls/modular_tile2x.obj" type="ArrayMesh" id=6]
+[ext_resource path="res://scenes/logic/Door.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/logic/Lever.tscn" type="PackedScene" id=8]
+[ext_resource path="res://models/modularwalls/modular_doorway.obj" type="ArrayMesh" id=9]
+[ext_resource path="res://models/modularwalls/modular_window.obj" type="ArrayMesh" id=10]
+[ext_resource path="res://scenes/Decorations/Modlar1x1.material" type="Material" id=11]
+
+[node name="Tower" type="Spatial"]
+
+[node name="Floor_0" type="Spatial" parent="."]
+
+[node name="modular_wall2x" type="MeshInstance" parent="Floor_0"]
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, -10, 0, 0 )
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_wall2x2" type="MeshInstance" parent="Floor_0"]
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 10, 0, 0 )
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_pillar2x" type="MeshInstance" parent="Floor_0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -10 )
+mesh = ExtResource( 5 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_pillar2x2" type="MeshInstance" parent="Floor_0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -10 )
+mesh = ExtResource( 5 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_pillar2x3" type="MeshInstance" parent="Floor_0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 10 )
+mesh = ExtResource( 5 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_pillar2x4" type="MeshInstance" parent="Floor_0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 10 )
+mesh = ExtResource( 5 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_window2x" type="MeshInstance" parent="Floor_0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10 )
+mesh = ExtResource( 1 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_tile2x" type="MeshInstance" parent="Floor_0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.73945, 0 )
+mesh = ExtResource( 6 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_doorway" type="MeshInstance" parent="Floor_0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.1981, 0, 10 )
+mesh = ExtResource( 9 )
+material/0 = ExtResource( 11 )
+
+[node name="modular_window" type="MeshInstance" parent="Floor_0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.00679, -0.0173435, 10 )
+mesh = ExtResource( 10 )
+material/0 = ExtResource( 11 )
+
+[node name="modular_wall" type="MeshInstance" parent="Floor_0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 8.5, 10 )
+mesh = ExtResource( 2 )
+material/0 = ExtResource( 11 )
+
+[node name="modular_wall2" type="MeshInstance" parent="Floor_0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 8.5, 10 )
+mesh = ExtResource( 2 )
+material/0 = ExtResource( 11 )
+
+[node name="Lever" parent="Floor_0" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3864, 2.0523, 8.59643 )
+output_device_path = NodePath("../Door")
+
+[node name="Door" parent="Floor_0" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.11816, 0, 10 )
+
+[node name="Floor_1" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16.7224, 0 )
+
+[node name="modular_wall2x" type="MeshInstance" parent="Floor_1"]
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, -10, 0, 0 )
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_wall2x2" type="MeshInstance" parent="Floor_1"]
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 10, 0, 0 )
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_pillar2x" type="MeshInstance" parent="Floor_1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -10 )
+mesh = ExtResource( 5 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_pillar2x2" type="MeshInstance" parent="Floor_1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -10 )
+mesh = ExtResource( 5 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_pillar2x3" type="MeshInstance" parent="Floor_1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 10 )
+mesh = ExtResource( 5 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_pillar2x4" type="MeshInstance" parent="Floor_1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 10 )
+mesh = ExtResource( 5 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_window2x" type="MeshInstance" parent="Floor_1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10 )
+mesh = ExtResource( 1 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_window2x2" type="MeshInstance" parent="Floor_1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10 )
+mesh = ExtResource( 1 )
+material/0 = ExtResource( 3 )
+
+[node name="Floor_2" type="Spatial" parent="."]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0, 33.7182, 0 )
+
+[node name="modular_wall2x" type="MeshInstance" parent="Floor_2"]
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, -10, 0, 0 )
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_wall2x2" type="MeshInstance" parent="Floor_2"]
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 10, 0, 0 )
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_pillar2x" type="MeshInstance" parent="Floor_2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -10 )
+mesh = ExtResource( 5 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_pillar2x2" type="MeshInstance" parent="Floor_2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -10 )
+mesh = ExtResource( 5 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_pillar2x3" type="MeshInstance" parent="Floor_2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 10 )
+mesh = ExtResource( 5 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_pillar2x4" type="MeshInstance" parent="Floor_2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 10 )
+mesh = ExtResource( 5 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_window2x" type="MeshInstance" parent="Floor_2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10 )
+mesh = ExtResource( 1 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_window2x2" type="MeshInstance" parent="Floor_2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10 )
+mesh = ExtResource( 1 )
+material/0 = ExtResource( 3 )
+
+[node name="Floor_3" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50.3516, -0.114052 )
+
+[node name="modular_wall2x" type="MeshInstance" parent="Floor_3"]
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, -10, 0, 0 )
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_wall2x2" type="MeshInstance" parent="Floor_3"]
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 10, 0, 0 )
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_pillar2x" type="MeshInstance" parent="Floor_3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -10 )
+mesh = ExtResource( 5 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_pillar2x2" type="MeshInstance" parent="Floor_3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -10 )
+mesh = ExtResource( 5 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_pillar2x3" type="MeshInstance" parent="Floor_3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 10 )
+mesh = ExtResource( 5 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_pillar2x4" type="MeshInstance" parent="Floor_3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 10 )
+mesh = ExtResource( 5 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_window2x" type="MeshInstance" parent="Floor_3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10 )
+mesh = ExtResource( 1 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_window2x2" type="MeshInstance" parent="Floor_3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10 )
+mesh = ExtResource( 1 )
+material/0 = ExtResource( 3 )
+
+[node name="Floor_4" type="Spatial" parent="."]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0, 67.3473, -0.114052 )
+
+[node name="modular_wall2x" type="MeshInstance" parent="Floor_4"]
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, -10, 0, 0 )
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_wall2x2" type="MeshInstance" parent="Floor_4"]
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 10, 0, 0 )
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_pillar2x" type="MeshInstance" parent="Floor_4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -10 )
+mesh = ExtResource( 5 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_pillar2x2" type="MeshInstance" parent="Floor_4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -10 )
+mesh = ExtResource( 5 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_pillar2x3" type="MeshInstance" parent="Floor_4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 10 )
+mesh = ExtResource( 5 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_pillar2x4" type="MeshInstance" parent="Floor_4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 10 )
+mesh = ExtResource( 5 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_window2x" type="MeshInstance" parent="Floor_4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10 )
+mesh = ExtResource( 1 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_window2x2" type="MeshInstance" parent="Floor_4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10 )
+mesh = ExtResource( 1 )
+material/0 = ExtResource( 3 )
+
+[node name="Floor_5" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 84.1097, 0 )
+
+[node name="modular_wall2x" type="MeshInstance" parent="Floor_5"]
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, -10, 0, 0 )
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_wall2x2" type="MeshInstance" parent="Floor_5"]
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 10, 0, 0 )
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_pillar2x" type="MeshInstance" parent="Floor_5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -10 )
+mesh = ExtResource( 5 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_pillar2x2" type="MeshInstance" parent="Floor_5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -10 )
+mesh = ExtResource( 5 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_pillar2x3" type="MeshInstance" parent="Floor_5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 10 )
+mesh = ExtResource( 5 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_pillar2x4" type="MeshInstance" parent="Floor_5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 10 )
+mesh = ExtResource( 5 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_window2x" type="MeshInstance" parent="Floor_5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10 )
+mesh = ExtResource( 1 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_window2x2" type="MeshInstance" parent="Floor_5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10 )
+mesh = ExtResource( 1 )
+material/0 = ExtResource( 3 )
+
+[node name="Floor_6" type="Spatial" parent="."]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0, 101.105, 0 )
+
+[node name="modular_wall2x" type="MeshInstance" parent="Floor_6"]
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, -10, 0, 0 )
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_wall2x2" type="MeshInstance" parent="Floor_6"]
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 10, 0, 0 )
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_pillar2x" type="MeshInstance" parent="Floor_6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -10 )
+mesh = ExtResource( 5 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_pillar2x2" type="MeshInstance" parent="Floor_6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -10 )
+mesh = ExtResource( 5 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_pillar2x3" type="MeshInstance" parent="Floor_6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 10 )
+mesh = ExtResource( 5 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_pillar2x4" type="MeshInstance" parent="Floor_6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 10 )
+mesh = ExtResource( 5 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_window2x" type="MeshInstance" parent="Floor_6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10 )
+mesh = ExtResource( 1 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_window2x2" type="MeshInstance" parent="Floor_6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10 )
+mesh = ExtResource( 1 )
+material/0 = ExtResource( 3 )
+
+[node name="Floor_7" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 117.739, -0.114052 )
+
+[node name="modular_wall2x" type="MeshInstance" parent="Floor_7"]
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, -10, 0, 0 )
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_wall2x2" type="MeshInstance" parent="Floor_7"]
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 10, 0, 0 )
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_pillar2x" type="MeshInstance" parent="Floor_7"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -10 )
+mesh = ExtResource( 5 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_pillar2x2" type="MeshInstance" parent="Floor_7"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -10 )
+mesh = ExtResource( 5 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_pillar2x3" type="MeshInstance" parent="Floor_7"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 10 )
+mesh = ExtResource( 5 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_pillar2x4" type="MeshInstance" parent="Floor_7"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 10 )
+mesh = ExtResource( 5 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_window2x" type="MeshInstance" parent="Floor_7"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10 )
+mesh = ExtResource( 1 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_window2x2" type="MeshInstance" parent="Floor_7"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10 )
+mesh = ExtResource( 1 )
+material/0 = ExtResource( 3 )
+
+[node name="Floor_8" type="Spatial" parent="."]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0, 134.735, -0.114052 )
+
+[node name="modular_wall2x" type="MeshInstance" parent="Floor_8"]
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, -10, 0, 0 )
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_wall2x2" type="MeshInstance" parent="Floor_8"]
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 10, 0, 0 )
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_pillar2x" type="MeshInstance" parent="Floor_8"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -10 )
+mesh = ExtResource( 5 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_pillar2x2" type="MeshInstance" parent="Floor_8"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -10 )
+mesh = ExtResource( 5 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_pillar2x3" type="MeshInstance" parent="Floor_8"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 10 )
+mesh = ExtResource( 5 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_pillar2x4" type="MeshInstance" parent="Floor_8"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 10 )
+mesh = ExtResource( 5 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_window2x" type="MeshInstance" parent="Floor_8"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10 )
+mesh = ExtResource( 1 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_window2x2" type="MeshInstance" parent="Floor_8"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10 )
+mesh = ExtResource( 1 )
+material/0 = ExtResource( 3 )
