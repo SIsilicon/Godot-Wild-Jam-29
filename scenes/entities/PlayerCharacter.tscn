@@ -100,7 +100,7 @@ render_target_update_mode = 1
 text = "Start Navigating"
 
 [node name="Listener" type="Listener" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.64487, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.08129, -0.0639502 )
 
 [node name="Goose_Spawn_Particle" type="Particles" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.21844, 0 )

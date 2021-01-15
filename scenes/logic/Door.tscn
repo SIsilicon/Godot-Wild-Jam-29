@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/logic/door.gd" type="Script" id=1]
 [ext_resource path="res://models/puzzlestuff/object_halfdoor.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://scenes/Decorations/DoorMaterial.material" type="Material" id=3]
 
 [sub_resource type="Animation" id=1]
 resource_name = "close"
@@ -68,21 +69,22 @@ anims/close = SubResource( 1 )
 anims/open = SubResource( 2 )
 
 [node name="HingeLeft" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -2.5, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.0146775, 0 )
 
 [node name="object_halfdoor" type="MeshInstance" parent="HingeLeft"]
 mesh = ExtResource( 2 )
-material/0 = null
+material/0 = ExtResource( 3 )
 
 [node name="HingeRight" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -2.5, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.0146775, 0 )
 
 [node name="object_halfdoor" type="MeshInstance" parent="HingeRight"]
 transform = Transform( -1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, 0, 0, 0 )
 mesh = ExtResource( 2 )
-material/0 = null
+material/0 = ExtResource( 3 )
 
 [node name="Collision" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.51468, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Collision"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
