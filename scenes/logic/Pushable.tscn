@@ -1,8 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/logic/pushable.gd" type="Script" id=1]
-
-[sub_resource type="CylinderMesh" id=1]
+[ext_resource path="res://models/puzzlestuff/object_cylinderpiece.obj" type="ArrayMesh" id=2]
 
 [sub_resource type="CylinderShape" id=2]
 
@@ -20,10 +19,6 @@ push_speed = 0.4
 do_camera = false
 gravity = 15.0
 
-[node name="MeshInstance" type="MeshInstance" parent="."]
-mesh = SubResource( 1 )
-material/0 = null
-
 [node name="CollisionShape" type="CollisionShape" parent="."]
 shape = SubResource( 2 )
 
@@ -38,3 +33,7 @@ shape = SubResource( 3 )
 shape = SubResource( 4 )
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="object_cylinderpiece" type="MeshInstance" parent="."]
+mesh = ExtResource( 2 )
+material/0 = null
