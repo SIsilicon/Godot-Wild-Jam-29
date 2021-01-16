@@ -21,7 +21,8 @@ func set_text(text : String) -> void:
 
 func set_state(enabled : bool) -> void:
 	yield(self, "ready")
-	check_button.pressed = enabled
+	#check_button.pressed = enabled
+	check_button.pressed = Global.get_setting(setting)
 
 
 

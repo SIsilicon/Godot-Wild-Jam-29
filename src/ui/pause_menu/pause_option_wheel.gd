@@ -39,7 +39,8 @@ func set_options(set_options : PoolStringArray, set_real_values : Array) -> void
 
 func set_index(set_index : int) -> void:
 	yield(self, "ready")
-	index = wrapi(set_index, 0, len(options))
+	#index = wrapi(set_index, 0, len(options))
+	index = real_values.find(Global.get_setting(setting))
 	update_selection()
 
 

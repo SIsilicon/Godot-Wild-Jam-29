@@ -10,6 +10,7 @@ export var panel_size : float
 
 var panel_x_offset : float = 0
 var panels : Array = []
+var valid_settings : PoolStringArray = ["invert_y", "fullscreen", "msaa", "music_volume", "sfx_volume"]
 
 onready var settings_panel : Control = new_panel([
 	new_label("-[Settings]-"),
@@ -210,8 +211,8 @@ func new_bool_button(setting : String, text : String, enabled : bool = false) ->
 	var button : HBoxContainer = button_packed.instance()
 	
 	button.set_text(text)
-	button.set_state(enabled)
 	button.set_setting(setting)
+	button.set_state(enabled)
 	
 	button.connect("toggled", self, "bool_button_toggled")
 	
@@ -224,8 +225,8 @@ func new_float_slider(setting : String, text : String, value : float = 1.0) -> V
 	var slider : VBoxContainer = slider_packed.instance()
 	
 	slider.set_text(text)
-	slider.set_value(value)
 	slider.set_setting(setting)
+	slider.set_value(value)
 	
 	slider.connect("value_changed", self, "float_slider_changed")
 	
@@ -275,9 +276,7 @@ func float_slider_changed(slider : VBoxContainer) -> void:
 
 
 func option_wheel_changed(wheel : VBoxContainer) -> void:
-	print("wow")
-	print(wheel.selection)
-	#set_setting(wheel.setting, wheel.value)
+	set_setting(wheel.setting, wheel.value)
 
 
 

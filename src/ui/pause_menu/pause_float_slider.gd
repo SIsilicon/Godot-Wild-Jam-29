@@ -20,7 +20,8 @@ func set_text(text : String) -> void:
 
 func set_value(value : float) -> void:
 	yield(self, "ready")
-	slider.value = value
+	#slider.value = value
+	slider.value = Global.get_setting(setting)
 
 
 
