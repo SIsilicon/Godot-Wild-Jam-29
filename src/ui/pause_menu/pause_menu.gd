@@ -15,6 +15,9 @@ onready var settings_panel : Control = new_panel([
 	new_label("-[Settings]-"),
 	new_bool_button("invert_y", "Invert Y-Axis"),
 	new_bool_button("fullscreen", "Fullscreen"),
+	new_option_wheel("msaa", "MSAA", ["Disabled", "2x", "4x", "8x", "16x"], [0, 2, 4, 8, 16], 0),
+	new_float_slider("music_volume", "Music Volume"),
+	new_float_slider("sfx_volume", "SFX Volume"),
 	new_button("Return", null, ButtonTypes.RETURN)
 ])
 
@@ -76,7 +79,6 @@ onready var help_panel : Control = new_panel([
 
 onready var main_panel : Control = new_panel([
 	new_label("-[Paused]-\n"),
-	new_option_wheel("msaa", "test", ["Disabled", "2x", "4x", "8x", "16x"], [0, 2, 4, 8, 16], 0),
 	new_button("Settings", settings_panel),
 	new_button("Help", help_panel),
 	new_button("Credits", credits_panel),
@@ -98,6 +100,11 @@ func unpause() -> void:
 
 
 # Methods to be used inside of script only
+
+func _input(event) -> void:
+	if event.is_action_pressed("interact"):
+		print(Global.settings)
+
 
 func _ready() -> void:
 	add_panel(main_panel)
