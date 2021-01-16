@@ -119,12 +119,14 @@ func end_audio(tag : String) -> void:
 
 
 func fade_in_audio(tag : String) -> void:
+	unsilence(tag)
 	tween.interpolate_property(get_audio(tag), "volume_db", MIN_DB, MAX_DB, fade_time)
 	tween.start()
 
 
 
 func fade_out_audio(tag : String) -> void:
+	unsilence(tag)
 	tween.interpolate_property(get_audio(tag), "volume_db", get_audio(tag).volume_db, MIN_DB, fade_time)
 	tween.start()
 
@@ -196,7 +198,13 @@ func update_volumes() -> void:
 func _ready() -> void:
 	set_volume(Buses.MUSIC, Global.get_setting("music_volume"))
 	set_volume(Buses.SFX, Global.get_setting("sfx_volume"))
-	
+	play_audio("ground_layer", AudioType.MUSIC, "ground")
+	play_audio("ground_layer", AudioType.MUSIC, "goose")
+	play_audio("ground_layer", AudioType.MUSIC, "ship")
+	play_audio("ground_layer", AudioType.MUSIC, "ship_melody")
+	silence("goose")
+	silence("ship")
+	silence("ship_melody")
 	#__test2__()
 	#__test__()
 	
