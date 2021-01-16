@@ -5,25 +5,24 @@
 [ext_resource path="res://models/puzzlestuff/object_cylinderpiece.obj" type="ArrayMesh" id=3]
 [ext_resource path="res://scenes/logic/lightbulb.tscn" type="PackedScene" id=4]
 
-[sub_resource type="CylinderShape" id=2]
+[sub_resource type="CylinderShape" id=1]
 radius = 0.3
 height = 0.75
 
-[sub_resource type="CylinderShape" id=1]
-radius = 0.63853
-height = 1.14466
+[sub_resource type="SphereShape" id=2]
+radius = 0.79256
 
 [node name="Balloon" type="StaticBody" groups=[
 "Balloon",
 ]]
-collision_layer = 32
+collision_layer = 128
 collision_mask = 33
 script = ExtResource( 1 )
 required_clouds = 100.0
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="CloudPickup" type="Area" parent="."]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
@@ -32,8 +31,8 @@ collision_layer = 0
 collision_mask = 32
 
 [node name="CollisionShape" type="CollisionShape" parent="CloudPickup"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.200155, 0 )
-shape = SubResource( 1 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.283175, 0 )
+shape = SubResource( 2 )
 
 [node name="Tween" type="Tween" parent="."]
 
@@ -48,6 +47,4 @@ material/0 = null
 [node name="lightbulb" parent="." instance=ExtResource( 4 )]
 
 [node name="CloudSpawnPoint" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.04702, 0.00337613 )
-[connection signal="body_entered" from="CloudPickup" to="." method="_on_CloudPickup_body_entered"]
-[connection signal="body_exited" from="CloudPickup" to="." method="_on_CloudPickup_body_exited"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.04702, 0.668121 )

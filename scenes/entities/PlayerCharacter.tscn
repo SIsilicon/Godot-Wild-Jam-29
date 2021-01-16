@@ -59,8 +59,9 @@ transform = Transform( 0.974957, -0.0303181, 0.220318, -0.0116797, 0.982317, 0.1
 
 [node name="PullingArea" type="Area" parent="PlayerMesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.344093, -0.515345, -0.0762738 )
+input_ray_pickable = false
 collision_layer = 0
-collision_mask = 32
+collision_mask = 160
 
 [node name="VacuumRange" type="CollisionShape" parent="PlayerMesh/PullingArea"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.366989, -2.7979 )

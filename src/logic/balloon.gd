@@ -81,17 +81,17 @@ func update_balloon() -> void:
 
 
 func pull_clouds() -> void:
-	#clouds = cloud_pull_area.get_overlapping_bodies()
+	clouds = cloud_pull_area.get_overlapping_bodies()
 	
-	
-	for cloud in clouds:
-		cloud.pull(global_transform.origin, 1)
-		
-		if global_transform.origin.distance_to(cloud.global_transform.origin) < 0.5:
-			clouds.erase(cloud)
-			cloud.queue_free()
-			size += 1
-			update_balloon()
+	if clouds.size() > 0:
+		for cloud in clouds:
+			cloud.pull(global_transform.origin, 5)
+			
+			if global_transform.origin.distance_squared_to(cloud.global_transform.origin) < 2:
+				clouds.erase(cloud)
+				cloud.queue_free()
+				size += 1
+				update_balloon()
 
 
 func release_clouds(direction: Vector3) -> void:
@@ -100,18 +100,18 @@ func release_clouds(direction: Vector3) -> void:
 		
 		get_parent().add_child(cloud)
 		cloud.global_transform.origin = cloud_spawn_point.global_transform.origin
-		cloud.shoot(cloud_spawn_point.global_transform.origin.direction_to(direction) , 15)
+		#cloud.shoot(-cloud_spawn_point.global_transform.basis.z , 15)
 		size -= 1
 		
 	update_balloon()
 
 
-func _on_CloudPickup_body_entered(body : PhysicsBody) -> void:
-	if body is Cloud:
-		clouds.append(body)
+#func _on_CloudPickup_body_entered(body : PhysicsBody) -> void:
+	#if body is Cloud:
+		#clouds.append(body)
 
 
 
-func _on_CloudPickup_body_exited(body : PhysicsBody) -> void:
-	if body is Cloud:
-		clouds.erase(body)
+#func _on_CloudPickup_body_exited(body : PhysicsBody) -> void:
+	#if body is Cloud:
+		#clouds.erase(body)
