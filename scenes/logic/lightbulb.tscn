@@ -1,0 +1,14 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://models/puzzlestuff/lightbulb.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://textures/puzzlestuff/lightbulb_texture_red.jpg" type="Texture" id=2]
+[ext_resource path="res://src/logic/lightbulb.gd" type="Script" id=3]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_texture = ExtResource( 2 )
+
+[node name="lightbulb" type="MeshInstance"]
+transform = Transform( 1, 0, 0, 0, 0.577231, -0.816581, 0, 0.816581, 0.577231, 0, -0.199, 0.467 )
+mesh = ExtResource( 1 )
+material/0 = SubResource( 1 )
+script = ExtResource( 3 )

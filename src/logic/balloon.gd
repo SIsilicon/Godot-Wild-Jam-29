@@ -9,6 +9,8 @@ onready var balloon : Spatial = $object_balloon
 onready var base : MeshInstance = $object_cylinderpiece
 onready var tween : Tween = $Tween
 
+onready var light_bulb: LightBulb = $lightbulb
+
 var clouds : Array = []
 
 const MIN_BALLOON_SCALE : Vector3 = Vector3(0.1, 0.1, 0.1)
@@ -54,8 +56,11 @@ func update_balloon() -> void:
 	
 	if size == required_clouds:
 		set_state(States.ENABLED)
+		light_bulb.turn_green()
+		
 	else:
 		set_state(States.DISABLED)
+		light_bulb.turn_red()
 
 
 

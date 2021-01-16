@@ -340,7 +340,7 @@ func process_movement(delta : float) -> void:
 			
 			velocity.y += GRAVITY * delta
 
-			var new_velocity: Vector3
+			var new_velocity: Vector3 = Vector3.ZERO
 			new_velocity = new_velocity.linear_interpolate(velocity, DEACCELERATION * delta)
 			
 			velocity.x = new_velocity.x
@@ -358,7 +358,7 @@ func process_movement(delta : float) -> void:
 			direction.y = 0
 			direction = direction.normalized()
 			
-			velocity.y += GRAVITY * delta
+			
 			
 			var new_velocity := velocity
 			new_velocity.y = 0
@@ -369,8 +369,9 @@ func process_movement(delta : float) -> void:
 			new_velocity = new_velocity.linear_interpolate(target, ACCELERATION * delta)
 			velocity.x = new_velocity.x
 			velocity.z = new_velocity.z
+			velocity.y += GRAVITY * delta
 			
-			velocity = move_and_slide(velocity, Vector3.UP, 0.05, 4, deg2rad(MAX_SLOPE_ANGLE))
+			velocity = move_and_slide(velocity, Vector3.UP, true, 4, deg2rad(MAX_SLOPE_ANGLE))
 			
 			if !is_on_floor():
 				enter_state(States.FALLING)
