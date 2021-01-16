@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://scenes/places/S_Islands/S_Island1.tscn" type="PackedScene" id=1]
 [ext_resource path="res://models/airship/airship.obj" type="ArrayMesh" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://scenes/ui/Story.tscn" type="PackedScene" id=14]
 [ext_resource path="res://textures/airship/airship_base_color.png" type="Texture" id=15]
 [ext_resource path="res://textures/airship/airship_normal.png" type="Texture" id=16]
+[ext_resource path="res://UI/logo.png" type="Texture" id=17]
 
 [sub_resource type="ProceduralSky" id=1]
 sky_top_color = Color( 0.647059, 0.945098, 0.839216, 1 )
@@ -165,34 +166,43 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI"]
-anchor_left = 0.8
-anchor_top = 0.8
-anchor_right = 0.8
-anchor_bottom = 0.8
-margin_left = -120.0
-margin_top = -25.0
-margin_right = 120.0
-margin_bottom = 25.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 482.0
 custom_constants/separation = 15
+alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="UI/VBoxContainer"]
-margin_right = 240.0
-margin_bottom = 23.0
+margin_top = 104.0
+margin_right = 1366.0
+margin_bottom = 135.0
 custom_fonts/font = SubResource( 5 )
 text = "Hit 'Enter' to start"
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label2" type="Label" parent="UI/VBoxContainer"]
-margin_top = 38.0
-margin_right = 240.0
-margin_bottom = 61.0
+margin_top = 150.0
+margin_right = 1366.0
+margin_bottom = 181.0
 custom_fonts/font = SubResource( 5 )
 text = "Hit 'Escape' to quit"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Logo" type="TextureRect" parent="UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 17 )
+expand = true
+stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": false
 }

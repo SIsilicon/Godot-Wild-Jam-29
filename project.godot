@@ -79,6 +79,7 @@ run/main_scene="res://scenes/ui/MainMenu.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="Windward"
 config/icon="res://UI/icon.png"
+config/macos_native_icon="res://UI/icon.icns"
 config/windows_native_icon="res://UI/icon.ico"
 
 [autoload]
@@ -92,6 +93,7 @@ GameState="*res://src/globals/game_state.gd"
 window/size/width=1366
 window/size/height=768
 window/size/test_width=1024
+window/size/test_height=600
 window/dpi/allow_hidpi=true
 window/stretch/aspect="expand"
 

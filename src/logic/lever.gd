@@ -31,9 +31,9 @@ func _process(delta : float) -> void:
 			player_found = true
 			break
 	
-	if not player_found:
-		player = null
+	if not player_found and player:
 		player.get_node("EKeyPopup").hide_popup()
+		player = null
 
 
 

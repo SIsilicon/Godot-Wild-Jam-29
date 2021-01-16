@@ -346,7 +346,7 @@ func process_movement(delta : float) -> void:
 			velocity.x = new_velocity.x
 			velocity.z = new_velocity.z
 			
-			velocity = move_and_slide(velocity, Vector3.UP, 0.05, 4, deg2rad(MAX_SLOPE_ANGLE))
+			velocity = move_and_slide_with_snap(velocity, Vector3(0, -0.1, 0), Vector3.UP, 0.05, 4, deg2rad(MAX_SLOPE_ANGLE))
 			
 			if !is_on_floor():
 				enter_state(States.FALLING)
@@ -371,7 +371,7 @@ func process_movement(delta : float) -> void:
 			velocity.z = new_velocity.z
 			velocity.y += GRAVITY * delta
 			
-			velocity = move_and_slide(velocity, Vector3.UP, true, 4, deg2rad(MAX_SLOPE_ANGLE))
+			velocity = move_and_slide_with_snap(velocity, Vector3(0, -0.1, 0), Vector3.UP, true, 4, deg2rad(MAX_SLOPE_ANGLE))
 			
 			if !is_on_floor():
 				enter_state(States.FALLING)
