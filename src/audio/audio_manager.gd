@@ -163,17 +163,31 @@ func set_volume_db(bus : int, decibals : float) -> void:
 func update_volumes() -> void:
 	for audio in sfx_bus:
 		if not audio in silenced:
-			audio.volume_db = master_volume + sfx_volume
+			if audio is AudioStreamPlayer:
+				audio.volume_db = master_volume + sfx_volume
+			elif audio is AudioStreamPlayer3D:
+				audio.unit_db = master_volume + sfx_volume
 		
-		if audio.volume_db <= MIN_DB:
-			audio.volume_db = SILENCED_DB
+		if audio is AudioStreamPlayer:
+			if audio.volume_db <= MIN_DB:
+				audio.volume_db = SILENCED_DB
+		elif audio is AudioStreamPlayer3D:
+			if audio.unit_db <= MIN_DB:
+				audio.unit_db = SILENCED_DB
 	
 	for audio in music_bus:
 		if not audio in silenced:
-			audio.volume_db = master_volume + music_volume
+			if audio is AudioStreamPlayer:
+				audio.volume_db = master_volume + sfx_volume
+			elif audio is AudioStreamPlayer3D:
+				audio.unit_db = master_volume + sfx_volume
 		
-		if audio.volume_db <= MIN_DB:
-			audio.volume_db = SILENCED_DB
+		if audio is AudioStreamPlayer:
+			if audio.volume_db <= MIN_DB:
+				audio.volume_db = SILENCED_DB
+		elif audio is AudioStreamPlayer3D:
+			if audio.unit_db <= MIN_DB:
+				audio.unit_db = SILENCED_DB
 
 
 
@@ -182,7 +196,8 @@ func _ready() -> void:
 	set_volume(Buses.MUSIC, Global.get_setting("music_volume"))
 	set_volume(Buses.SFX, Global.get_setting("sfx_volume"))
 	
-	__test__()
+	#__test2__()
+	#__test__()
 	
 	
 func __test__() -> void:
@@ -193,6 +208,19 @@ func __test__() -> void:
 	play_audio("ship_melody_layer", AudioType.MUSIC, "ship_melody")
 	
 	#fade_out_audio("ground")
+
+
+
+func __test2__() -> void:
+	var test_packed : PackedScene = load("res://scenes/audio/AudioPiece3D.tscn")
+	var test : AudioStreamPlayer3D = test_packed.instance()
+	
+	test.stream = load("res://audio/mpc_jump_sound.ogg")
+	test.global_transform.origin = get_tree().get_nodes_in_group("pushes_pressure_pad")[0].global_transform.origin
+	print("happened")
+	
+	add_child(test)
+	test.play()
 
 
 
