@@ -3,9 +3,10 @@ extends HBoxContainer
 
 
 onready var label : Label = $Label
-onready var check_button : CheckButton = $CheckButton
+onready var button : Button = $Button
 
 var setting : String
+var enabled : bool
 
 signal toggled(button)
 
@@ -21,8 +22,9 @@ func set_text(text : String) -> void:
 
 func set_state(enabled : bool) -> void:
 	yield(self, "ready")
-	#check_button.pressed = enabled
-	check_button.pressed = Global.get_setting(setting)
+	#button.pressed = enabled
+	enabled = Global.get_setting(setting)
+	update()
 
 
 
@@ -32,12 +34,16 @@ func set_setting(set_setting : String) -> void:
 
 
 
-func is_enabled() -> bool:
-	return check_button.pressed
+func update() -> void:
+	match enabled:
+		true: button.text = "ON"
+		false: button.text = "OFF"
+	emit_signal("toggled", self)
 
 
 
 # Private methods
 
-func _on_CheckButton_toggled(button_pressed):
-	emit_signal("toggled", self)
+func _on_Button_pressed():
+	enabled = !enabled
+	update()

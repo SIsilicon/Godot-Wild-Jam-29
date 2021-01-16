@@ -266,7 +266,7 @@ func button_pressed(button : PauseMenuButton) -> void:
 
 
 func bool_button_toggled(button : HBoxContainer) -> void:
-	set_setting(button.setting, button.is_enabled())
+	set_setting(button.setting, button.enabled)
 
 
 
