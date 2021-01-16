@@ -3,9 +3,11 @@ class_name InputDevice
 
 
 
-enum States { DISABLED, ENABLED }
+enum States { DISABLED, ENABLED, STANDBY }
 
 export (NodePath) var output_device_path : String
+
+export var is_logic_NOT_gate: bool
 
 var state : int = States.DISABLED
 
@@ -18,7 +20,7 @@ signal toggled
 # Methods to be used outside of script
 
 func toggle() -> void:
-	state = wrapi(state + 1, States.DISABLED, States.ENABLED + 1)
+	state = wrapi(state + 1, States.DISABLED, States.STANDBY + 1)
 	emit_signal("toggled")
 
 

@@ -111,7 +111,7 @@ output_device_path = NodePath("../Door")
 [node name="Balloon2" parent="Floor_1" instance=ExtResource( 11 )]
 transform = Transform( -0.000506326, 0, -1, 0, 1, 0, 1, 0, -0.000506326, -11.7829, 0.709095, -1.22375 )
 output_device_path = NodePath("../Door")
-size = 500.0
+size = 100.0
 
 [node name="4_part_wall" type="Spatial" parent="Floor_1"]
 transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, -20, 0, -0.174 )
@@ -193,4 +193,4 @@ transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, -10.113
 [node name="Balloon" parent="Floor_2" instance=ExtResource( 11 )]
 transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, -10.7435, 0.739451, 1.17552 )
 output_device_path = NodePath("../Door")
-size = 500.0
+size = 100.0
