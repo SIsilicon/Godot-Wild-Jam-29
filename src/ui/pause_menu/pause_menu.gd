@@ -35,8 +35,51 @@ onready var credits_panel : Control = new_panel([
 	new_button("Return", null, ButtonTypes.RETURN)
 ])
 
+onready var controls_panel : Control = new_panel([
+	new_label("Controls\n"),
+	new_label("Movement\n- WASD\n"),
+	new_label("Jump\n- SPACE\n"),
+	new_label("Toggle flight\n- SPACE (airborne)\n"),
+	new_label("Shoot clouds\n- LEFT MOUSE BUTTON\n"),
+	new_label("Suck in clouds\n- RIGHT MOUSE BUTTON\n"),
+	new_label("Interact\n- E\n"),
+	new_label("Toggle fullscreen\n- ALT+ENTER\n"),
+	new_button("Return", null, ButtonTypes.RETURN)
+])
+
+onready var h2p_panel : Control = new_panel([
+	new_label("How To Play\n"),
+	new_label("Collect the 3 artifacts\nthen take them to the \naltar to destroy \nthe storm!\n"),
+	new_label("Complete puzzles and\nexplore to find the\nartifacts!\n"),
+	new_button("Controls", controls_panel),
+	new_button("Return", null, ButtonTypes.RETURN)
+])
+
+onready var puzzles_panel : Control = new_panel([
+	new_label("Puzzle Elements\n"),
+	new_label("_Balloon_______________"),
+	new_label("Shoot clouds at the\nballoon to fill it up!\n"),
+	new_label("_Pressure_Pad__________"),
+	new_label("Put something heavy\non this, such as \nyourself, or a heavy \nstone to activate it!\n"),
+	new_label("_Lever_________________"),
+	new_label("Switch this up or\ndown to toggle!\nUp = off, Down = on.\n"),
+	new_label("_Cyl___________________"),
+	new_label("Nothing but a heavy\ncylindrical stone!\n"),
+	new_button("Return", null, ButtonTypes.RETURN)
+])
+
+onready var help_panel : Control = new_panel([
+	new_label("Help\n"),
+	new_button("Controls", controls_panel),
+	new_button("How to play", h2p_panel),
+	new_button("Puzzle elements", puzzles_panel),
+	new_button("Return", null, ButtonTypes.RETURN)
+])
+
 onready var main_panel : Control = new_panel([
+	new_label("Paused\n"),
 	new_button("Settings", settings_panel),
+	new_button("Help", help_panel),
 	new_button("Credits", credits_panel),
 	new_button("Quit", null, ButtonTypes.QUIT),
 ])
