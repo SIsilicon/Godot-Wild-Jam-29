@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/ui/pause_menu/pause_float_slider.gd" type="Script" id=1]
+
+[node name="PauseFloatSlider" type="VBoxContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_right = 40.0
+margin_bottom = 25.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_top = 33.0
+margin_right = 40.0
+margin_bottom = 65.0
+
+[node name="HSlider" type="HSlider" parent="HBoxContainer"]
+margin_right = 32.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.1
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+margin_left = 40.0
+margin_top = 3.0
+margin_right = 40.0
+margin_bottom = 28.0
+[connection signal="value_changed" from="HBoxContainer/HSlider" to="." method="_on_HSlider_value_changed"]

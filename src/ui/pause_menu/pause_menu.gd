@@ -10,13 +10,11 @@ export var panel_size : float
 
 var panel_x_offset : float = 0
 var panels : Array = []
-var settings : Dictionary = {
-	"invert_y" : false
-}
 
 onready var settings_panel : Control = new_panel([
 	new_label("-[Settings]-"),
-	new_bool_button("invert-y", "Invert Y-Axis"),
+	new_bool_button("invert_y", "Invert Y-Axis"),
+	new_bool_button("fullscreen", "Fullscreen"),
 	new_button("Return", null, ButtonTypes.RETURN)
 ])
 
@@ -36,7 +34,7 @@ onready var credits_panel : Control = new_panel([
 ])
 
 onready var controls_panel : Control = new_panel([
-	new_label("Controls\n"),
+	new_label("-[Controls]-\n"),
 	new_label("Movement\n- WASD\n"),
 	new_label("Jump\n- SPACE\n"),
 	new_label("Toggle flight\n- SPACE (airborne)\n"),
@@ -48,7 +46,7 @@ onready var controls_panel : Control = new_panel([
 ])
 
 onready var h2p_panel : Control = new_panel([
-	new_label("How To Play\n"),
+	new_label("-[How To Play]-\n"),
 	new_label("Collect the 3 artifacts\nthen take them to the \naltar to destroy \nthe storm!\n"),
 	new_label("Complete puzzles and\nexplore to find the\nartifacts!\n"),
 	new_button("Controls", controls_panel),
@@ -56,7 +54,7 @@ onready var h2p_panel : Control = new_panel([
 ])
 
 onready var puzzles_panel : Control = new_panel([
-	new_label("Puzzle Elements\n"),
+	new_label("-[Puzzle Elements]-\n"),
 	new_label("_Balloon_______________"),
 	new_label("Shoot clouds at the\nballoon to fill it up!\n"),
 	new_label("_Pressure_Pad__________"),
@@ -69,7 +67,8 @@ onready var puzzles_panel : Control = new_panel([
 ])
 
 onready var help_panel : Control = new_panel([
-	new_label("Help\n"),
+	new_label("-[Help]-\n"),
+	new_float_slider("test", "music_volume", 0.5),
 	new_button("Controls", controls_panel),
 	new_button("How to play", h2p_panel),
 	new_button("Puzzle elements", puzzles_panel),
@@ -77,7 +76,7 @@ onready var help_panel : Control = new_panel([
 ])
 
 onready var main_panel : Control = new_panel([
-	new_label("Paused\n"),
+	new_label("-[Paused]-\n"),
 	new_button("Settings", settings_panel),
 	new_button("Help", help_panel),
 	new_button("Credits", credits_panel),
@@ -213,6 +212,20 @@ func new_bool_button(setting : String, text : String, enabled : bool = false) ->
 
 
 
+func new_float_slider(setting : String, text : String, value : float = 1.0) -> VBoxContainer:
+	var slider_packed : PackedScene = load("res://scenes/ui/PauseFloatSlider.tscn")
+	var slider : VBoxContainer = slider_packed.instance()
+	
+	slider.set_text(text)
+	slider.set_value(value)
+	slider.set_setting(setting)
+	
+	slider.connect("value_changed", self, "float_slider_changed")
+	
+	return slider
+
+
+
 func button_pressed(button : PauseMenuButton) -> void:
 	match button.button_type:
 		ButtonTypes.DEFAULT:
@@ -234,6 +247,11 @@ func bool_button_toggled(button : HBoxContainer) -> void:
 
 
 
+func float_slider_changed(slider : VBoxContainer) -> void:
+	print(slider.slider.value)
+	set_setting(slider.setting, slider.slider.value)
+
+
+
 func set_setting(setting : String, value) -> void:
-	settings[setting] = value
-	print(settings)
+	Global.set_setting(setting, value)
