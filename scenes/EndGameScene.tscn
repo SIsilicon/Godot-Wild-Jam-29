@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://scenes/places/Storm.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/places/S_Islands/S_Island1.tscn" type="PackedScene" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://scenes/places/L_Islands/Island3.tscn" type="PackedScene" id=17]
 [ext_resource path="res://UI/font/regular.otf" type="DynamicFontData" id=18]
 [ext_resource path="res://src/end_game_scene.gd" type="Script" id=19]
+[ext_resource path="res://models/village/object_village.obj" type="ArrayMesh" id=20]
 
 [sub_resource type="ProceduralSky" id=1]
 sky_top_color = Color( 0.647059, 0.945098, 0.839216, 1 )
@@ -35,7 +36,7 @@ size = Vector2( 100, 100 )
 [sub_resource type="SpatialMaterial" id=4]
 flags_transparent = true
 flags_unshaded = true
-albedo_color = Color( 0, 0, 0, 0 )
+albedo_color = Color( 0, 0, 0, 1 )
 
 [sub_resource type="SpatialMaterial" id=5]
 albedo_texture = ExtResource( 12 )
@@ -397,7 +398,7 @@ gravity = Vector3( 0, 0, 0 )
 initial_velocity = 450.0
 angle = 720.0
 angle_random = 1.0
-scale = 0.0
+scale = 6.0
 scale_curve = SubResource( 10 )
 color = Color( 0.870588, 0.984314, 0.329412, 1 )
 
@@ -424,6 +425,10 @@ params_billboard_mode = 1
 params_billboard_keep_scale = true
 albedo_color = Color( 3, 3, 3, 1 )
 albedo_texture = ExtResource( 14 )
+
+[sub_resource type="DynamicFont" id=17]
+size = 32
+font_data = ExtResource( 18 )
 
 [sub_resource type="DynamicFont" id=16]
 size = 40
@@ -493,6 +498,13 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.7514, 0.340015, -2.96195 )
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
 environment = SubResource( 2 )
 
+[node name="Village" type="MeshInstance" parent="Environment"]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -3.46395, 49.3768, -357.952 )
+mesh = ExtResource( 20 )
+material/0 = null
+material/1 = null
+material/2 = null
+
 [node name="Lights" type="Spatial" parent="."]
 
 [node name="DirectionalLight" type="DirectionalLight" parent="Lights"]
@@ -505,7 +517,7 @@ shadow_enabled = true
 [node name="Cameras" type="Spatial" parent="Misc"]
 
 [node name="Camera1" type="Camera" parent="Misc/Cameras"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.567, 5.6 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.567, 4.273 )
 current = true
 far = 5000.0
 
@@ -515,18 +527,15 @@ mesh = SubResource( 3 )
 material/0 = SubResource( 4 )
 
 [node name="Camera2" type="Camera" parent="Misc/Cameras"]
-transform = Transform( 0.923063, 0, 0.38465, 0, 1, 0, -0.38465, 0, 0.923063, 5.61318, 12.9625, 5.11378 )
-current = true
+transform = Transform( 0.923063, 0, 0.38465, 0, 1, 0, -0.38465, 0, 0.923063, 4.16893, 12.9625, 3.47373 )
 far = 5000.0
 
 [node name="Camera3" type="Camera" parent="Misc/Cameras"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.604, 50, 5.6 )
-current = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.604, 12.567, 5.6 )
 far = 5000.0
 
 [node name="Camera4" type="Camera" parent="Misc/Cameras"]
 transform = Transform( -0.912635, 0, 0.408776, 0, 1, 0, -0.408776, 0, -0.912635, -1.38468, 2.3537, 6.32414 )
-current = true
 far = 5000.0
 
 [node name="Camera5" type="Camera" parent="Misc/Cameras"]
@@ -564,30 +573,27 @@ transform = Transform( -0.119631, 0, -0.00940262, 0, 0.12, 0, 0.00940262, 0, -0.
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.74386, 0.220816, 7.13601 )
 
 [node name="Artifact1" parent="Misc" instance=ExtResource( 15 )]
-transform = Transform( -1.62064e-07, -1.91109e-08, 1, -0.173648, 0.984808, -9.3216e-09, -0.984808, -0.173648, -1.62921e-07, -1.90798e-07, 14.303, 0 )
-visible = false
+transform = Transform( -1.62064e-07, -1.91109e-08, 1, -0.173648, 0.984808, -9.3216e-09, -0.984808, -0.173648, -1.62921e-07, 0, 13.8638, 0 )
 
 [node name="Particles" parent="Misc/Artifact1" index="2"]
 emitting = true
 
 [node name="Artifact2" parent="Misc" instance=ExtResource( 15 )]
-transform = Transform( -1.62064e-07, -1.91109e-08, 1, -0.173648, 0.984808, -9.3216e-09, -0.984808, -0.173648, -1.62921e-07, 1.73205, 11.303, 0 )
-visible = false
+transform = Transform( -1.62064e-07, -1.91109e-08, 1, -0.173648, 0.984808, -9.3216e-09, -0.984808, -0.173648, -1.62921e-07, 1.73205, 10.8638, 0 )
 type = 1
 
 [node name="Particles" parent="Misc/Artifact2" index="2"]
 emitting = true
 
 [node name="Artifact3" parent="Misc" instance=ExtResource( 15 )]
-transform = Transform( -1.62064e-07, -1.91109e-08, 1, -0.173648, 0.984808, -9.3216e-09, -0.984808, -0.173648, -1.62921e-07, -1.732, 11.303, 0 )
-visible = false
+transform = Transform( -1.62064e-07, -1.91109e-08, 1, -0.173648, 0.984808, -9.3216e-09, -0.984808, -0.173648, -1.62921e-07, -1.732, 10.8638, 0 )
 type = 2
 
 [node name="Particles" parent="Misc/Artifact3" index="2"]
 emitting = true
 
 [node name="Artifacts" type="Position3D" parent="Misc"]
-transform = Transform( 1, -9.5399e-08, 0, 9.5399e-08, 1, 0, 0, 0, 1, 0, 12.303, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.8638, 0 )
 
 [node name="Remote1" type="RemoteTransform" parent="Misc/Artifacts"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
@@ -609,6 +615,7 @@ update_scale = false
 
 [node name="Beam" type="Particles" parent="Misc/Artifacts"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.61196, -0.217553, 0.818083 )
+emitting = false
 amount = 1024
 lifetime = 0.6
 fixed_fps = 60
@@ -618,7 +625,7 @@ process_material = SubResource( 11 )
 draw_pass_1 = SubResource( 13 )
 
 [node name="Charge" type="MeshInstance" parent="Misc/Artifacts"]
-transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0 )
+transform = Transform( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 )
 mesh = SubResource( 14 )
 material/0 = SubResource( 15 )
 
@@ -644,7 +651,20 @@ margin_left = 177.0
 margin_top = 18.0
 margin_right = -177.0
 margin_bottom = -157.0
-text = "PLACEHOLDER TEXT"
+custom_fonts/font = SubResource( 17 )
+text = "John and Margaret arrive to their destination to spread
+the good word of vacuums.
+
+Along their adventure, the duo learned valuable lessons, namely, Margaret is always right.
+
+However, as the story may end here, their journey certainly does not. John and Margaret, tireless nomads, continue on tell the world about vacuum cleaners.
+
+And who knows? Maybe John and Margaret might come to your town someday, knock on your door, and tell you about the greatness that is vacuum cleaners.
+
+
+
+(Hit ESC to return to main menu)"
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
