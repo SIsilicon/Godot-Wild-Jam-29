@@ -68,7 +68,6 @@ onready var puzzles_panel : Control = new_panel([
 
 onready var help_panel : Control = new_panel([
 	new_label("-[Help]-\n"),
-	new_float_slider("test", "music_volume", 0.5),
 	new_button("Controls", controls_panel),
 	new_button("How to play", h2p_panel),
 	new_button("Puzzle elements", puzzles_panel),
@@ -77,6 +76,7 @@ onready var help_panel : Control = new_panel([
 
 onready var main_panel : Control = new_panel([
 	new_label("-[Paused]-\n"),
+	new_option_wheel("msaa", "test", ["Disabled", "2x", "4x", "8x", "16x"], [0, 2, 4, 8, 16], 0),
 	new_button("Settings", settings_panel),
 	new_button("Help", help_panel),
 	new_button("Credits", credits_panel),
@@ -226,6 +226,21 @@ func new_float_slider(setting : String, text : String, value : float = 1.0) -> V
 
 
 
+func new_option_wheel(setting : String, text : String, options : PoolStringArray, real_values : Array, index : int) -> VBoxContainer:
+	var wheel_packed : PackedScene = load("res://scenes/ui/PauseOptionWheel.tscn")
+	var wheel : VBoxContainer = wheel_packed.instance()
+	
+	wheel.set_text(text)
+	wheel.set_setting(setting)
+	wheel.set_options(options, real_values)
+	wheel.set_index(index)
+	
+	wheel.connect("changed", self, "option_wheel_changed")
+	
+	return wheel
+
+
+
 func button_pressed(button : PauseMenuButton) -> void:
 	match button.button_type:
 		ButtonTypes.DEFAULT:
@@ -248,8 +263,14 @@ func bool_button_toggled(button : HBoxContainer) -> void:
 
 
 func float_slider_changed(slider : VBoxContainer) -> void:
-	print(slider.slider.value)
 	set_setting(slider.setting, slider.slider.value)
+
+
+
+func option_wheel_changed(wheel : VBoxContainer) -> void:
+	print("wow")
+	print(wheel.selection)
+	#set_setting(wheel.setting, wheel.value)
 
 
 
