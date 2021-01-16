@@ -452,12 +452,20 @@ func turn_on_vacuum():
 
 func pull_clouds() -> void:
 	
-	var clouds_in_area = vacuum_muzzle.get_overlapping_bodies()
+	var pullable_objects = vacuum_muzzle.get_overlapping_bodies()
 	
-	if clouds_in_area.size() > 0:
-		for cloud in clouds_in_area:
-			if cloud.has_method("pull"):
-				cloud.pull(vacuum_muzzle.global_transform.origin, pull_strength)
+	if pullable_objects.size() > 0:
+		for object_to_pull in pullable_objects:
+			#print(object_to_pull.get_name())
+			match object_to_pull.get_groups()[0]:
+				
+				"Cloud":
+					object_to_pull.pull(vacuum_muzzle.global_transform.origin, pull_strength)
+					
+				"Balloon":
+					object_to_pull.release_clouds(vacuum_muzzle.global_transform.origin)
+					
+				
 	else:
 		pass
 

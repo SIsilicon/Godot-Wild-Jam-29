@@ -7,9 +7,13 @@ export var required_clouds : float = 1000.0
 
 onready var balloon : Spatial = $object_balloon
 onready var base : MeshInstance = $object_cylinderpiece
+onready var cloud_pull_area: Area = $CloudPickup
 onready var tween : Tween = $Tween
-
+onready var cloud_spawn_point: Spatial = $CloudSpawnPoint
 onready var light_bulb: LightBulb = $lightbulb
+
+onready var spawn_cloud = preload("res://scenes/entities/TestCloud.tscn")
+
 
 var clouds : Array = []
 
@@ -55,18 +59,33 @@ func update_balloon() -> void:
 	size = min(size, required_clouds)
 	
 	if size == required_clouds:
-		set_state(States.ENABLED)
-		light_bulb.turn_green()
 		
+		if is_logic_NOT_gate:
+			set_state(States.DISABLED)
+			light_bulb.turn_red()
+			
+		else:
+			set_state(States.ENABLED)
+			light_bulb.turn_green()
+			
 	else:
-		set_state(States.DISABLED)
-		light_bulb.turn_red()
-
+		
+		if is_logic_NOT_gate:
+			set_state(States.ENABLED)
+			light_bulb.turn_green()
+			
+		else:
+			set_state(States.DISABLED)
+			light_bulb.turn_red()
+			
 
 
 func pull_clouds() -> void:
+	#clouds = cloud_pull_area.get_overlapping_bodies()
+	
+	
 	for cloud in clouds:
-		cloud.pull(global_transform.origin, 10)
+		cloud.pull(global_transform.origin, 1)
 		
 		if global_transform.origin.distance_to(cloud.global_transform.origin) < 0.5:
 			clouds.erase(cloud)
@@ -74,6 +93,17 @@ func pull_clouds() -> void:
 			size += 1
 			update_balloon()
 
+
+func release_clouds(direction: Vector3) -> void:
+	if size > 0:
+		var cloud: Cloud = spawn_cloud.instance()
+		
+		get_parent().add_child(cloud)
+		cloud.global_transform.origin = cloud_spawn_point.global_transform.origin
+		cloud.shoot(cloud_spawn_point.global_transform.origin.direction_to(direction) , 15)
+		size -= 1
+		
+	update_balloon()
 
 
 func _on_CloudPickup_body_entered(body : PhysicsBody) -> void:

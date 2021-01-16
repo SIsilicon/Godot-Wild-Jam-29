@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/places/L_Islands/Island1.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/places/S_Islands/S_Island1.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://scenes/places/M_Islands/M_Island3.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/entities/Artifact.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/Puzzles/puzzle_2_baloons.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/entities/PlayerCharacter.tscn" type="PackedScene" id=8]
 
 [sub_resource type="ProceduralSky" id=1]
 sky_top_color = Color( 0.211765, 0.533333, 0.745098, 1 )
@@ -45,3 +46,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 124.181, 0.313534, 0 )
 
 [node name="puzzle_2" parent="." instance=ExtResource( 7 )]
 transform = Transform( 0.848686, 0, -0.528898, 0, 1, 0, 0.528898, 0, 0.848686, 124.461, -0.356688, 0 )
+
+[node name="PlayerCharacter" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 77.9754, 0, 0 )
