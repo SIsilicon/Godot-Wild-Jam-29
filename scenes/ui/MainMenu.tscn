@@ -17,14 +17,14 @@
 [ext_resource path="res://textures/airship/airship_base_color.png" type="Texture" id=15]
 [ext_resource path="res://textures/airship/airship_normal.png" type="Texture" id=16]
 
-[sub_resource type="ProceduralSky" id=4]
+[sub_resource type="ProceduralSky" id=1]
 sky_top_color = Color( 0.647059, 0.945098, 0.839216, 1 )
 ground_bottom_color = Color( 0.866667, 0.839216, 0.768627, 1 )
 ground_horizon_color = Color( 0.839216, 0.917647, 0.980392, 1 )
 
-[sub_resource type="Environment" id=5]
+[sub_resource type="Environment" id=2]
 background_mode = 2
-background_sky = SubResource( 4 )
+background_sky = SubResource( 1 )
 
 [sub_resource type="SpatialMaterial" id=3]
 albedo_texture = ExtResource( 15 )
@@ -33,7 +33,7 @@ normal_enabled = true
 normal_scale = 1.0
 normal_texture = ExtResource( 16 )
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=4]
 length = 8.0
 loop = true
 tracks/0/type = "value"
@@ -49,11 +49,11 @@ tracks/0/keys = {
 "values": [ Vector3( -23.0871, 1.41202, -2.85979 ), Vector3( -23.087, 1.893, -2.86 ), Vector3( -23.0871, 1.41202, -2.85979 ) ]
 }
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=5]
 size = 24
 font_data = ExtResource( 5 )
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=6]
 length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:color")
@@ -124,7 +124,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.91365, 0.527804, 4.80477 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.7514, 0.340015, -2.96195 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
-environment = SubResource( 5 )
+environment = SubResource( 2 )
 
 [node name="Lights" type="Spatial" parent="."]
 
@@ -146,7 +146,7 @@ material/0 = SubResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Misc/object_airship"]
 autoplay = "float"
-anims/float = SubResource( 6 )
+anims/float = SubResource( 4 )
 
 [node name="Storm" parent="Misc" instance=ExtResource( 4 )]
 transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 88.141, -350.602 )
@@ -178,7 +178,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="UI/VBoxContainer"]
 margin_right = 240.0
 margin_bottom = 23.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 5 )
 text = "Hit 'Enter' to start"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -188,7 +188,7 @@ __meta__ = {
 margin_top = 38.0
 margin_right = 240.0
 margin_bottom = 61.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 5 )
 text = "Hit 'Escape' to quit"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -203,4 +203,4 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="UI/Fade"]
-anims/fade_in = SubResource( 8 )
+anims/fade_in = SubResource( 6 )

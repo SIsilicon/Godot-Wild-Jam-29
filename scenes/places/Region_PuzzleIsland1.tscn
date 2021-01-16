@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/places/L_Islands/Island1.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Decorations/Modular_Tower.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/entities/PlayerCharacter.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/entities/Artifact.tscn" type="PackedScene" id=4]
 
 [node name="Region_Island1" type="Spatial"]
@@ -12,9 +11,6 @@ transform = Transform( 0.897466, 0, 0.441083, 0, 1, 0, -0.441083, 0, 0.897466, -
 
 [node name="Island1" parent="." instance=ExtResource( 1 )]
 transform = Transform( 0.88401, 0, -0.467467, 0, 1, 0, 0.467467, 0, 0.88401, -64.3509, 68.954, -134.271 )
-
-[node name="PlayerCharacter" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -58.1292, 94.2879, -98.2531 )
 
 [node name="Artifact" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -80.3647, 69.919, -156.983 )
