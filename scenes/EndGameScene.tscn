@@ -639,7 +639,7 @@ __meta__ = {
 [node name="Fade" type="ColorRect" parent="Ending"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 0.490196 )
+color = Color( 0, 0, 0, 0.784314 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -660,8 +660,6 @@ Along their adventure, the duo learned valuable lessons, namely, Margaret is alw
 However, as the story may end here, their journey certainly does not. John and Margaret, tireless nomads, continue on tell the world about vacuum cleaners.
 
 And who knows? Maybe John and Margaret might come to your town someday, knock on your door, and tell you about the greatness that is vacuum cleaners.
-
-
 
 (Hit ESC to return to main menu)"
 autowrap = true
