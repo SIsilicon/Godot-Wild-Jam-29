@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://scenes/places/Environment.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/places/M_Islands/M_Island1.tscn" type="PackedScene" id=2]
@@ -10,7 +10,6 @@
 [ext_resource path="res://scenes/entities/Airship.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/ui/PauseMenu.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/places/Island_of_The_Storm.tscn" type="PackedScene" id=11]
-[ext_resource path="res://UI/font/regular.otf" type="DynamicFontData" id=12]
 [ext_resource path="res://scenes/places/S_Islands/S_Island1.tscn" type="PackedScene" id=13]
 
 [sub_resource type="QuadMesh" id=1]
@@ -72,10 +71,6 @@ height = 573.18
 
 [sub_resource type="StyleBoxFlat" id=8]
 bg_color = Color( 0, 0, 0, 0.372549 )
-
-[sub_resource type="DynamicFont" id=9]
-size = 40
-font_data = ExtResource( 12 )
 
 [sub_resource type="Animation" id=10]
 length = 5.0
@@ -245,11 +240,12 @@ __meta__ = {
 visible = false
 
 [node name="Objective" type="Label" parent="."]
+anchor_top = 1.0
 anchor_right = 1.0
-margin_bottom = 37.0
+anchor_bottom = 1.0
+margin_top = -25.0
 grow_vertical = 0
 custom_styles/normal = SubResource( 8 )
-custom_fonts/font = SubResource( 9 )
 text = "Collect the artifacts and destroy the storm!"
 align = 1
 __meta__ = {

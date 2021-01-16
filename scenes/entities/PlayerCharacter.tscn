@@ -16,8 +16,8 @@ extents = Vector3( 3, 3, 3 )
 radius = 0.388733
 
 [sub_resource type="ViewportTexture" id=4]
-flags = 4
-viewport_path = NodePath("StartNavigate/Viewport")
+flags = 5
+viewport_path = NodePath("EKeyPopup/Viewport")
 
 [sub_resource type="Curve" id=5]
 _data = [ Vector2( 0.002331, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.0675991, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.271591 ), 0.0, 0.0, 0, 0 ]
@@ -87,16 +87,16 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.70055, 5.40486 )
 [node name="Camera" type="Camera" parent="GimbalX/GimbalY/CameraPosition"]
 far = 8000.0
 
-[node name="StartNavigate" parent="." instance=ExtResource( 4 )]
+[node name="EKeyPopup" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.20955, 0 )
 pixel_size = 0.0086
 texture = SubResource( 4 )
 message = "Start Navigating"
 
-[node name="Viewport" parent="StartNavigate" index="0"]
+[node name="Viewport" parent="EKeyPopup" index="0"]
 render_target_update_mode = 1
 
-[node name="Label" parent="StartNavigate/Viewport" index="1"]
+[node name="Label" parent="EKeyPopup/Viewport" index="1"]
 text = "Start Navigating"
 
 [node name="Listener" type="Listener" parent="."]
@@ -121,4 +121,4 @@ draw_pass_1 = SubResource( 8 )
 
 [editable path="Goose_fixed"]
 
-[editable path="StartNavigate"]
+[editable path="EKeyPopup"]

@@ -5,12 +5,6 @@
 [ext_resource path="res://textures/effects/lightning_bolt.jpg" type="Texture" id=3]
 [ext_resource path="res://src/places/storm.gd" type="Script" id=4]
 
-[sub_resource type="CylinderMesh" id=1]
-top_radius = 500.0
-bottom_radius = 750.0
-height = 3000.0
-rings = 64
-
 [sub_resource type="Shader" id=2]
 code = "shader_type spatial;
 render_mode diffuse_lambert_wrap;
@@ -79,7 +73,7 @@ shader = SubResource( 2 )
 shader_param/uv_scale = Vector2( 1, 6 )
 shader_param/grow = 50.0
 shader_param/cloud_dir = Vector2( 1, 0.5 )
-shader_param/dissolve = 0.44
+shader_param/dissolve = 0.4428
 shader_param/cloud_texture = SubResource( 6 )
 shader_param/color_ramp = SubResource( 8 )
 shader_param/alpha_falloff = SubResource( 4 )
@@ -123,10 +117,16 @@ shader = SubResource( 10 )
 shader_param/uv_scale = Vector2( 1, 5 )
 shader_param/grow = 0.0
 shader_param/cloud_dir = Vector2( 1, 0.404 )
-shader_param/dissolve = 0.44
+shader_param/dissolve = 0.4428
 shader_param/cloud_texture = SubResource( 6 )
 shader_param/color_ramp = SubResource( 8 )
 shader_param/alpha_falloff = SubResource( 4 )
+
+[sub_resource type="CylinderMesh" id=1]
+top_radius = 500.0
+bottom_radius = 750.0
+height = 3000.0
+rings = 64
 
 [sub_resource type="Gradient" id=12]
 offsets = PoolRealArray( 0, 0.392593, 0.540741, 1 )
@@ -274,7 +274,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2 ),
+"times": PoolRealArray( 0.1, 0.3 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
@@ -316,24 +316,48 @@ tracks/3/keys = {
 "values": [ true, false ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath(".:dissolve")
+tracks/4/path = NodePath(".:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
+"times": PoolRealArray( 0, 6.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath(".:material_override:shader_param/dissolve")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
 "times": PoolRealArray( 0, 5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 0.2, 0.85 ]
+"values": [ 0.44, 0.58 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath(".:material_override:next_pass:shader_param/dissolve")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.44, 0.58 ]
 }
 
 [node name="Storm" type="MeshInstance"]
+material_override = SubResource( 11 )
 extra_cull_margin = 2114.47
 mesh = SubResource( 1 )
-material/0 = SubResource( 11 )
+material/0 = null
 script = ExtResource( 4 )
-dissolve = 0.2
 
 [node name="CloseClouds" type="Particles" parent="."]
 amount = 64

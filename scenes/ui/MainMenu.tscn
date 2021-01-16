@@ -25,6 +25,9 @@ ground_horizon_color = Color( 0.839216, 0.917647, 0.980392, 1 )
 [sub_resource type="Environment" id=2]
 background_mode = 2
 background_sky = SubResource( 1 )
+tonemap_mode = 2
+tonemap_exposure = 0.81
+tonemap_white = 2.41
 
 [sub_resource type="SpatialMaterial" id=3]
 albedo_texture = ExtResource( 15 )

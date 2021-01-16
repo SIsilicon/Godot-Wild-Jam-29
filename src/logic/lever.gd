@@ -1,6 +1,8 @@
 extends InputDevice
 
 
+var player: Player
+
 
 onready var lever : Spatial = $object_lever
 onready var lever_anim : AnimationPlayer = $object_lever/AnimationPlayer
@@ -14,6 +16,24 @@ onready var light_bulb: LightBulb = $lightbulb
 
 func _ready() -> void:
 	update()
+
+
+
+func _process(delta : float) -> void:
+	var player_found := false
+	
+	for body in area.get_overlapping_bodies():
+		if body is Player:
+			if body != player:
+				player = body
+				player.get_node("EKeyPopup").message = "Toggle"
+				player.get_node("EKeyPopup").show_popup()
+			player_found = true
+			break
+	
+	if not player_found:
+		player = null
+		player.get_node("EKeyPopup").hide_popup()
 
 
 

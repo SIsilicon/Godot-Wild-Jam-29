@@ -74,9 +74,12 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Godot- Wild- Jam- 29"
+config/name="Windward: Eye of the Storm"
 run/main_scene="res://scenes/ui/MainMenu.tscn"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="Windward"
 config/icon="res://UI/icon.png"
+config/windows_native_icon="res://UI/icon.ico"
 
 [autoload]
 
@@ -88,6 +91,7 @@ GameState="*res://src/globals/game_state.gd"
 
 window/size/width=1366
 window/size/height=768
+window/size/test_width=1024
 window/dpi/allow_hidpi=true
 window/stretch/aspect="expand"
 
@@ -102,6 +106,7 @@ import/open_asset_import/use_fbx=false
 [gui]
 
 theme/use_hidpi=true
+theme/custom="res://UI/default_theme.tres"
 
 [input]
 

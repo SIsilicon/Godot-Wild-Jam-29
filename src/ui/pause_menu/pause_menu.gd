@@ -30,7 +30,7 @@ onready var credits_panel : Control = new_panel([
 	new_label("\t- Isabella Lau\n"),
 	new_label("Programming"),
 	new_label("\t- Jestem Stefan"),
-	new_label("\t- SISilicon"),
+	new_label("\t- SIsilicon"),
 	new_label("\t- Isaac Astell\n"),
 	new_label("Game design"),
 	new_label("\t- Everyone!"),

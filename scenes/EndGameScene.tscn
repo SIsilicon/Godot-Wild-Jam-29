@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://scenes/places/Storm.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/places/S_Islands/S_Island1.tscn" type="PackedScene" id=2]
@@ -13,6 +13,8 @@
 [ext_resource path="res://scenes/places/L_Islands/Island4.tscn" type="PackedScene" id=11]
 [ext_resource path="res://textures/airship/airship_base_color.png" type="Texture" id=12]
 [ext_resource path="res://textures/airship/airship_normal.png" type="Texture" id=13]
+[ext_resource path="res://addons/kenney_particle_pack/light_01.png" type="Texture" id=14]
+[ext_resource path="res://scenes/entities/Artifact.tscn" type="PackedScene" id=15]
 
 [sub_resource type="ProceduralSky" id=1]
 sky_top_color = Color( 0.647059, 0.945098, 0.839216, 1 )
@@ -23,14 +25,221 @@ ground_horizon_color = Color( 0.839216, 0.917647, 0.980392, 1 )
 background_mode = 2
 background_sky = SubResource( 1 )
 
-[sub_resource type="SpatialMaterial" id=3]
+[sub_resource type="QuadMesh" id=3]
+size = Vector2( 100, 100 )
+
+[sub_resource type="SpatialMaterial" id=4]
+flags_transparent = true
+flags_unshaded = true
+albedo_color = Color( 0, 0, 0, 0 )
+
+[sub_resource type="SpatialMaterial" id=5]
 albedo_texture = ExtResource( 12 )
 roughness = 0.72
 normal_enabled = true
 normal_scale = 1.0
 normal_texture = ExtResource( 13 )
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=6]
+resource_name = "ending"
+length = 18.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Camera1:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Camera1:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 12.567, 4.273 ), Vector3( 0, 12.567, 5.6 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../Artifacts:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 6, 9 ),
+"transitions": PoolRealArray( 1, 1.46409, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, 720 ), Vector3( 0, 0, 2160 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../Artifacts:translation")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 2, 4, 6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 11.8638, 0 ), Vector3( 0, 12.303, 0 ), Vector3( 0, 11.8638, 0 ), Vector3( 0, 12.303, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("../Camera1/MeshInstance:material/0:albedo_color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 4, 6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("../Camera1:current")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("../Camera2:current")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 6 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("../Camera2:translation")
+tracks/7/interp = 2
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 6, 8.4 ),
+"transitions": PoolRealArray( 0.535887, 1 ),
+"update": 0,
+"values": [ Vector3( 4.16893, 12.9625, 3.47373 ), Vector3( 5.61318, 12.9625, 5.11378 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("../Artifacts/MeshInstance:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 6.6, 8.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, 0 ), Vector3( 3, 3, 3 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("../Artifacts/Particles:emitting")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0, 9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ false, true ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("../Camera3:current")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 11 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("../Artifact1:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0, 9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("../Artifact2:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0, 9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("../Artifact3:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0, 9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/14/type = "value"
+tracks/14/path = NodePath("../Camera3:translation")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0, 11, 14 ),
+"transitions": PoolRealArray( 1, 0.31864, 1 ),
+"update": 0,
+"values": [ Vector3( 1.604, 12.567, 5.6 ), Vector3( 1.604, 12.567, 5.6 ), Vector3( 1.604, 50, 5.6 ) ]
+}
+tracks/15/type = "method"
+tracks/15/path = NodePath("../Storm")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 14 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "dissipate"
+} ]
+}
+
+[sub_resource type="Animation" id=7]
 length = 8.0
 loop = true
 tracks/0/type = "value"
@@ -46,122 +255,53 @@ tracks/0/keys = {
 "values": [ Vector3( -23.0871, 1.41202, -2.85979 ), Vector3( -23.087, 1.893, -2.86 ), Vector3( -23.0871, 1.41202, -2.85979 ) ]
 }
 
-[sub_resource type="CylinderMesh" id=5]
+[sub_resource type="CylinderMesh" id=8]
 top_radius = 500.0
 bottom_radius = 750.0
 height = 3000.0
 rings = 64
 
-[sub_resource type="Shader" id=6]
-code = "shader_type spatial;
-render_mode diffuse_lambert_wrap;
+[sub_resource type="Curve" id=19]
+_data = [ Vector2( 0, 1 ), 0.0, -2.46234, 0, 0, Vector2( 1, 0.182955 ), -0.496198, 0.0, 0, 0 ]
 
-uniform sampler2D cloud_texture;
-uniform sampler2D color_ramp;
-uniform sampler2D alpha_falloff;
+[sub_resource type="CurveTexture" id=20]
+curve = SubResource( 19 )
 
-uniform vec2 uv_scale = vec2(1.0, 6.0);
+[sub_resource type="ParticlesMaterial" id=21]
+trail_divisor = 8
+direction = Vector3( 0, 0, -1 )
+spread = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 450.0
+angle = 720.0
+angle_random = 1.0
+scale = 6.0
+scale_curve = SubResource( 20 )
+color = Color( 0.870588, 0.984314, 0.329412, 1 )
 
-uniform float alpha = 1.0;
-uniform float grow;
-uniform vec2 cloud_dir = vec2(1.0, 0.5);
+[sub_resource type="SpatialMaterial" id=22]
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_blend_mode = 1
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_color = Color( 3, 3, 3, 1 )
+albedo_texture = ExtResource( 14 )
 
+[sub_resource type="QuadMesh" id=23]
+material = SubResource( 22 )
 
-vec3 get_cloud(vec2 uv, float time) {
-	return texture(cloud_texture, uv * uv_scale - time * 0.06 * cloud_dir).rgb;
-}
+[sub_resource type="QuadMesh" id=24]
 
-void vertex() {
-	UV.y *= 2.0;
-	
-	VERTEX.xz *= pow(UV.y * 2.0 - 1.0, 5.0) * 5.0 + 1.0;
-	VERTEX += NORMAL * grow;
-}
-
-void fragment() {
-	NORMALMAP = get_cloud(UV, TIME);
-	float cloud = 0.5;
-	ALBEDO = texture(color_ramp, vec2(cloud)).rgb;
-	
-	ALPHA = pow(texture(alpha_falloff, UV.yy).a, 2.0);
-	
-	ROUGHNESS = 0.5;
-}"
-
-[sub_resource type="Gradient" id=7]
-offsets = PoolRealArray( 0, 0.104, 0.202, 0.734266, 0.9, 1 )
-colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0 )
-
-[sub_resource type="GradientTexture" id=8]
-gradient = SubResource( 7 )
-
-[sub_resource type="OpenSimplexNoise" id=9]
-octaves = 2
-period = 21.5
-
-[sub_resource type="NoiseTexture" id=10]
-seamless = true
-as_normalmap = true
-bump_strength = 2.5
-noise = SubResource( 9 )
-
-[sub_resource type="Gradient" id=11]
-offsets = PoolRealArray( 0.190476, 1 )
-colors = PoolColorArray( 0.0820313, 0.0820313, 0.0820313, 1, 0.129395, 0.129395, 0.129395, 1 )
-
-[sub_resource type="GradientTexture" id=12]
-gradient = SubResource( 11 )
-
-[sub_resource type="ShaderMaterial" id=13]
-render_priority = -2
-shader = SubResource( 6 )
-shader_param/uv_scale = Vector2( 1, 6 )
-shader_param/alpha = 0.297
-shader_param/grow = 50.0
-shader_param/cloud_dir = Vector2( 1, 0.5 )
-shader_param/cloud_texture = SubResource( 10 )
-shader_param/color_ramp = SubResource( 12 )
-shader_param/alpha_falloff = SubResource( 8 )
-
-[sub_resource type="Shader" id=14]
-code = "shader_type spatial;
-render_mode diffuse_lambert_wrap;
-
-uniform sampler2D cloud_texture;
-uniform sampler2D color_ramp;
-uniform sampler2D alpha_falloff;
-
-uniform vec2 uv_scale = vec2(1.0, 6.0);
-
-uniform float alpha = 1.0;
-uniform float grow;
-uniform vec2 cloud_dir = vec2(1.0, 0.5);
-
-void vertex() {
-	VERTEX.xz *= pow(UV.y * 4.0 - 1.0, 5.0) * 5.0 + 1.0;
-	VERTEX += NORMAL * grow;
-}
-
-void fragment() {
-	if(UV.y > 0.45 || UV.y < 0.05)
-		discard;
-	
-	NORMALMAP = texture(cloud_texture, UV * uv_scale - TIME * 0.06 * cloud_dir).rgb;
-	ALBEDO = texture(color_ramp, ALBEDO.rr).rgb;
-	
-	ROUGHNESS = 0.5;
-}"
-
-[sub_resource type="ShaderMaterial" id=15]
-next_pass = SubResource( 13 )
-shader = SubResource( 14 )
-shader_param/uv_scale = Vector2( 1, 5 )
-shader_param/alpha = 1.0
-shader_param/grow = 0.0
-shader_param/cloud_dir = Vector2( 1, 0.404 )
-shader_param/cloud_texture = SubResource( 10 )
-shader_param/color_ramp = SubResource( 12 )
-shader_param/alpha_falloff = SubResource( 8 )
+[sub_resource type="SpatialMaterial" id=25]
+flags_unshaded = true
+params_blend_mode = 1
+params_billboard_mode = 1
+params_billboard_keep_scale = true
+albedo_color = Color( 3, 3, 3, 1 )
+albedo_texture = ExtResource( 14 )
 
 [node name="EndGameScene" type="Spatial"]
 
@@ -175,7 +315,7 @@ shader_param/alpha_falloff = SubResource( 8 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 91.3657, 33.2913, -76.4194 )
 
 [node name="S_Island3" parent="Environment/Islands" instance=ExtResource( 10 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -128.51, 58.513, -236.766 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -121.282, 95.6214, -234.516 )
 
 [node name="S_Island4" parent="Environment/Islands" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 125.446, 52.6412, -372.384 )
@@ -219,30 +359,109 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.7514, 0.340015, -2.96195 )
 environment = SubResource( 2 )
 
 [node name="Lights" type="Spatial" parent="."]
-visible = false
 
 [node name="DirectionalLight" type="DirectionalLight" parent="Lights"]
 transform = Transform( 0.818009, 0.506379, 0.272839, -0.575205, 0.72013, 0.38801, 0, -0.474334, 0.880345, 0, 11.6294, 0 )
+light_energy = 2.0
+shadow_enabled = true
 
 [node name="Misc" type="Spatial" parent="."]
 
-[node name="Camera" type="Camera" parent="Misc"]
-transform = Transform( 0.993256, 0, 0.115943, 0, 1, 0, -0.115943, 0, 0.993256, -1.20614, 1.51728, 9.86038 )
+[node name="Camera1" type="Camera" parent="Misc"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.567, 5.6 )
+far = 1000.0
+
+[node name="MeshInstance" type="MeshInstance" parent="Misc/Camera1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6 )
+mesh = SubResource( 3 )
+material/0 = SubResource( 4 )
+
+[node name="Camera2" type="Camera" parent="Misc"]
+transform = Transform( 0.923063, 0, 0.38465, 0, 1, 0, -0.38465, 0, 0.923063, 5.12992, 12.9625, 4.565 )
+current = true
+far = 8000.0
+
+[node name="Camera3" type="Camera" parent="Misc"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.604, 12.567, 5.6 )
+current = true
 far = 1000.0
 
 [node name="object_airship" type="MeshInstance" parent="Misc"]
 transform = Transform( 0.913666, 0, -0.406466, 0, 1, 0, 0.406466, 0, 0.913666, -23.0871, 1.41202, -2.85979 )
 mesh = ExtResource( 5 )
-material/0 = SubResource( 3 )
+material/0 = SubResource( 5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Misc/object_airship"]
-autoplay = "float"
-anims/float = SubResource( 4 )
+autoplay = "ending"
+anims/ending = SubResource( 6 )
+anims/float = SubResource( 7 )
 
 [node name="Storm" parent="Misc" instance=ExtResource( 1 )]
 transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 88.141, -350.602 )
-mesh = SubResource( 5 )
-material/0 = SubResource( 15 )
+mesh = SubResource( 8 )
 
 [node name="char_mc" parent="Misc" instance=ExtResource( 6 )]
 transform = Transform( 0.0722032, 0, -0.0344484, 0, 0.08, 0, 0.0344484, 0, 0.0722032, -1.70596, 0.609096, 6.65622 )
+
+[node name="Artifact1" parent="Misc" instance=ExtResource( 15 )]
+transform = Transform( -1.62064e-07, -1.91109e-08, 1, -0.173648, 0.984808, -9.3216e-09, -0.984808, -0.173648, -1.62921e-07, 1.89906, 12.9304, 0 )
+
+[node name="Particles" parent="Misc/Artifact1" index="2"]
+emitting = true
+
+[node name="Artifact2" parent="Misc" instance=ExtResource( 15 )]
+transform = Transform( -1.62064e-07, -1.91109e-08, 1, -0.173648, 0.984808, -9.3216e-09, -0.984808, -0.173648, -1.62921e-07, -0.406222, 10.3447, 0 )
+type = 1
+
+[node name="Particles" parent="Misc/Artifact2" index="2"]
+emitting = true
+
+[node name="Artifact3" parent="Misc" instance=ExtResource( 15 )]
+transform = Transform( -1.62064e-07, -1.91109e-08, 1, -0.173648, 0.984808, -9.3216e-09, -0.984808, -0.173648, -1.62921e-07, -1.49282, 13.6339, 0 )
+type = 2
+
+[node name="Particles" parent="Misc/Artifact3" index="2"]
+emitting = true
+
+[node name="Artifacts" type="Position3D" parent="Misc"]
+transform = Transform( 0.313678, 0.949529, 0, -0.949529, 0.313678, 0, 0, 0, 1, 0, 12.303, 0 )
+
+[node name="Remote1" type="RemoteTransform" parent="Misc/Artifacts"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
+remote_path = NodePath("../../Artifact1")
+update_rotation = false
+update_scale = false
+
+[node name="Remote2" type="RemoteTransform" parent="Misc/Artifacts"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.73205, -1, 0 )
+remote_path = NodePath("../../Artifact2")
+update_rotation = false
+update_scale = false
+
+[node name="Remote3" type="RemoteTransform" parent="Misc/Artifacts"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.732, -1, 0 )
+remote_path = NodePath("../../Artifact3")
+update_rotation = false
+update_scale = false
+
+[node name="Particles" type="Particles" parent="Misc/Artifacts"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.61196, -0.217553, 0.818083 )
+emitting = false
+amount = 1024
+lifetime = 0.6
+fixed_fps = 60
+visibility_aabb = AABB( -4, -4, -392.94, 8, 8, 785.88 )
+local_coords = false
+process_material = SubResource( 21 )
+draw_pass_1 = SubResource( 23 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Misc/Artifacts"]
+transform = Transform( 0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0 )
+mesh = SubResource( 24 )
+material/0 = SubResource( 25 )
+
+[editable path="Misc/Artifact1"]
+
+[editable path="Misc/Artifact2"]
+
+[editable path="Misc/Artifact3"]

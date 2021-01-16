@@ -69,7 +69,7 @@ func _physics_process(delta: float) -> void:
 	var prev_fuel := fuel
 	fuel = max(fuel - consumption_rate * delta * float(moving), 0.0)
 	if prev_fuel != fuel and fuel == 0.0 and in_map:
-		_player.get_node("StartNavigate").message = "Return to Ship"
+		_player.get_node("EKeyPopup").message = "Return to Ship"
 		tween.interpolate_callback($EKeyPopop, 1.0, "show_popup")
 		tween.start()
 	
@@ -106,14 +106,14 @@ func _on_Steering_body_entered(body: Node) -> void:
 #			_player.set_physics_process(false)
 #			_player.set_process(false)
 		if not in_map:
-			_player.get_node("StartNavigate").message = "Start Navigating"
-			_player.get_node("StartNavigate").show_popup()
+			_player.get_node("EKeyPopup").message = "Start Navigating"
+			_player.get_node("EKeyPopup").show_popup()
 
 
 func _on_Steering_body_exited(body: Node) -> void:
 	if body is Player:
 		if not in_map:
-			_player.get_node("StartNavigate").hide_popup()
+			_player.get_node("EKeyPopup").hide_popup()
 			_player = null
 
 
