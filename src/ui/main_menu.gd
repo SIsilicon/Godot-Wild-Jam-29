@@ -11,6 +11,7 @@ export var scene : PackedScene
 onready var fade_animation : AnimationPlayer = $UI/Fade/AnimationPlayer
 onready var player_animation : AnimationPlayer = $Misc/char_mc/AnimationPlayer
 onready var airship_mesh : MeshInstance = $Misc/object_airship
+onready var input_cool_timer : Timer = $InputCoolTimer
 
 
 
@@ -32,12 +33,13 @@ func _process(delta : float) -> void:
 
 
 func _input(event : InputEvent) -> void:
-	if event is InputEventKey:
-		if event.get_scancode() == KEY_ENTER:
-			event(Events.START)
-		
-		if event.get_scancode() == KEY_ESCAPE:
-			event(Events.QUIT)
+	if !input_cool_timer.time_left:
+		if event is InputEventKey:
+			if event.get_scancode() == KEY_ENTER:
+				event(Events.START)
+			
+			if event.get_scancode() == KEY_ESCAPE:
+				event(Events.QUIT)
 
 
 
