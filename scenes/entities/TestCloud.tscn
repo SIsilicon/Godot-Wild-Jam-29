@@ -23,7 +23,9 @@ distance_fade_mode = 1
 distance_fade_min_distance = 0.1
 distance_fade_max_distance = 0.5
 
-[node name="TestCloud" type="KinematicBody"]
+[node name="TestCloud" type="KinematicBody" groups=[
+"Cloud",
+]]
 collision_layer = 32
 collision_mask = 54
 script = ExtResource( 1 )
