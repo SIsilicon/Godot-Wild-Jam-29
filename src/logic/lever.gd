@@ -5,6 +5,8 @@ extends InputDevice
 onready var lever : Spatial = $object_lever
 onready var lever_anim : AnimationPlayer = $object_lever/AnimationPlayer
 onready var area : Area = $Area
+onready var light_bulb: LightBulb = $lightbulb
+
 
 
 
@@ -29,6 +31,8 @@ func update() -> void:
 	match state:
 		States.ENABLED:
 			lever_anim.play("lever_down")
+			light_bulb.turn_green()
 		
 		States.DISABLED:
 			lever_anim.play("lever_up")
+			light_bulb.turn_red()

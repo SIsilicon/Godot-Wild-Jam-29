@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/logic/lever.gd" type="Script" id=1]
 [ext_resource path="res://models/puzzlestuff/object_lever.glb" type="PackedScene" id=2]
+[ext_resource path="res://scenes/logic/lightbulb.tscn" type="PackedScene" id=3]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.869914, 0.75, 1.04181 )
@@ -17,3 +18,6 @@ shape = SubResource( 1 )
 
 [node name="object_lever" parent="." instance=ExtResource( 2 )]
 transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0, 0, 0 )
+
+[node name="lightbulb" parent="." instance=ExtResource( 3 )]
+transform = Transform( -1, -2.66076e-07, -1.88086e-07, 0, 0.577231, -0.816581, 3.25841e-07, -0.816581, -0.577231, 0, 1.1911, 0.919197 )
