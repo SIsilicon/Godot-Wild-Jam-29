@@ -68,6 +68,8 @@ func play_audio(audio_name : String, audio_type : int, tag : String = "") -> Aud
 	add_child(audio)
 	audio.play()
 	
+	update_volumes()
+	
 	return audio
 
 
@@ -98,6 +100,8 @@ func play_3d_audio(audio_name : String, audio_position : Vector3, audio_type : i
 	
 	add_child(audio)
 	audio.play()
+	
+	update_volumes()
 	
 	return audio
 
@@ -175,7 +179,9 @@ func update_volumes() -> void:
 
 # Private methods
 func _ready() -> void:
-	pass
+	set_volume(Buses.MUSIC, Global.get_setting("music_volume"))
+	set_volume(Buses.SFX, Global.get_setting("sfx_volume"))
+	
 	__test__()
 	
 	
