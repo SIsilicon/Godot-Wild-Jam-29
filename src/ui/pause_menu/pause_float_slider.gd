@@ -24,9 +24,9 @@ func set_value(value : float) -> void:
 
 
 
-func set_setting(setting : String) -> void:
+func set_setting(set_setting : String) -> void:
 	yield(self, "ready")
-	setting = setting
+	setting = set_setting
 
 
 
