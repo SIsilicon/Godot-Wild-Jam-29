@@ -76,10 +76,7 @@ _global_script_class_icons={
 
 config/name="Godot- Wild- Jam- 29"
 run/main_scene="res://scenes/ui/MainMenu.tscn"
-boot_splash/image="res://UI/icon4.png"
-boot_splash/bg_color=Color( 1, 1, 1, 1 )
-config/icon="res://UI/icon4.png"
-config/windows_native_icon="res://UI/favicon.ico"
+config/icon="res://UI/icon.png"
 
 [autoload]
 
@@ -158,6 +155,7 @@ toggle_fullscreen={
 3d_physics/layer_5="Ship"
 3d_physics/layer_6="Cloud"
 3d_physics/layer_7="ArtifactPiece"
+3d_physics/layer_8="Cloud_Storage_Objects"
 
 [rendering]
 
