@@ -140,7 +140,7 @@ func silence(tag : String) -> void:
 
 func set_volume(bus : int, percentage : float) -> void:
 	var decibals : float = percentage * abs(MIN_DB)
-	decibals -= MIN_DB
+	decibals += MIN_DB
 	
 	set_volume_db(bus, decibals)
 
@@ -159,14 +159,14 @@ func set_volume_db(bus : int, decibals : float) -> void:
 func update_volumes() -> void:
 	for audio in sfx_bus:
 		if not audio in silenced:
-			audio.volume_db = master_volume - sfx_volume
+			audio.volume_db = master_volume + sfx_volume
 		
 		if audio.volume_db <= MIN_DB:
 			audio.volume_db = SILENCED_DB
 	
 	for audio in music_bus:
 		if not audio in silenced:
-			audio.volume_db = master_volume - music_volume
+			audio.volume_db = master_volume + music_volume
 		
 		if audio.volume_db <= MIN_DB:
 			audio.volume_db = SILENCED_DB

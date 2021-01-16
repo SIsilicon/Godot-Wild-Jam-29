@@ -76,12 +76,24 @@ func _on_setting_changed(name: String, value) -> void:
 		"fullscreen":
 			OS.window_fullscreen = value
 		"music_volume":
-			AudioServer.set_bus_volume_db(
-				AudioServer.get_bus_index("Music"),
-				linear2db(value)
+#			AudioServer.set_bus_volume_db(
+#				AudioServer.get_bus_index("Music"),
+#				linear2db(value)
+#			)
+			AudioManager.set_volume(
+				AudioManager.Buses.MUSIC,
+				value
 			)
 		"sfx_volume":
-			AudioServer.set_bus_volume_db(
-				AudioServer.get_bus_index("SFX"),
-				linear2db(value)
+#			AudioServer.set_bus_volume_db(
+#				AudioServer.get_bus_index("SFX"),
+#				linear2db(value)
+#			)
+			AudioManager.set_volume(
+				AudioManager.Buses.SFX,
+				value
 			)
+			
+			# Didn't realise AudioServer was a thing, so I sorta made my own
+			# bus system you could say. Sorry, hadn't realised!
+			# - Isaac/Glass
