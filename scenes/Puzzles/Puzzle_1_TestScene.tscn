@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scenes/Puzzles/puzzle_1_flying.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/entities/PlayerCharacter.tscn" type="PackedScene" id=2]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 25, 1, 25 )
+
+[sub_resource type="CubeMesh" id=2]
+size = Vector3( 500, 2, 500 )
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 0.278431, 0.498039, 0, 1 )
+
+[node name="Spatial" type="Spatial"]
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 0.837366, -0.410629, 0.360835, 0, 0.660093, 0.751184, -0.546643, -0.629015, 0.55274, 0, 123.864, 0 )
+shadow_enabled = true
+
+[node name="Floor" type="StaticBody" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="Floor"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Floor"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
+visible = false
+mesh = SubResource( 2 )
+material/0 = SubResource( 3 )
+
+[node name="puzzle_1_flying" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.68503 )
+
+[node name="PlayerCharacter" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.17331 )

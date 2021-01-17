@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://models/modularwalls/modular_tile2x.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://scenes/Decorations/Modlar2x2.material" type="Material" id=2]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 29.9176, 0.476358, 9.90012 )
+
+[node name="Triple_Floor" type="StaticBody"]
+input_ray_pickable = false
+collision_layer = 4
+collision_mask = 0
+
+[node name="modular_tile2x" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.787, 0 )
+mesh = ExtResource( 1 )
+material/0 = ExtResource( 2 )
+
+[node name="modular_tile2x2" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, -0.787, 0 )
+mesh = ExtResource( 1 )
+material/0 = ExtResource( 2 )
+
+[node name="modular_tile2x3" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, -0.787, 0 )
+mesh = ExtResource( 1 )
+material/0 = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.479111, 0 )
+shape = SubResource( 1 )

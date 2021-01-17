@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/entities/altar.gd" type="Script" id=1]
+[ext_resource path="res://models/artifact/artifact.obj" type="ArrayMesh" id=2]
 
 [sub_resource type="CubeMesh" id=1]
 size = Vector3( 2, 0.1, 2 )
@@ -65,6 +66,12 @@ material/0 = null
 
 [node name="Piece1_Spot" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.08498, 1.29739, 0 )
+
+[node name="artifact" type="MeshInstance" parent="Piece1_Spot"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -112.56, 154.748, 142.488 )
+mesh = ExtResource( 2 )
+material/0 = null
+material/1 = null
 
 [node name="Piece2_Spot" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.298, 0 )

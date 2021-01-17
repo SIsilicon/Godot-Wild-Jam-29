@@ -46,7 +46,7 @@ func update_state() -> void:
 		GateTypes.AND:
 			var locked : bool = false
 			for input_device in input_devices:
-				if input_device.state == InputDevice.States.DISABLED:
+				if input_device.state in [InputDevice.States.DISABLED, InputDevice.States.STANDBY]:
 					locked = true
 			
 			if !locked:
