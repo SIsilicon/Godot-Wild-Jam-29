@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://models/modularwalls/modular_pillar2x.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://scenes/Decorations/Modlar2x2.material" type="Material" id=2]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 1.13466, 8.57107, 1.13934 )
+
+[node name="Pillar2x2" type="StaticBody"]
+collision_layer = 4
+collision_mask = 0
+
+[node name="modular_pillar2x" type="MeshInstance" parent="."]
+mesh = ExtResource( 1 )
+material/0 = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.31221, 0 )
+shape = SubResource( 1 )

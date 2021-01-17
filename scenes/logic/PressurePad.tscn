@@ -17,5 +17,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0 )
 shape = SubResource( 1 )
 
 [node name="object_pressureplate" parent="." instance=ExtResource( 2 )]
+
+[node name="PressurePlateTimer" type="Timer" parent="."]
+one_shot = true
 [connection signal="body_entered" from="PressureArea" to="." method="_on_PressureArea_body_entered"]
 [connection signal="body_exited" from="PressureArea" to="." method="_on_PressureArea_body_exited"]
+[connection signal="timeout" from="PressurePlateTimer" to="." method="_on_PressurePlateTimer_timeout"]

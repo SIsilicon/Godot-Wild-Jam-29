@@ -27,7 +27,17 @@ func toggle() -> void:
 
 func set_state(new_state : int) -> void:
 	state = new_state
-	emit_signal("toggled")
+	
+	match state:
+		States.ENABLED:
+			emit_signal("toggled")
+		
+		States.DISABLED:
+			emit_signal("toggled")
+			
+		States.STANDBY:
+			pass
+			#emit_signal("toggled")
 
 
 
