@@ -10,23 +10,23 @@
 radius = 0.4
 height = 1.45518
 
-[sub_resource type="BoxShape" id=3]
+[sub_resource type="BoxShape" id=2]
 extents = Vector3( 3, 3, 3 )
 
-[sub_resource type="SphereShape" id=4]
+[sub_resource type="SphereShape" id=3]
 radius = 0.388733
 
-[sub_resource type="ViewportTexture" id=5]
+[sub_resource type="ViewportTexture" id=4]
 flags = 5
 viewport_path = NodePath("EKeyPopup/Viewport")
 
-[sub_resource type="Curve" id=6]
+[sub_resource type="Curve" id=5]
 _data = [ Vector2( 0.002331, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.0675991, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.271591 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=7]
-curve = SubResource( 6 )
+[sub_resource type="CurveTexture" id=6]
+curve = SubResource( 5 )
 
-[sub_resource type="ParticlesMaterial" id=8]
+[sub_resource type="ParticlesMaterial" id=7]
 emission_shape = 2
 emission_box_extents = Vector3( 1, 0.199, 1 )
 spread = 180.0
@@ -34,15 +34,15 @@ gravity = Vector3( 0, 0, 0 )
 initial_velocity = 5.0
 initial_velocity_random = 1.0
 damping = 6.34
-scale_curve = SubResource( 7 )
+scale_curve = SubResource( 6 )
 
-[sub_resource type="SphereMesh" id=9]
+[sub_resource type="SphereMesh" id=8]
 radius = 0.5
 height = 1.0
 radial_segments = 8
 rings = 4
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=9]
 resource_name = "error"
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
@@ -57,7 +57,7 @@ tracks/0/keys = {
 "values": [ Color( 0.996078, 0.0941176, 0.0941176, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="DynamicFont" id=11]
+[sub_resource type="DynamicFont" id=10]
 size = 24
 font_data = ExtResource( 5 )
 
@@ -91,7 +91,7 @@ collision_mask = 160
 
 [node name="VacuumRange" type="CollisionShape" parent="PlayerMesh/PullingArea"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.98023e-08, -0.366989, -2.7979 )
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [node name="Muzzle" type="Area" parent="PlayerMesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.357105, -0.502481, -0.156695 )
@@ -99,7 +99,7 @@ collision_layer = 0
 collision_mask = 32
 
 [node name="CollisionShape" type="CollisionShape" parent="PlayerMesh/Muzzle"]
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 
 [node name="Goose_fixed" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.52735, -0.169452 )
@@ -117,7 +117,7 @@ far = 8000.0
 [node name="EKeyPopup" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.12788, 0 )
 pixel_size = 0.0086
-texture = SubResource( 5 )
+texture = SubResource( 4 )
 message = "Start Navigating"
 
 [node name="Viewport" parent="EKeyPopup" index="0"]
@@ -137,8 +137,8 @@ lifetime = 0.5
 one_shot = true
 explosiveness = 1.0
 visibility_aabb = AABB( -2.64529, -1.04889, -2.0085, 5.29058, 2.09778, 4.017 )
-process_material = SubResource( 8 )
-draw_pass_1 = SubResource( 9 )
+process_material = SubResource( 7 )
+draw_pass_1 = SubResource( 8 )
 
 [node name="Control" type="Control" parent="."]
 anchor_right = 1.0
@@ -170,13 +170,13 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Control/VBoxContainer/ProgressBar"]
-anims/error = SubResource( 10 )
+anims/error = SubResource( 9 )
 
 [node name="Label" type="Label" parent="Control/VBoxContainer"]
 margin_top = 41.0
 margin_right = 421.0
 margin_bottom = 72.0
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 10 )
 text = "Clouds"
 [connection signal="animation_finished" from="PlayerMesh/Armature/Skeleton/BoneAttachment/CloudCollector/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="body_entered" from="PlayerMesh/Muzzle" to="." method="_on_Muzzle_body_entered"]
