@@ -77,7 +77,11 @@ func _ready() -> void:
 func enter_state(new_state) -> void:
 	
 	#change current state to new state
+	var last_state = state
 	state = new_state
+	
+	enter_music_state(new_state)
+	exit_music_state(last_state)
 	
 	match state:
 		
@@ -149,6 +153,24 @@ func enter_state(new_state) -> void:
 			Y_axis_inverter = 1
 	
 	shape_owner_set_disabled(get_shape_owners()[0], state == States.STEERING)
+
+
+func enter_music_state(new_state : int) -> void:
+	match new_state:
+		States.FLYING:
+			AudioManager.fade_in_audio("goose")
+		States.STEERING:
+			AudioManager.fade_in_audio("ship")
+			AudioManager.fade_in_audio("ship_melody")
+
+
+func exit_music_state(old_state : int) -> void:
+	match old_state:
+		States.FLYING:
+			AudioManager.fade_out_audio("goose")
+		States.STEERING:
+			AudioManager.fade_in_audio("ship")
+			AudioManager.fade_in_audio("ship_melody")
 
 
 func _input(event: InputEvent) -> void:
