@@ -79,11 +79,10 @@ run/main_scene="res://scenes/ui/MainMenu.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="Windward"
 boot_splash/image="res://UI/wild_jam_logo.png"
-boot_splash/fullsize=true
-boot_splash/bg_color=Color( 0.0549019607, 0.0862745098, 0.1568627450, 1 )
+boot_splash/bg_color=Color( 0.054902, 0.0862745, 0.156863, 1 )
 config/icon="res://UI/icon.png"
-config/windows_native_icon="res://UI/icon.ico"
 config/macos_native_icon="res://UI/icon.icns"
+config/windows_native_icon="res://UI/icon.ico"
 
 [autoload]
 
