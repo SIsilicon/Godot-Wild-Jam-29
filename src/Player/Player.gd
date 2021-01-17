@@ -169,8 +169,8 @@ func exit_music_state(old_state : int) -> void:
 		States.FLYING:
 			AudioManager.fade_out_audio("goose")
 		States.STEERING:
-			AudioManager.fade_in_audio("ship")
-			AudioManager.fade_in_audio("ship_melody")
+			AudioManager.fade_out_audio("ship")
+			AudioManager.fade_out_audio("ship_melody")
 
 
 func _input(event: InputEvent) -> void:
