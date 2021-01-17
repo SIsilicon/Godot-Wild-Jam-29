@@ -202,7 +202,7 @@ func _ready() -> void:
 	play_audio("goose_layer", AudioType.MUSIC, "goose")
 	play_audio("ship_layer", AudioType.MUSIC, "ship")
 	play_audio("ship_melody_layer", AudioType.MUSIC, "ship_melody")
-	silence("ground")
+	#silence("ground")
 	silence("goose")
 	silence("ship")
 	silence("ship_melody")
