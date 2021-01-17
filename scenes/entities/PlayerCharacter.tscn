@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://src/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://models/MC/PlayerMesh.tscn" type="PackedScene" id=2]
@@ -45,7 +45,22 @@ height = 1.0
 radial_segments = 8
 rings = 4
 
-[sub_resource type="DynamicFont" id=10]
+[sub_resource type="Animation" id=10]
+resource_name = "error"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.996078, 0.0941176, 0.0941176, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="DynamicFont" id=11]
 size = 24
 font_data = ExtResource( 5 )
 
@@ -158,11 +173,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/VBoxContainer/ProgressBar"]
+anims/error = SubResource( 10 )
+
 [node name="Label" type="Label" parent="Control/VBoxContainer"]
 margin_top = 41.0
 margin_right = 421.0
 margin_bottom = 72.0
-custom_fonts/font = SubResource( 10 )
+custom_fonts/font = SubResource( 11 )
 text = "Clouds"
 [connection signal="animation_finished" from="PlayerMesh/Armature/Skeleton/BoneAttachment/CloudCollector/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="body_entered" from="PlayerMesh/Muzzle" to="." method="_on_Muzzle_body_entered"]

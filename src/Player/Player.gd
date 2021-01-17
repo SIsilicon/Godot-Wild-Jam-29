@@ -33,6 +33,7 @@ var mouse_camera_sensitivity: float = 0.2
 var look_dir: Vector3
 
 onready var cloud_percent : ProgressBar = $Control/VBoxContainer/ProgressBar
+onready var percent_animation : AnimationPlayer = $Control/VBoxContainer/ProgressBar/AnimationPlayer
 
 onready var player_mesh: Spatial = $PlayerMesh
 onready var character_anim_player: AnimationPlayer = $PlayerMesh/AnimationPlayer
@@ -583,3 +584,5 @@ func _on_Muzzle_body_entered(body):
 	if isSucking && clouds < MAX_CLOUDS:
 		clouds += 1
 		body.call_deferred("free")
+	else:
+		percent_animation.play("error")
