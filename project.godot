@@ -78,8 +78,12 @@ config/name="Windward: Eye of the Storm"
 run/main_scene="res://scenes/ui/MainMenu.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="Windward"
+boot_splash/image="res://UI/wild_jam_logo.png"
+boot_splash/fullsize=true
+boot_splash/bg_color=Color( 0.0549019607, 0.0862745098, 0.1568627450, 1 )
 config/icon="res://UI/icon.png"
 config/windows_native_icon="res://UI/icon.ico"
+config/macos_native_icon="res://UI/icon.icns"
 
 [autoload]
 
@@ -92,6 +96,7 @@ GameState="*res://src/globals/game_state.gd"
 window/size/width=1366
 window/size/height=768
 window/size/test_width=1024
+window/size/test_height=600
 window/dpi/allow_hidpi=true
 window/stretch/aspect="expand"
 
