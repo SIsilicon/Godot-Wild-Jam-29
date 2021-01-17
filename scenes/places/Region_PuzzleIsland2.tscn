@@ -76,11 +76,6 @@ transform = Transform( 0.449147, 0, 0.893458, 0, 1, 0, -0.893458, 0, 0.449147, 1
 
 [node name="CloudGenerator" parent="." instance=ExtResource( 17 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 116.768, 2, -28.6648 )
-
-[node name="CloudGenerator2" parent="." instance=ExtResource( 17 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 128.109, 2, 7.67788 )
-
-[node name="CloudGenerator3" parent="." instance=ExtResource( 17 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 58.2387, -27.8588, -122.824 )
+max_cloud_count = 10
 
 [node name="Antifall area" parent="." instance=ExtResource( 18 )]
