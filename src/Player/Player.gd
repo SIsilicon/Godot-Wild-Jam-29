@@ -85,6 +85,8 @@ func enter_state(new_state) -> void:
 			
 			play_animation("Idle")
 			
+			player_mesh.rotation_degrees.x = 0
+			
 			# TODO: Despawn goose glider
 			goose.visible = false
 			goose_anim_player.stop()
