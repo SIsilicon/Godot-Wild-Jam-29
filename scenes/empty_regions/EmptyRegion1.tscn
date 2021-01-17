@@ -6,18 +6,18 @@
 
 [node name="CloudGenerator" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5419, 11.115, -3.13357 )
-max_cloud_count = 10
-cloud_spawn_interval = 2.0
-cloud_initial_speed = 4
 
 [node name="CloudGenerator2" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 22.6762, 6.48228, 6.45972 )
-max_cloud_count = 10
-cloud_spawn_interval = 2.0
-cloud_initial_speed = 4
 
 [node name="CloudGenerator3" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.1943, 12.8151, 25.7158 )
-max_cloud_count = 10
-cloud_spawn_interval = 2.0
-cloud_initial_speed = 4
+
+[node name="CloudGenerator4" parent="." instance=ExtResource( 1 )]
+transform = Transform( -0.999282, 0, -0.0378818, 0, 1, 0, 0.0378818, 0, -0.999282, 23.2096, 11.115, -1.59749 )
+
+[node name="CloudGenerator5" parent="." instance=ExtResource( 1 )]
+transform = Transform( -0.999282, 0, -0.0378818, 0, 1, 0, 0.0378818, 0, -0.999282, -13.3459, 6.48228, -9.81189 )
+
+[node name="CloudGenerator6" parent="." instance=ExtResource( 1 )]
+transform = Transform( -0.999282, 0, -0.0378818, 0, 1, 0, 0.0378818, 0, -0.999282, 21.7694, 12.8151, -30.413 )

@@ -97,7 +97,7 @@ func pull_clouds() -> void:
 		for cloud in clouds:
 			cloud.pull(global_transform.origin, 5)
 			
-			if global_transform.origin.distance_squared_to(cloud.global_transform.origin) < 2:
+			if global_transform.origin.distance_squared_to(cloud.global_transform.origin) < 16:
 				clouds.erase(cloud)
 				cloud.queue_free()
 				size += 1

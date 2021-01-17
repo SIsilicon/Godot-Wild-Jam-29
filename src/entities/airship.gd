@@ -26,10 +26,10 @@ onready var tween: Tween = $Tween
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("open_navigation"):
 		if not in_map and _player:
-			$CollisionShape.disabled = true
+			disable_ship_collider(true)
 			get_node("../../..").transition_to_map()
 		elif in_map:
-			$CollisionShape.disabled = false
+			disable_ship_collider(false)
 			$EKeyPopop.hide_popup()
 			get_node("../../..").transition_to_world()
 
@@ -121,3 +121,13 @@ func _on_Collector_body_entered(body: Node) -> void:
 	if body is Cloud:
 		fuel = min(fuel+0.5, MAX_FUEL)
 		body.queue_free()
+
+
+func disable_ship_collider(true_false: bool):
+	$Stars_Collider.disabled = true_false
+	$SHipBody_Collider.disabled = true_false
+	$Upper_Deck_Collider.disabled = true_false
+	$Balloon_collider.disabled = true_false
+	$CollisionShape2.disabled = true_false
+	$CollisionShape3.disabled = true_false
+	

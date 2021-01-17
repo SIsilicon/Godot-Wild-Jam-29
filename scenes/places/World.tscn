@@ -243,12 +243,12 @@ __meta__ = {
 }
 
 [node name="Region3" type="Area" parent="Map/Viewport"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -638.079, 0, 2186.29 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -394.251, 0, 2238.88 )
 script = ExtResource( 4 )
 region_scene = ExtResource( 14 )
 
 [node name="M_Island2" parent="Map/Viewport/Region3" instance=ExtResource( 12 )]
-transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Map/Viewport/Region3"]
 shape = SubResource( 8 )

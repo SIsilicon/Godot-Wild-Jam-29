@@ -26,6 +26,7 @@ func pull(direction: Vector3, pull_strength: int):
 	velocity = pull_direction * pull_strength
 	
 func shoot(push_direction: Vector3, shoot_speed: int):
+	
 	randomize()
 	velocity = (push_direction + Vector3(rand_range(-0.1,0.1), rand_range(-0.1,0.1), 0)) * shoot_speed
 
