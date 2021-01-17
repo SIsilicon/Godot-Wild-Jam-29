@@ -15,6 +15,8 @@ func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	tween.interpolate_property($Ending, "modulate:a", 0.0, 1.0, 0.5)
 	tween.interpolate_callback(self, 0.5, "set", "can_quit", true)
 	tween.start()
+	
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 
 func _input(event: InputEvent) -> void:
