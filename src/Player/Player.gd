@@ -6,6 +6,7 @@ enum States {IDLE, RUNNING, JUMPING, FALLING, FLYING, STEERING}
 var state : int = States.IDLE
 
 # Movement Variables #
+onready var ray_cast: RayCast = $RayCast
 const GRAVITY: int = -40
 var velocity: Vector3= Vector3.ZERO
 const MAX_SPEED: int = 15
@@ -59,7 +60,7 @@ const DEFAULT_PULL_STR = 5
 const FLYING_PULL_STR = 20
 const DEFAULT_SHOOT_SPEED = 20
 const FLYING_SHOOT_SPEED = 60
-const MAX_CLOUDS = 100
+const MAX_CLOUDS = 200
 
 
 func _ready() -> void:
@@ -363,6 +364,8 @@ func process_input(_delta: float) -> void:
 
 func process_movement(delta : float) -> void:
 	
+	print(ray_cast.is_colliding())
+	
 	match state:
 		
 	#############################################################################
@@ -378,8 +381,11 @@ func process_movement(delta : float) -> void:
 			
 			velocity = move_and_slide_with_snap(velocity, Vector3(0, -0.1, 0), Vector3.UP, 0.05, 4, deg2rad(MAX_SLOPE_ANGLE))
 			
-			if !is_on_floor():
+			if !ray_cast.is_colliding():
 				enter_state(States.FALLING)
+			
+			#if !is_on_floor():
+				#enter_state(States.FALLING)
 	
 	
 	#############################################################################
@@ -403,7 +409,7 @@ func process_movement(delta : float) -> void:
 			
 			velocity = move_and_slide_with_snap(velocity, Vector3(0, -0.1, 0), Vector3.UP, true, 4, deg2rad(MAX_SLOPE_ANGLE))
 			
-			if !is_on_floor():
+			if !ray_cast.is_colliding():
 				enter_state(States.FALLING)
 			
 			
@@ -426,7 +432,7 @@ func process_movement(delta : float) -> void:
 			velocity = move_and_slide(velocity, Vector3.UP, 0.05, 4, deg2rad(MAX_SLOPE_ANGLE))
 			
 			
-			if is_on_floor():
+			if ray_cast.is_colliding():
 				enter_state(States.IDLE)
 		
 	
@@ -447,7 +453,7 @@ func process_movement(delta : float) -> void:
 			velocity.z = new_velocity.z
 			velocity = move_and_slide(velocity, Vector3.UP, 0.05, 4, deg2rad(MAX_SLOPE_ANGLE))
 			
-			if is_on_floor():
+			if ray_cast.is_colliding():
 				enter_state(States.IDLE)
 	
 		
@@ -464,7 +470,7 @@ func process_movement(delta : float) -> void:
 			velocity = lerp(velocity, target, 0.05)
 			velocity = move_and_slide(velocity, Vector3.UP, 0.05, 4, deg2rad(MAX_SLOPE_ANGLE))
 			
-			if is_on_floor():
+			if ray_cast.is_colliding():
 				enter_state(States.IDLE)
 
 

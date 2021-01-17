@@ -14,15 +14,20 @@
 
 [node name="Island1" parent="." instance=ExtResource( 1 )]
 transform = Transform( 0.88401, 0, -0.467467, 0, 1, 0, 0.467467, 0, 0.88401, -9.09984, 71.2262, -280.327 )
+collision_mask = 4
 
 [node name="puzzle_1_flying" parent="." instance=ExtResource( 2 )]
 transform = Transform( 0.777881, 0, -0.628411, 0, 1, 0, 0.628411, 0, 0.777881, 0, 71.2649, -252.808 )
 
 [node name="M_Island3" parent="." instance=ExtResource( 3 )]
 transform = Transform( 0.257268, 0, 0.96634, 0, 1, 0, -0.96634, 0, 0.257268, -151.268, 41, -437.302 )
+collision_layer = 4
+collision_mask = 0
 
 [node name="S_Island1" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -236.709, 47.8263, -307.907 )
+collision_layer = 4
+collision_mask = 4
 
 [node name="Island2" parent="." instance=ExtResource( 9 )]
 transform = Transform( 0.60908, 0, -0.793109, 0, 1, 0, 0.793109, 0, 0.60908, -107.167, 3.8147e-06, -115.883 )
