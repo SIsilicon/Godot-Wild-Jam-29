@@ -181,9 +181,9 @@ func update_volumes() -> void:
 	for audio in music_bus:
 		if not audio in silenced:
 			if audio is AudioStreamPlayer:
-				audio.volume_db = master_volume + sfx_volume
+				audio.volume_db = master_volume + music_volume
 			elif audio is AudioStreamPlayer3D:
-				audio.unit_db = master_volume + sfx_volume
+				audio.unit_db = master_volume + music_volume
 		
 		if audio is AudioStreamPlayer:
 			if audio.volume_db <= MIN_DB:
