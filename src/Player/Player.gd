@@ -137,7 +137,7 @@ func enter_state(new_state) -> void:
 			pull_strength = FLYING_PULL_STR
 			shoot_speed = FLYING_SHOOT_SPEED
 			
-			if YaxisInversion_ON:
+			if Global.settings.invert_y:
 				Y_axis_inverter = -1
 			else:
 				Y_axis_inverter = 1
