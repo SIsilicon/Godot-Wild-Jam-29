@@ -1,0 +1,212 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://scenes/logic/Door.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/Walls/double_walls/Double_Floor_2x2.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Walls/Corners/Left_Corner_Wall_2x2.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/Walls/Doorways/Doorway_2x2.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/Walls/Corners/Small_Corner_Floor_2x2.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/Walls/Elements/Pillar2x2.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/Walls/Corners/Corner_2x2.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/Walls/Doorways/SmallDoorway_2x2.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/Walls/Corners/Right_Corner_Wall_2x2.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/Walls/Elements/Window_2x2.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/logic/Lever.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/logic/lightbulb.tscn" type="PackedScene" id=12]
+
+[node name="puzzle3_levers" type="Spatial"]
+
+[node name="Walls" type="Spatial" parent="."]
+
+[node name="Window_2x4" parent="Walls" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 60 )
+
+[node name="Left_Corner_Wall" parent="Walls" instance=ExtResource( 3 )]
+
+[node name="Right_Corner_Wall_2x2" parent="Walls" instance=ExtResource( 9 )]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 20, 0, 60 )
+
+[node name="Window_2x2" parent="Walls" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 20 )
+
+[node name="Pillar2x2" parent="Walls" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 20 )
+
+[node name="SmallDoorway_2x2" parent="Walls" instance=ExtResource( 8 )]
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 40, 0, 10 )
+
+[node name="SmallDoorway_2x3" parent="Walls" instance=ExtResource( 8 )]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 20, 0, 10 )
+
+[node name="Window_2x3" parent="Walls" instance=ExtResource( 10 )]
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 0, 0, 30 )
+
+[node name="Corner_2x2" parent="Walls" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 40 )
+
+[node name="Doorway_2x2" parent="Walls" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 40 )
+
+[node name="Doorway_2x4" parent="Walls" instance=ExtResource( 4 )]
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 0, 0, 50 )
+
+[node name="Doorway_2x3" parent="Walls" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 20 )
+
+[node name="Small_Corner_Floor" parent="Walls" instance=ExtResource( 5 )]
+
+[node name="Double_Floor" parent="Walls" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50 )
+
+[node name="Small_Corner_Floor2" parent="Walls" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17, 0 )
+
+[node name="Double_Floor2" parent="Walls" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17, 50 )
+
+[node name="room_0" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 10 )
+
+[node name="Door" parent="room_0" instance=ExtResource( 1 )]
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 10, 0, -4.66742 )
+
+[node name="Lever" parent="room_0" instance=ExtResource( 11 )]
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 11.0944, 2.15705, -1.52898 )
+output_device_path = NodePath("../Door")
+starts_as_on = true
+
+[node name="lightbulb" parent="room_0" instance=ExtResource( 12 )]
+transform = Transform( -1.62921e-07, 0.816581, 0.577231, 0, 0.577231, -0.816581, -1, -1.33038e-07, -9.40428e-08, 10.2958, 6.48933, -4.69591 )
+isON = true
+
+[node name="room_1" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 10 )
+
+[node name="Door" parent="room_1" instance=ExtResource( 1 )]
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 10, 0, 4.66629 )
+
+[node name="Lever" parent="room_1" instance=ExtResource( 11 )]
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 11.1282, 2, 1.34614 )
+output_device_path = NodePath("../Door")
+
+[node name="lightbulb" parent="room_1" instance=ExtResource( 12 )]
+transform = Transform( -1.61207e-07, 0.89149, 0.453042, 2.35664e-08, 0.453042, -0.89149, -1, -1.33038e-07, -9.40428e-08, 10.2113, 6.59071, 4.66696 )
+isON = true
+
+[node name="room_2" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 30 )
+
+[node name="Door" parent="room_2" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.1235 )
+
+[node name="lightbulb" parent="room_2" instance=ExtResource( 12 )]
+transform = Transform( -1, -2.66076e-07, -1.88086e-07, 0, 0.577231, -0.816581, 3.25841e-07, -0.816581, -0.577231, 1, 6.53512, -10.4429 )
+isON = true
+
+[node name="lightbulb2" parent="room_2" instance=ExtResource( 12 )]
+transform = Transform( -1, -2.66076e-07, -1.88086e-07, 0, 0.577231, -0.816581, 3.25841e-07, -0.816581, -0.577231, -1, 6.535, -10.443 )
+
+[node name="Lever" parent="room_2" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.54359, 2, -11.3786 )
+output_device_path = NodePath("../Door")
+
+[node name="Lever2" parent="room_2" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.30714, 2, -11.3672 )
+output_device_path = NodePath("../Door")
+is_logic_NOT_gate = true
+starts_as_on = true
+
+[node name="room_3" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 39.6716 )
+
+[node name="Door" parent="room_3" instance=ExtResource( 1 )]
+
+[node name="lightbulb" parent="room_3" instance=ExtResource( 12 )]
+transform = Transform( -1, -2.66076e-07, -1.88086e-07, 0, 0.577231, -0.816581, 3.25841e-07, -0.816581, -0.577231, 3, 6.801, -0.147 )
+
+[node name="lightbulb2" parent="room_3" instance=ExtResource( 12 )]
+transform = Transform( -1, -2.66076e-07, -1.88086e-07, 0, 0.577231, -0.816581, 3.25841e-07, -0.816581, -0.577231, 1, 6.801, -0.147 )
+isON = true
+
+[node name="lightbulb3" parent="room_3" instance=ExtResource( 12 )]
+transform = Transform( -1, -2.66076e-07, -1.88086e-07, 0, 0.577231, -0.816581, 3.25841e-07, -0.816581, -0.577231, -1, 6.801, -0.146999 )
+
+[node name="lightbulb4" parent="room_3" instance=ExtResource( 12 )]
+transform = Transform( -1, -2.66076e-07, -1.88086e-07, 0, 0.577231, -0.816581, 3.25841e-07, -0.816581, -0.577231, -3, 6.801, -0.146999 )
+isON = true
+
+[node name="Lever" parent="room_3" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 2, -1.056 )
+output_device_path = NodePath("../Door")
+is_logic_NOT_gate = true
+
+[node name="Lever2" parent="room_3" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2, -1.056 )
+output_device_path = NodePath("../Door")
+starts_as_on = true
+
+[node name="Lever3" parent="room_3" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 2, -1.056 )
+output_device_path = NodePath("../Door")
+is_logic_NOT_gate = true
+starts_as_on = true
+
+[node name="Lever4" parent="room_3" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2, -1.056 )
+output_device_path = NodePath("../Door")
+
+[node name="room_4" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50 )
+
+[node name="Door" parent="room_4" instance=ExtResource( 1 )]
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 0.2447, 0, 0 )
+
+[node name="lightbulb" parent="room_4" instance=ExtResource( 12 )]
+transform = Transform( -1.62921e-07, 0.816581, 0.577231, 0, 0.577231, -0.816581, -1, -1.33038e-07, -9.40429e-08, 0.458, 6.375, 5 )
+
+[node name="lightbulb2" parent="room_4" instance=ExtResource( 12 )]
+transform = Transform( -1.62921e-07, 0.816581, 0.577231, 0, 0.577231, -0.816581, -1, -1.33038e-07, -9.40429e-08, 0.458, 6.375, 3 )
+isON = true
+
+[node name="lightbulb3" parent="room_4" instance=ExtResource( 12 )]
+transform = Transform( -1.62921e-07, 0.816581, 0.577231, 0, 0.577231, -0.816581, -1, -1.33038e-07, -9.40429e-08, 0.458, 6.375, 1 )
+isON = true
+
+[node name="lightbulb4" parent="room_4" instance=ExtResource( 12 )]
+transform = Transform( -1.62921e-07, 0.816581, 0.577231, 0, 0.577231, -0.816581, -1, -1.33038e-07, -9.40429e-08, 0.458, 6.375, -1 )
+isON = true
+
+[node name="lightbulb5" parent="room_4" instance=ExtResource( 12 )]
+transform = Transform( -1.62921e-07, 0.816581, 0.577231, 0, 0.577231, -0.816581, -1, -1.33038e-07, -9.40429e-08, 0.458, 6.375, -3 )
+
+[node name="lightbulb6" parent="room_4" instance=ExtResource( 12 )]
+transform = Transform( -1.62921e-07, 0.816581, 0.577231, 0, 0.577231, -0.816581, -1, -1.33038e-07, -9.40429e-08, 0.458, 6.375, -5 )
+isON = true
+
+[node name="Lever" parent="room_4" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.91782, 2, 8.63977 )
+output_device_path = NodePath("../Door")
+is_logic_NOT_gate = true
+starts_as_on = true
+
+[node name="Lever2" parent="room_4" instance=ExtResource( 11 )]
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 1.36859, 2, 7.01741 )
+output_device_path = NodePath("../Door")
+
+[node name="Lever3" parent="room_4" instance=ExtResource( 11 )]
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 1.36859, 2, 4.01741 )
+output_device_path = NodePath("../Door")
+starts_as_on = true
+
+[node name="Lever4" parent="room_4" instance=ExtResource( 11 )]
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 1.36859, 2, -3.98259 )
+output_device_path = NodePath("../Door")
+
+[node name="Lever5" parent="room_4" instance=ExtResource( 11 )]
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 1.36859, 2, -6.98259 )
+output_device_path = NodePath("../Door")
+is_logic_NOT_gate = true
+starts_as_on = true
+
+[node name="Lever6" parent="room_4" instance=ExtResource( 11 )]
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 4.36859, 2, -8.64501 )
+output_device_path = NodePath("../Door")

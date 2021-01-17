@@ -1,12 +1,17 @@
 class_name LightBulb
 extends MeshInstance
 
+export var isON: bool = false
+
 onready var red_light = load("res://textures/puzzlestuff/lightbulb_texture_red.jpg")
 onready var yellow_light = load("res://textures/puzzlestuff/lightbulb_texture_yellow.jpg")
 onready var green_light = load("res://textures/puzzlestuff/lightbulb_texture_green.jpg")
 
 func _ready():
-	pass
+	if isON:
+		turn_green()
+	else:
+		turn_red()
 
 func turn_red():
 	var material : SpatialMaterial = SpatialMaterial.new()
