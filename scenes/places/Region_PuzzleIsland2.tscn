@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://scenes/places/L_Islands/Island1.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/places/S_Islands/S_Island1.tscn" type="PackedScene" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://scenes/Decorations/rocks/Rock2.tscn" type="PackedScene" id=15]
 [ext_resource path="res://scenes/Decorations/rocks/Rock5.tscn" type="PackedScene" id=16]
 [ext_resource path="res://scenes/logic/CloudGenerator.tscn" type="PackedScene" id=17]
+[ext_resource path="res://scenes/places/Antifall area.tscn" type="PackedScene" id=18]
 
 [node name="Region_PuzzleIsland2" type="Spatial"]
 
@@ -75,18 +76,11 @@ transform = Transform( 0.449147, 0, 0.893458, 0, 1, 0, -0.893458, 0, 0.449147, 1
 
 [node name="CloudGenerator" parent="." instance=ExtResource( 17 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 116.768, 2, -28.6648 )
-max_cloud_count = 25
-cloud_spawn_interval = 0.1
-cloud_initial_speed = 2
 
 [node name="CloudGenerator2" parent="." instance=ExtResource( 17 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 128.109, 2, 7.67788 )
-max_cloud_count = 25
-cloud_spawn_interval = 0.1
-cloud_initial_speed = 2
 
 [node name="CloudGenerator3" parent="." instance=ExtResource( 17 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 58.2387, -27.8588, -122.824 )
-max_cloud_count = 25
-cloud_spawn_interval = 0.1
-cloud_initial_speed = 2
+
+[node name="Antifall area" parent="." instance=ExtResource( 18 )]
