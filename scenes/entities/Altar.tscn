@@ -73,6 +73,10 @@ transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 1.175, 
 [node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.64013, 0 )
 shape = SubResource( 3 )
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
 [connection signal="body_entered" from="Altar_Mesh/ArtifactPiece1" to="." method="_on_ArtifactPiece1_body_entered"]
 [connection signal="body_entered" from="Altar_Mesh/ArtifactPiece2" to="." method="_on_ArtifactPiece2_body_entered"]
 [connection signal="body_entered" from="Altar_Mesh/ArtifactPiece3" to="." method="_on_ArtifactPiece3_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

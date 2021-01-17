@@ -71,14 +71,22 @@ func update_altar():
 func _on_ArtifactPiece1_body_entered(body):
 	print(body)
 	look_for_artifact_piece(0, Artifact_Spot1)
+	$Timer.start(1)
+	
 
 
 func _on_ArtifactPiece2_body_entered(body):
 	print(body)
 	look_for_artifact_piece(1, Artifact_Spot2)
+	$Timer.start(1)
 
 
 func _on_ArtifactPiece3_body_entered(body):
 	print(body)
 	look_for_artifact_piece(2, Artifact_Spot3)
+	$Timer.start(1)
 
+
+
+func _on_Timer_timeout():
+	GameState.check_end_game()

@@ -18,7 +18,7 @@ func _ready() -> void:
 			gem_mat.albedo_color = Color(1, 0.2, 0.1)
 		Type.SECOND:
 			gem_mat.albedo_color = Color(0.2, 1.0, 0.1)
-		Type.FIRST:
+		Type.THIRD:
 			gem_mat.albedo_color = Color(0.1, 0.2, 1.0)
 	
 	if !$CollisionShape.disabled:
