@@ -10,6 +10,7 @@ var in_map := false
 
 var _transitioning := true
 var _mouse_mode_prior_pause := Input.get_mouse_mode()
+var empty_regions : Array = [preload("res://scenes/empty_regions/EmptyRegion1.tscn")]
 
 onready var tween: Tween = $Tween
 onready var player: Player = $Level/Viewport/Player
@@ -83,6 +84,11 @@ func transition_to_world() -> void:
 		current_region = current_map_region.region_scene.instance()
 		current_region.translation = current_map_region.translation
 		airship.translation = current_map_region.translation
+		$Level/Viewport.add_child(current_region)
+	
+	else:
+		current_region = empty_regions[randi() % len(empty_regions)].instance()
+		current_region.global_transform.origin = airship.translation
 		$Level/Viewport.add_child(current_region)
 	
 	$Map/Viewport.remove_child(airship)

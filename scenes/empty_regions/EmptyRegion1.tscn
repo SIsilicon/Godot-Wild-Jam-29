@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/logic/CloudGenerator.tscn" type="PackedScene" id=1]
+
+[node name="EmptyRegion1" type="Spatial"]
+
+[node name="CloudGenerator" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5419, 11.115, -3.13357 )
+max_cloud_count = 10
+cloud_spawn_interval = 2.0
+cloud_initial_speed = 4
+
+[node name="CloudGenerator2" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 22.6762, 6.48228, 6.45972 )
+max_cloud_count = 10
+cloud_spawn_interval = 2.0
+cloud_initial_speed = 4
+
+[node name="CloudGenerator3" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.1943, 12.8151, 25.7158 )
+max_cloud_count = 10
+cloud_spawn_interval = 2.0
+cloud_initial_speed = 4
