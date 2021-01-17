@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://models/modularwalls/modular_pillar2x.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://models/modularwalls/modular_wall2x.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://scenes/Decorations/Modlar2x2.material" type="Material" id=3]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 31.1721, 8.48043, 1.108 )
+
+[node name="Triple_Wall" type="StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.0302, 0, 0 )
+input_ray_pickable = false
+collision_layer = 4
+collision_mask = 0
+
+[node name="modular_wall2x" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 0 )
+mesh = ExtResource( 2 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_wall2x2" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0 )
+mesh = ExtResource( 2 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_wall2x3" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 0 )
+mesh = ExtResource( 2 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_pillar2x" type="MeshInstance" parent="."]
+mesh = ExtResource( 1 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_pillar2x2" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 0 )
+mesh = ExtResource( 1 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_pillar2x3" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 0 )
+mesh = ExtResource( 1 )
+material/0 = ExtResource( 3 )
+
+[node name="modular_pillar2x4" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 0 )
+mesh = ExtResource( 1 )
+material/0 = ExtResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.92952, 8.31419, 0.0970526 )
+shape = SubResource( 1 )

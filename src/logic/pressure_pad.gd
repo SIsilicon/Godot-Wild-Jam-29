@@ -4,9 +4,12 @@ extends InputDevice
 
 onready var pad_visual : Spatial = $object_pressureplate
 onready var pad_animator : AnimationPlayer = $object_pressureplate/AnimationPlayer
+onready var pad_timer: Timer = $PressurePlateTimer
 
 var pushers : Array = []
 var last_pusher_count : int = 0
+
+export var pad_delay: int
 
 
 
@@ -20,8 +23,10 @@ func _ready() -> void:
 func update_pushers() -> void:
 	if len(pushers) > 0:
 		set_state(States.ENABLED)
+		
 	else:
-		set_state(States.DISABLED)
+		pad_timer.start(pad_delay)
+		#set_state(States.DISABLED)
 	
 	update_anim()
 	last_pusher_count = len(pushers)
@@ -48,3 +53,10 @@ func _on_PressureArea_body_exited(body : PhysicsBody) -> void:
 	if body.is_in_group("pushes_pressure_pad"):
 		pushers.erase(body)
 		update_pushers()
+
+
+func _on_PressurePlateTimer_timeout():
+	
+	set_state(States.DISABLED)
+	#update_anim()
+	#last_pusher_count = len(pushers)
