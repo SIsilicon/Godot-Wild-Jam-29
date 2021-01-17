@@ -7,6 +7,7 @@ extends Spatial
 enum Events { START, QUIT }
 
 export var scene : PackedScene
+export var alt_scene : PackedScene
 
 onready var fade_animation : AnimationPlayer = $UI/Fade/AnimationPlayer
 onready var player_animation : AnimationPlayer = $Misc/char_mc/AnimationPlayer
@@ -49,7 +50,8 @@ func event(event : int) -> void:
 	
 	match event:
 		Events.START:
-			get_tree().change_scene_to(scene)
+			if Global.settings.play_story: get_tree().change_scene_to(scene)
+			else: get_tree().change_scene_to(alt_scene)
 		
 		Events.QUIT:
 			get_tree().quit()

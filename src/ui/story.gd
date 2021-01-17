@@ -30,6 +30,7 @@ func _ready() -> void:
 		anim_player.play("out")
 		yield(anim_player, "animation_finished")
 	
+	Global.settings.play_story = false
 	get_tree().change_scene("res://scenes/places/World.tscn")
 
 

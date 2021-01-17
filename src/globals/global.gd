@@ -8,6 +8,7 @@ var settings := {
 	invert_y = false,
 	msaa = 0,
 	window_size = [0, 0], # <- Not to be edited by user
+	play_story = true, # <- Also not to be edited by user
 	fullscreen = false,
 	music_volume = 0.5,
 	sfx_volume = 0.5
