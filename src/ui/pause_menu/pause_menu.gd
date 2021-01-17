@@ -19,6 +19,7 @@ onready var settings_panel : Control = new_panel([
 	new_option_wheel("msaa", "MSAA", ["Disabled", "2x", "4x", "8x", "16x"], [0, 1, 2, 3, 4], 0),
 	new_float_slider("music_volume", "Music Volume"),
 	new_float_slider("sfx_volume", "SFX Volume"),
+	new_float_slider("vignette_opacity", "Vignette Opacity"),
 	new_button("Return", null, ButtonTypes.RETURN)
 ])
 

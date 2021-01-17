@@ -35,6 +35,7 @@ var look_dir: Vector3
 
 onready var cloud_percent : ProgressBar = $Control/VBoxContainer/ProgressBar
 onready var percent_animation : AnimationPlayer = $Control/VBoxContainer/ProgressBar/AnimationPlayer
+onready var vignette : TextureRect = $Control/Vignette
 
 onready var player_mesh: Spatial = $PlayerMesh
 onready var character_anim_player: AnimationPlayer = $PlayerMesh/AnimationPlayer
@@ -64,6 +65,8 @@ const MAX_CLOUDS = 200
 
 
 func _ready() -> void:
+	Global.connect("setting_changed", self, "setting_changed")
+	
 	cloud_percent.max_value = MAX_CLOUDS
 	
 	# enable mouse to rotate camera
@@ -593,3 +596,9 @@ func _on_Muzzle_body_entered(body):
 			body.call_deferred("free")
 		else:
 			percent_animation.play("error")
+
+
+func setting_changed(setting : String, value) -> void:
+	match setting:
+		"vignette_opacity":
+			vignette.modulate = Color(1.0, 1.0, 1.0, value)

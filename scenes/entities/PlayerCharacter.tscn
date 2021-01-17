@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://src/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://models/MC/PlayerMesh.tscn" type="PackedScene" id=2]
 [ext_resource path="res://models/Goose/Goose.tscn" type="PackedScene" id=3]
 [ext_resource path="res://UI/EKeyPopup.tscn" type="PackedScene" id=4]
 [ext_resource path="res://UI/font/regular.otf" type="DynamicFontData" id=5]
+[ext_resource path="res://UI/vignette.png" type="Texture" id=6]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.4
@@ -80,6 +81,9 @@ shape = SubResource( 1 )
 [node name="PlayerMesh" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.52735, -0.169452 )
 
+[node name="Skeleton" parent="PlayerMesh/Armature" index="0"]
+bones/46/bound_children = [ NodePath("BoneAttachment") ]
+
 [node name="BoneAttachment" parent="PlayerMesh/Armature/Skeleton" index="1"]
 transform = Transform( 0.974957, -0.0303181, 0.220318, -0.0116797, 0.982317, 0.186863, -0.222087, -0.184756, 0.957363, -0.447849, 6.70969, -1.26839 )
 
@@ -143,6 +147,16 @@ draw_pass_1 = SubResource( 8 )
 [node name="Control" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Vignette" type="TextureRect" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 6 )
+expand = true
+stretch_mode = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }

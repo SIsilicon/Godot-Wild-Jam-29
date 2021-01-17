@@ -11,7 +11,8 @@ var settings := {
 	play_story = true, # <- Also not to be edited by user
 	fullscreen = false,
 	music_volume = 0.5,
-	sfx_volume = 0.5
+	sfx_volume = 0.5,
+	vignette_opacity = 0.5
 }
 
 func _enter_tree() -> void:
