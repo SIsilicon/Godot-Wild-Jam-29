@@ -7,9 +7,13 @@ onready var test_push_area : Area = $TestPushArea
 onready var tween : Tween = $Tween
 onready var mesh : MeshInstance = $object_cylinderpiece
 
+onready var starting_position : Vector3 = global_transform.origin
+
 export var push_speed : float = 0
 export var do_camera : bool = true
 export var gravity : float = 0
+
+const MAX_Y_DOWN : float = -500.0
 
 
 
@@ -24,6 +28,7 @@ func _ready() -> void:
 
 func _physics_process(delta : float) -> void:
 	if !is_on_floor(): tween.stop_all()
+	if global_transform.origin.y < MAX_Y_DOWN: global_transform.origin = starting_position
 	move_and_slide(Vector3(0, -gravity, 0), Vector3.UP)
 
 
