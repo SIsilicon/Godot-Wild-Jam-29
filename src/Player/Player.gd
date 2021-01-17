@@ -581,8 +581,9 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 
 
 func _on_Muzzle_body_entered(body):
-	if isSucking && clouds < MAX_CLOUDS:
-		clouds += 1
-		body.call_deferred("free")
-	else:
-		percent_animation.play("error")
+	if isSucking:
+		if clouds < MAX_CLOUDS:
+			clouds += 1
+			body.call_deferred("free")
+		else:
+			percent_animation.play("error")
