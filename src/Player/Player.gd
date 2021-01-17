@@ -368,7 +368,6 @@ func process_input(_delta: float) -> void:
 
 func process_movement(delta : float) -> void:
 	
-	print(ray_cast.is_colliding())
 	
 	match state:
 		
@@ -494,18 +493,24 @@ func turn_on_vacuum():
 
 func pull_clouds() -> void:
 	
+	
 	var pullable_objects = vacuum_muzzle.get_overlapping_bodies()
+	
 	
 	if pullable_objects.size() > 0:
 		for object_to_pull in pullable_objects:
-			#print(object_to_pull.get_name())
-			match object_to_pull.get_groups()[0]:
-				
-				"Cloud":
-					object_to_pull.pull(vacuum_muzzle.global_transform.origin, pull_strength)
+			#print(object_to_pull.get_groups())
+			
+			
+			if object_to_pull is Balloon:
+				object_to_pull.release_clouds(vacuum_muzzle.global_transform.origin)
+			
+			elif object_to_pull is Cloud:
+				object_to_pull.pull(vacuum_muzzle.global_transform.origin, pull_strength)
+			
+			else:
+				pass
 					
-				"Balloon":
-					object_to_pull.release_clouds(vacuum_muzzle.global_transform.origin)
 	else:
 		pass
 

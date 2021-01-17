@@ -1,3 +1,4 @@
+class_name Balloon
 extends InputDevice
 
 
@@ -105,6 +106,7 @@ func pull_clouds() -> void:
 
 
 func release_clouds(direction: Vector3) -> void:
+	#print("releasing clouds")
 	if size > 0:
 		var cloud: Cloud = spawn_cloud.instance()
 		
