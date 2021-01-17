@@ -4,7 +4,7 @@
 [ext_resource path="res://scenes/entities/PlayerCharacter.tscn" type="PackedScene" id=2]
 
 [sub_resource type="BoxShape" id=1]
-extents = Vector3( 25, 1, 25 )
+extents = Vector3( 200, 1, 200 )
 
 [sub_resource type="CubeMesh" id=2]
 size = Vector3( 500, 2, 500 )
@@ -19,6 +19,8 @@ transform = Transform( 0.837366, -0.410629, 0.360835, 0, 0.660093, 0.751184, -0.
 shadow_enabled = true
 
 [node name="Floor" type="StaticBody" parent="."]
+collision_layer = 4
+collision_mask = 0
 
 [node name="CollisionShape" type="CollisionShape" parent="Floor"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
