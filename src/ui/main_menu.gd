@@ -10,7 +10,7 @@ export var scene : PackedScene
 export var alt_scene : PackedScene
 
 onready var fade_animation : AnimationPlayer = $UI/Fade/AnimationPlayer
-onready var player_animation : AnimationPlayer = $Misc/char_mc/AnimationPlayer
+onready var player_animation : AnimationPlayer = $Misc/PlayerMesh/AnimationPlayer
 onready var airship_mesh : MeshInstance = $Misc/object_airship
 onready var input_cool_timer : Timer = $InputCoolTimer
 
