@@ -10,7 +10,7 @@ export var fade_time : float
 const PATH : String = "res://audio/"
 const MIN_DB : int = -20
 const MAX_DB : int = 0
-const SILENCED_DB : int = -69420
+const SILENCED_DB : int = -420
 
 onready var tween : Tween = $Tween
 
@@ -199,9 +199,10 @@ func _ready() -> void:
 	set_volume(Buses.MUSIC, Global.get_setting("music_volume"))
 	set_volume(Buses.SFX, Global.get_setting("sfx_volume"))
 	play_audio("ground_layer", AudioType.MUSIC, "ground")
-	play_audio("ground_layer", AudioType.MUSIC, "goose")
-	play_audio("ground_layer", AudioType.MUSIC, "ship")
-	play_audio("ground_layer", AudioType.MUSIC, "ship_melody")
+	play_audio("goose_layer", AudioType.MUSIC, "goose")
+	play_audio("ship_layer", AudioType.MUSIC, "ship")
+	play_audio("ship_melody_layer", AudioType.MUSIC, "ship_melody")
+	silence("ground")
 	silence("goose")
 	silence("ship")
 	silence("ship_melody")
@@ -234,7 +235,8 @@ func __test2__() -> void:
 
 
 func _on_Tween_tween_completed(object : Object, _key) -> void:
-	silence(object.tag)
+	#silence(object.tag)
+	if object.volume_db == MIN_DB: silence(object.tag)
 	update_volumes()
 
 
