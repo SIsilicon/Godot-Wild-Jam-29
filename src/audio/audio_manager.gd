@@ -65,10 +65,10 @@ func play_audio(audio_name : String, audio_type : int, tag : String = "") -> Aud
 		tags[tag] = audio
 		audio.tag = tag
 	
+	update_volumes()
+	
 	add_child(audio)
 	audio.play()
-	
-	update_volumes()
 	
 	return audio
 
