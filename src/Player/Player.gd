@@ -60,7 +60,7 @@ const DEFAULT_PULL_STR = 5
 const FLYING_PULL_STR = 20
 const DEFAULT_SHOOT_SPEED = 20
 const FLYING_SHOOT_SPEED = 60
-const MAX_CLOUDS = 100
+const MAX_CLOUDS = 200
 
 
 func _ready() -> void:

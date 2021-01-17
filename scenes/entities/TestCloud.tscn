@@ -21,3 +21,6 @@ shape = SubResource( 1 )
 pixel_size = 0.025
 billboard = 1
 texture = ExtResource( 2 )
+
+[node name="cloud_lifetime" type="Timer" parent="."]
+[connection signal="timeout" from="cloud_lifetime" to="." method="_on_cloud_lifetime_timeout"]

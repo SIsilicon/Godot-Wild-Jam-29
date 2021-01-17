@@ -10,6 +10,8 @@ func _ready():
 		rand_range(0, TAU),
 		rand_range(0, TAU)
 	)
+	
+	$cloud_lifetime.start(5)
 
 	
 func _physics_process(delta):
@@ -27,3 +29,7 @@ func shoot(push_direction: Vector3, shoot_speed: int):
 	randomize()
 	velocity = (push_direction + Vector3(rand_range(-0.1,0.1), rand_range(-0.1,0.1), 0)) * shoot_speed
 
+
+
+func _on_cloud_lifetime_timeout():
+	call_deferred("free")
