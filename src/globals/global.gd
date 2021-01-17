@@ -98,3 +98,4 @@ func _on_setting_changed(name: String, value) -> void:
 			# Didn't realise AudioServer was a thing, so I sorta made my own
 			# bus system you could say. Sorry, hadn't realised!
 			# - Isaac/Glass
+	save_settings()
