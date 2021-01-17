@@ -32,6 +32,8 @@ const FLYING_ROTATION_SPEED: float = 0.2
 var mouse_camera_sensitivity: float = 0.2
 var look_dir: Vector3
 
+onready var cloud_percent : ProgressBar = $Control/VBoxContainer/ProgressBar
+
 onready var player_mesh: Spatial = $PlayerMesh
 onready var character_anim_player: AnimationPlayer = $PlayerMesh/AnimationPlayer
 onready var goose_anim_player: AnimationPlayer = $Goose_fixed/AnimationPlayer
@@ -50,14 +52,17 @@ var isSucking: bool = false
 var isShooting: bool = false
 var pull_strength: int = 5
 var shoot_speed: int = 20
+var clouds : int = 100
 
 const DEFAULT_PULL_STR = 5
 const FLYING_PULL_STR = 20
 const DEFAULT_SHOOT_SPEED = 20
 const FLYING_SHOOT_SPEED = 60
+const MAX_CLOUDS = 100
 
 
 func _ready() -> void:
+	cloud_percent.max_value = MAX_CLOUDS
 	
 	# enable mouse to rotate camera
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -444,6 +449,8 @@ func process_actions(_delta: float) -> void:
 		
 	if isShooting:
 		shoot_clouds()
+	
+	cloud_percent.value = clouds
 
 
 func turn_on_vacuum():
@@ -455,27 +462,30 @@ func pull_clouds() -> void:
 	var pullable_objects = vacuum_muzzle.get_overlapping_bodies()
 	
 	if pullable_objects.size() > 0:
-		for object_to_pull in pullable_objects:
-			#print(object_to_pull.get_name())
-			match object_to_pull.get_groups()[0]:
-				
-				"Cloud":
-					object_to_pull.pull(vacuum_muzzle.global_transform.origin, pull_strength)
+		if clouds < MAX_CLOUDS:
+			for object_to_pull in pullable_objects:
+				#print(object_to_pull.get_name())
+				match object_to_pull.get_groups()[0]:
 					
-				"Balloon":
-					object_to_pull.release_clouds(vacuum_muzzle.global_transform.origin)
-					
-				
+					"Cloud":
+						object_to_pull.pull(vacuum_muzzle.global_transform.origin, pull_strength)
+						
+					"Balloon":
+						object_to_pull.release_clouds(vacuum_muzzle.global_transform.origin)
+		else:
+			pass
 	else:
 		pass
 
 
 func shoot_clouds() -> void:
-	var cloud: Cloud = spawn_cloud.instance()
-	
-	get_parent().add_child(cloud)
-	cloud.global_transform.origin = vacuum_muzzle.global_transform.origin
-	cloud.shoot(-player_mesh.global_transform.basis.z, shoot_speed)
+	if clouds > 0:
+		var cloud: Cloud = spawn_cloud.instance()
+		
+		get_parent().add_child(cloud)
+		cloud.global_transform.origin = vacuum_muzzle.global_transform.origin
+		cloud.shoot(-player_mesh.global_transform.basis.z, shoot_speed)
+		clouds -= 1
 
 
 func play_animation(anim_name: String) -> void:
@@ -550,5 +560,5 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 
 func _on_Muzzle_body_entered(body):
 	if isSucking:
-		# TODO: store clouds somewhere
+		clouds += 1
 		body.call_deferred("free")
