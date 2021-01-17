@@ -22,8 +22,9 @@ func _ready() -> void:
 			gem_mat.albedo_color = Color(0.1, 0.2, 1.0)
 	
 	if !$CollisionShape.disabled:
-		if type in GameState.parts_collected || type in GameState.parts_on_altar:
-			queue_free()
+		if get_tree().current_scene.name != "EndGameScene": # HACK: tired, don't feel like doing something more "official".
+			if type in GameState.parts_collected || type in GameState.parts_on_altar:
+				queue_free()
 
 
 func _process(delta: float) -> void:
