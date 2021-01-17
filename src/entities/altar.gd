@@ -5,12 +5,24 @@ onready var Artifact_Spot1:Spatial = $Piece1_Spot
 onready var Artifact_Spot2:Spatial = $Piece2_Spot
 onready var Artifact_Spot3:Spatial = $Piece3_Spot
 
+onready var mesh : MeshInstance = $Altar_Mesh/object_altar
+
 onready var artifact = preload("res://scenes/entities/Artifact.tscn")
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	setup()
 	update_altar()
+
+
+
+func setup() -> void:
+	var material : SpatialMaterial = SpatialMaterial.new()
+	material.albedo_texture = load("res://models/artifact/altar_diffuse.png")
+	
+	mesh.set_surface_material(0, material)
+
 
 
 func look_for_artifact_piece(part: int, spot: Spatial):

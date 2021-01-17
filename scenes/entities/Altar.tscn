@@ -1,19 +1,16 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/entities/altar.gd" type="Script" id=1]
-[ext_resource path="res://models/artifact/artifact.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://models/artifact/object_altar.obj" type="ArrayMesh" id=2]
 
-[sub_resource type="CubeMesh" id=1]
-size = Vector3( 2, 0.1, 2 )
-
-[sub_resource type="CubeMesh" id=2]
-size = Vector3( 1.5, 0.25, 0.25 )
-
-[sub_resource type="BoxShape" id=3]
+[sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.2, 0.2, 0.5 )
 
-[sub_resource type="CubeMesh" id=4]
+[sub_resource type="CubeMesh" id=2]
 size = Vector3( 0.2, 0.2, 0.2 )
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 2.87126, 1.79001, 1.34912 )
 
 [node name="Altar" type="Spatial"]
 script = ExtResource( 1 )
@@ -21,63 +18,61 @@ script = ExtResource( 1 )
 [node name="Altar_Mesh" type="Spatial" parent="."]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
 
-[node name="AltarBase" type="MeshInstance" parent="Altar_Mesh"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0502659, 0 )
-mesh = SubResource( 1 )
-material/0 = null
-
-[node name="AltarTable" type="MeshInstance" parent="Altar_Mesh"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.224646, 0 )
-mesh = SubResource( 2 )
-material/0 = null
-
 [node name="ArtifactPiece1" type="Area" parent="Altar_Mesh"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.542489, 0.448694, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.542489, 0.448694, 0.75 )
 collision_layer = 2
 
 [node name="CollisionShape" type="CollisionShape" parent="Altar_Mesh/ArtifactPiece1"]
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="ArtifactPlace1_mesh" type="MeshInstance" parent="Altar_Mesh/ArtifactPiece1"]
-mesh = SubResource( 4 )
+visible = false
+mesh = SubResource( 2 )
 material/0 = null
 
 [node name="ArtifactPiece2" type="Area" parent="Altar_Mesh"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.449, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.449, 0.75 )
 collision_layer = 2
 
 [node name="CollisionShape" type="CollisionShape" parent="Altar_Mesh/ArtifactPiece2"]
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="ArtifactPlace2_mesh" type="MeshInstance" parent="Altar_Mesh/ArtifactPiece2"]
-mesh = SubResource( 4 )
+visible = false
+mesh = SubResource( 2 )
 material/0 = null
 
 [node name="ArtifactPiece3" type="Area" parent="Altar_Mesh"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.542, 0.449, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.542, 0.449, 0.75 )
 collision_layer = 2
 
 [node name="CollisionShape" type="CollisionShape" parent="Altar_Mesh/ArtifactPiece3"]
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="ArtifactPlace3_mesh" type="MeshInstance" parent="Altar_Mesh/ArtifactPiece3"]
-mesh = SubResource( 4 )
+visible = false
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="object_altar" type="MeshInstance" parent="Altar_Mesh"]
+transform = Transform( 0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0, 0 )
+mesh = ExtResource( 2 )
 material/0 = null
 
 [node name="Piece1_Spot" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.08498, 1.29739, 0 )
-
-[node name="artifact" type="MeshInstance" parent="Piece1_Spot"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -112.56, 154.748, 142.488 )
-mesh = ExtResource( 2 )
-material/0 = null
-material/1 = null
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, -1.175, 1.81227, 0.9 )
 
 [node name="Piece2_Spot" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.298, 0 )
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 1.812, 0.9 )
 
 [node name="Piece3_Spot" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.084, 1.298, 0 )
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 1.175, 1.812, 0.9 )
+
+[node name="StaticBody" type="StaticBody" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.64013, 0 )
+shape = SubResource( 3 )
 [connection signal="body_entered" from="Altar_Mesh/ArtifactPiece1" to="." method="_on_ArtifactPiece1_body_entered"]
 [connection signal="body_entered" from="Altar_Mesh/ArtifactPiece2" to="." method="_on_ArtifactPiece2_body_entered"]
 [connection signal="body_entered" from="Altar_Mesh/ArtifactPiece3" to="." method="_on_ArtifactPiece3_body_entered"]
