@@ -66,6 +66,7 @@ const MAX_CLOUDS = 200
 
 func _ready() -> void:
 	Global.connect("setting_changed", self, "setting_changed")
+	vignette.modulate.a = Global.settings.vignette_opacity
 	
 	cloud_percent.max_value = MAX_CLOUDS
 	
@@ -601,4 +602,4 @@ func _on_Muzzle_body_entered(body):
 func setting_changed(setting : String, value) -> void:
 	match setting:
 		"vignette_opacity":
-			vignette.modulate = Color(1.0, 1.0, 1.0, value)
+			vignette.modulate.a = value
