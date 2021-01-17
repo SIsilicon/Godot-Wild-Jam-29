@@ -12,7 +12,7 @@ var settings := {
 	fullscreen = false,
 	music_volume = 0.5,
 	sfx_volume = 0.5,
-	vignette_opacity = 0.5
+	vignette_opacity = 0.2
 }
 
 func _enter_tree() -> void:
