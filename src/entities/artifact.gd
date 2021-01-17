@@ -21,8 +21,9 @@ func _ready() -> void:
 		Type.FIRST:
 			gem_mat.albedo_color = Color(0.1, 0.2, 1.0)
 	
-	if type in GameState.parts_collected:
-		queue_free()
+	if !$CollisionShape.disabled:
+		if type in GameState.parts_collected || type in GameState.parts_on_altar:
+			queue_free()
 
 
 func _process(delta: float) -> void:
