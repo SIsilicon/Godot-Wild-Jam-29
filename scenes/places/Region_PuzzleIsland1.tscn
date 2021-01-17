@@ -1,10 +1,14 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/places/L_Islands/Island1.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Puzzles/puzzle_1_flying.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/places/M_Islands/M_Island3.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/entities/Artifact.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/places/S_Islands/S_Island1.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/places/Rocks/rock2.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/places/Rocks/rock1.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/places/Rocks/rock4.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/places/L_Islands/Island2.tscn" type="PackedScene" id=9]
 
 [node name="Region_Island1" type="Spatial"]
 
@@ -20,7 +24,93 @@ transform = Transform( 0.257268, 0, 0.96634, 0, 1, 0, -0.96634, 0, 0.257268, -15
 [node name="S_Island1" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -236.709, 47.8263, -307.907 )
 
+[node name="Island2" parent="." instance=ExtResource( 9 )]
+transform = Transform( 0.60908, 0, -0.793109, 0, 1, 0, 0.793109, 0, 0.60908, -107.167, 3.8147e-06, -115.883 )
+
 [node name="Artifact_Spot" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -236.023, 49.3155, -309.791 )
 
 [node name="Artifact" parent="Artifact_Spot" instance=ExtResource( 4 )]
+
+[node name="Deco" type="Spatial" parent="."]
+
+[node name="rock1" parent="Deco" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -28.0735, 70.909, -277.348 )
+
+[node name="rock9" parent="Deco" instance=ExtResource( 7 )]
+transform = Transform( 0.610546, 0, -0.791981, 0, 1, 0, 0.791981, 0, 0.610546, 3.66122, 70.909, -245.572 )
+
+[node name="rock12" parent="Deco" instance=ExtResource( 7 )]
+transform = Transform( 0.773073, -0.603775, -1.20308, 0.502726, 2.3181, 0.775114, 0.386813, -1.80606, 1.39706, 10.4155, 71.7345, -330.074 )
+
+[node name="rock13" parent="Deco" instance=ExtResource( 7 )]
+transform = Transform( -0.112987, -2.34819, -1.22404, 0.951656, -0.78697, 0.31961, -0.285631, -1.69313, 1.54906, 12.0932, 71.2531, -328.641 )
+
+[node name="rock2" parent="Deco" instance=ExtResource( 6 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -20.2365, 71.0536, -292.962 )
+
+[node name="rock3" parent="Deco" instance=ExtResource( 6 )]
+transform = Transform( -0.419002, -1.09849, -1.61795, 0.217352, 1.61826, -1.15499, 1.9435, -0.417804, -0.219648, -14.6788, 70.7595, -279.704 )
+
+[node name="rock14" parent="Deco" instance=ExtResource( 6 )]
+transform = Transform( 4.95318, -0.682208, -0.0237256, 0.543381, 4.04565, -2.88746, 0.413167, 2.85785, 4.08191, -22.6238, 69.0873, -281.171 )
+
+[node name="rock10" parent="Deco" instance=ExtResource( 6 )]
+transform = Transform( -0.419002, -1.09849, -1.61795, 0.217352, 1.61826, -1.15499, 1.9435, -0.417804, -0.219648, -7.35167, 70.7595, -255.254 )
+
+[node name="rock11" parent="Deco" instance=ExtResource( 6 )]
+transform = Transform( 0.663422, 1.93012, 2.19875, -0.24735, -2.2095, 2.01418, 2.91525, -0.626705, -0.329471, 25.6423, 70.7595, -249.547 )
+
+[node name="rock4" parent="Deco" instance=ExtResource( 8 )]
+transform = Transform( 4, 0, 0, 0, 3.8891, 0.935343, 0, -0.935343, 3.8891, -37.7112, 73.6124, -295.559 )
+
+[node name="rock7" parent="Deco" instance=ExtResource( 8 )]
+transform = Transform( 3.28398, -3.55843, -1.24621, 1.50764, 2.75413, -3.89124, 3.45579, 2.17998, 2.88187, -24.106, 72.7379, -257.73 )
+
+[node name="rock8" parent="Deco" instance=ExtResource( 8 )]
+transform = Transform( -0.455671, -3.69289, 3.3399, 3.58467, -2.57103, -2.3537, 3.45579, 2.17998, 2.88187, -27.239, 70.2668, -258.396 )
+
+[node name="rock5" parent="Deco" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -44.5185, 71.7194, -296.357 )
+
+[node name="rock6" parent="Deco" instance=ExtResource( 6 )]
+transform = Transform( -0.147312, 0, -1.99457, 0, 2, 0, 1.99457, 0, -0.147312, -35.1698, 71.7194, -293.232 )
+
+[node name="rock15" parent="Deco" instance=ExtResource( 7 )]
+transform = Transform( -0.658357, 0, 11.9819, 0, 12, 0, -11.9819, 0, -0.658357, -31.112, 72.6447, -307.112 )
+
+[node name="rock16" parent="Deco" instance=ExtResource( 7 )]
+transform = Transform( 2.10034, 0, 3.4042, 0, 4, 0, -3.4042, 0, 2.10034, -134.827, 41.5975, -450.135 )
+
+[node name="rock17" parent="Deco" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -149.744, 41.7833, -464.272 )
+
+[node name="rock18" parent="Deco" instance=ExtResource( 7 )]
+transform = Transform( 1.8429, 0.776994, 2.31562e-08, -0.617741, 1.46518, 1.21312, 0.471292, -1.11782, 1.59008, -228.051, 47.6265, -298.601 )
+
+[node name="rock19" parent="Deco" instance=ExtResource( 7 )]
+transform = Transform( -1.87756, -0.265001, -0.636027, -0.61774, 1.46518, 1.21311, 0.305208, 1.3353, -1.45733, -226.448, 47.6266, -299.813 )
+
+[node name="rock20" parent="Deco" instance=ExtResource( 8 )]
+transform = Transform( 1.8429, 0.776994, 2.31562e-08, -0.617741, 1.46518, 1.21312, 0.471291, -1.11782, 1.59008, -153.075, 41.2474, -421.472 )
+
+[node name="rock21" parent="Deco" instance=ExtResource( 7 )]
+transform = Transform( 6.6618, -1.9832, -1.65813, 2.14952, 6.14635, 5.13887, 5.21541e-08, -2.69988, 12.9168, -128.025, 13.0243, -125.312 )
+
+[node name="rock22" parent="Deco" instance=ExtResource( 7 )]
+transform = Transform( 1.90337, -0.849944, -0.47375, 0.0627354, 1.42012, -3.52122, 0.610936, 2.50217, 1.83755, -131.165, 10.1338, -102.696 )
+
+[node name="rock4" parent="." instance=ExtResource( 8 )]
+transform = Transform( 9, 0, 0, 0, 12, 0, 0, 0, 10, -43.9136, 5.27945, -132.279 )
+
+[node name="rock5" parent="." instance=ExtResource( 8 )]
+transform = Transform( 0.224192, 0, -5.99057, 0, 12, 0, 3.99371, 0, 0.336288, -103.015, 4.96513, -160.645 )
+
+[node name="rock6" parent="." instance=ExtResource( 8 )]
+transform = Transform( 0.957523, 0, 5.82555, 0, 12, 0, -3.8837, 0, 1.43628, -81.3378, 0.143116, -139.268 )
+
+[node name="rock2" parent="." instance=ExtResource( 6 )]
+transform = Transform( 0.730328, -5.93565, 0, 4.94637, 0.876394, 0, 0, 0, 6, -23.5165, 3.77399, -118.367 )
+
+[node name="rock3" parent="." instance=ExtResource( 6 )]
+transform = Transform( 2.62685, -3.80374, -3.40516, 4.2296, 2.76614, 1.60859, 0.458401, -3.7256, 4.67091, -14.5824, 3.77399, -121.965 )
