@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://models/MC/PlayerMesh.tscn" type="PackedScene" id=2]
@@ -8,10 +8,7 @@
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.4
-height = 1.07545
-
-[sub_resource type="RayShape" id=2]
-length = 0.511854
+height = 1.45518
 
 [sub_resource type="BoxShape" id=3]
 extents = Vector3( 3, 3, 3 )
@@ -70,19 +67,18 @@ font_data = ExtResource( 5 )
 collision_mask = 22
 script = ExtResource( 1 )
 
-[node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 1.46081, 0 )
-shape = SubResource( 1 )
+[node name="RayCast" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
+enabled = true
+cast_to = Vector3( 0, -2, 0 )
+collision_mask = 150
 
-[node name="CollisionShape2" type="CollisionShape" parent="."]
-transform = Transform( -1, -1.4243e-14, 8.74228e-08, -8.74228e-08, 1.62921e-07, -1, 0, -1, -1.62921e-07, 0, 0.51693, 0 )
-shape = SubResource( 2 )
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 1.13791, 0 )
+shape = SubResource( 1 )
 
 [node name="PlayerMesh" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.52735, -0.169452 )
-
-[node name="Skeleton" parent="PlayerMesh/Armature" index="0"]
-bones/46/bound_children = [ NodePath("BoneAttachment") ]
 
 [node name="BoneAttachment" parent="PlayerMesh/Armature/Skeleton" index="1"]
 transform = Transform( 0.974957, -0.0303181, 0.220318, -0.0116797, 0.982317, 0.186863, -0.222087, -0.184756, 0.957363, -0.447849, 6.70969, -1.26839 )

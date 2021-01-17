@@ -72,14 +72,14 @@ ambient_light_sky_contribution = 0.86
 radius = 200.0
 height = 573.18
 
-[sub_resource type="CylinderShape" id=10]
+[sub_resource type="CylinderShape" id=8]
 radius = 200.0
 height = 573.0
 
-[sub_resource type="StyleBoxFlat" id=8]
+[sub_resource type="StyleBoxFlat" id=9]
 bg_color = Color( 0, 0, 0, 0.372549 )
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=10]
 length = 5.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Objective:modulate")
@@ -224,7 +224,6 @@ region_scene = ExtResource( 3 )
 [node name="M_Island1" parent="Map/Viewport/Region1" instance=ExtResource( 2 )]
 transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 0, -90.4599, 0 )
 collision_layer = 0
-collision_mask = 0
 
 [node name="CollisionShape" type="CollisionShape" parent="Map/Viewport/Region1"]
 shape = SubResource( 7 )
@@ -252,7 +251,7 @@ region_scene = ExtResource( 14 )
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Map/Viewport/Region3"]
-shape = SubResource( 10 )
+shape = SubResource( 8 )
 
 [node name="PauseMenu" parent="." instance=ExtResource( 10 )]
 visible = false
@@ -263,7 +262,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -25.0
 grow_vertical = 0
-custom_styles/normal = SubResource( 8 )
+custom_styles/normal = SubResource( 9 )
 text = "Collect the artifacts and destroy the storm!"
 align = 1
 __meta__ = {
@@ -274,4 +273,4 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 pause_mode = 1
-anims/display_objective = SubResource( 9 )
+anims/display_objective = SubResource( 10 )
