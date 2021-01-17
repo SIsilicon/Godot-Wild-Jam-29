@@ -11,25 +11,25 @@
 [node name="Region_PuzzleIsland2" type="Spatial"]
 
 [node name="Island1" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 100.067, -0.0967927, -1.63155 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 124.743, -0.0967927, -1.63155 )
 
 [node name="M_Island1" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -85.1651, -31.3021, -128.661 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 66.3559, -31.3021, -128.661 )
 
 [node name="M_Island3" parent="." instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -71.7395, 45.7239, 129.62 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 221.902, 45.7239, 129.62 )
 
 [node name="S_Island1" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 59.0149, -65.2365, 126.425 )
 
 [node name="S_Island4" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -34.454, -0.341034, -138.48 )
+transform = Transform( 0.449147, 0, 0.893458, 0, 1, 0, -0.893458, 0, 0.449147, 175.719, 60.3639, -112.331 )
 
 [node name="puzzle_2" parent="." instance=ExtResource( 7 )]
-transform = Transform( 0.990958, 0, -0.134177, 0, 1, 0, 0.134177, 0, 0.990958, 124.461, -0.0649199, 0 )
+transform = Transform( 0.990958, 0, -0.134177, 0, 1, 0, 0.134177, 0, 0.990958, 160.384, -0.0649199, 7.74329 )
 
 [node name="Artifact_Spot" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 118.36, 0.655588, -32.024 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 154.283, 0.655588, -24.2807 )
 
 [node name="Artifact" parent="Artifact_Spot" instance=ExtResource( 6 )]
 type = 1
