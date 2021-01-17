@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/entities/artifact.gd" type="Script" id=1]
+[ext_resource path="res://scenes/entities/Artifact.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Puzzles/puzzle3_levers.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/places/L_Islands/Island4.tscn" type="PackedScene" id=4]
+
+[node name="Region_PuzzleIsland3" type="Spatial"]
+
+[node name="Artifact_Spot" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 118.36, 0.655588, -32.024 )
+
+[node name="Artifact" type="Area" parent="Artifact_Spot" instance=ExtResource( 2 )]
+collision_layer = 64
+script = ExtResource( 1 )
+type = 2
+
+[node name="Island4" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -309.846, -104.036, -140.594 )
+
+[node name="puzzle3_levers" parent="Island4" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0865469, 0 )
+[connection signal="body_entered" from="Artifact_Spot/Artifact" to="Artifact_Spot/Artifact" method="_on_Artifact_body_entered"]
