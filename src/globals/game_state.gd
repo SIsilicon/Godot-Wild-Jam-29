@@ -38,7 +38,7 @@ func piece_to_altar(part_number: int):
 	else:
 		parts_on_altar.append(part_number)
 	
-	check_end_game()
+	#check_end_game()
 
 func check_end_game():
 	
