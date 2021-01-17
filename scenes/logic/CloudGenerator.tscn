@@ -4,6 +4,9 @@
 
 [node name="CloudGenerator" type="Spatial"]
 script = ExtResource( 1 )
+max_cloud_count = 25
+cloud_spawn_interval = 0.1
+cloud_initial_speed = 2
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
