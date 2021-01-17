@@ -486,18 +486,15 @@ func pull_clouds() -> void:
 	var pullable_objects = vacuum_muzzle.get_overlapping_bodies()
 	
 	if pullable_objects.size() > 0:
-		if clouds < MAX_CLOUDS:
-			for object_to_pull in pullable_objects:
-				#print(object_to_pull.get_name())
-				match object_to_pull.get_groups()[0]:
+		for object_to_pull in pullable_objects:
+			#print(object_to_pull.get_name())
+			match object_to_pull.get_groups()[0]:
+				
+				"Cloud":
+					object_to_pull.pull(vacuum_muzzle.global_transform.origin, pull_strength)
 					
-					"Cloud":
-						object_to_pull.pull(vacuum_muzzle.global_transform.origin, pull_strength)
-						
-					"Balloon":
-						object_to_pull.release_clouds(vacuum_muzzle.global_transform.origin)
-		else:
-			pass
+				"Balloon":
+					object_to_pull.release_clouds(vacuum_muzzle.global_transform.origin)
 	else:
 		pass
 
@@ -583,6 +580,6 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 
 
 func _on_Muzzle_body_entered(body):
-	if isSucking:
+	if isSucking && clouds < MAX_CLOUDS:
 		clouds += 1
 		body.call_deferred("free")
