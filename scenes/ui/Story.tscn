@@ -19,7 +19,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
+"values": [ Color( 0, 0, 0, 0 ), Color( 0.956863, 0.956863, 0.956863, 1 ) ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -34,7 +34,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 1, 7, 8 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 1 ), Color( 1, 1, 1, 0 ) ]
+"values": [ Color( 1, 1, 1, 0 ), Color( 0.686275, 0.54902, 0.54902, 1 ), Color( 0.686275, 0.54902, 0.54902, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -49,7 +49,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
+"values": [ Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 0 ) ]
 }
 
 [sub_resource type="DynamicFont" id=5]
@@ -67,6 +67,7 @@ __meta__ = {
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -84,6 +85,7 @@ margin_bottom = 60.0
 grow_horizontal = 2
 grow_vertical = 2
 custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 align = 1
 valign = 1
 autowrap = true
@@ -105,7 +107,7 @@ margin_left = -340.0
 margin_top = -30.0
 grow_horizontal = 0
 custom_fonts/font = SubResource( 5 )
-custom_colors/font_color = Color( 0, 0, 0, 0.498039 )
+custom_colors/font_color = Color( 1, 1, 1, 0.498039 )
 text = "E TO CONTINUE"
 align = 2
 __meta__ = {
