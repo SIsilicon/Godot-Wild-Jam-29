@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://scenes/places/Environment.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/places/M_Islands/M_Island1.tscn" type="PackedScene" id=2]
@@ -11,7 +11,9 @@
 [ext_resource path="res://scenes/places/Region_PuzzleIsland2.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/ui/PauseMenu.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/places/Island_of_The_Storm.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/places/M_Islands/M_Island2.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scenes/places/S_Islands/S_Island1.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/places/Region_PuzzleIsland3.tscn" type="PackedScene" id=14]
 
 [sub_resource type="QuadMesh" id=1]
 size = Vector2( 2, 2 )
@@ -69,6 +71,10 @@ ambient_light_sky_contribution = 0.86
 [sub_resource type="CylinderShape" id=7]
 radius = 200.0
 height = 573.18
+
+[sub_resource type="CylinderShape" id=10]
+radius = 200.0
+height = 573.0
 
 [sub_resource type="StyleBoxFlat" id=8]
 bg_color = Color( 0, 0, 0, 0.372549 )
@@ -209,7 +215,7 @@ transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
 shape = SubResource( 7 )
 
 [node name="Region1" type="Area" parent="Map/Viewport"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1412.03, -109.176, 1569.19 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1002.7, -109.176, 1569.19 )
 collision_layer = 4
 collision_mask = 16
 script = ExtResource( 4 )
@@ -224,7 +230,7 @@ collision_mask = 0
 shape = SubResource( 7 )
 
 [node name="Region2" type="Area" parent="Map/Viewport"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1084.91, -176.283, 2427.26 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 820.047, -176.283, 2138.32 )
 script = ExtResource( 4 )
 region_scene = ExtResource( 9 )
 
@@ -236,6 +242,17 @@ shape = SubResource( 7 )
 __meta__ = {
 "_editor_description_": ""
 }
+
+[node name="Region3" type="Area" parent="Map/Viewport"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -638.079, 0, 2186.29 )
+script = ExtResource( 4 )
+region_scene = ExtResource( 14 )
+
+[node name="M_Island2" parent="Map/Viewport/Region3" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Map/Viewport/Region3"]
+shape = SubResource( 10 )
 
 [node name="PauseMenu" parent="." instance=ExtResource( 10 )]
 visible = false

@@ -32,3 +32,4 @@ transform = Transform( 0.990958, 0, -0.134177, 0, 1, 0, 0.134177, 0, 0.990958, 1
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 118.36, 0.655588, -32.024 )
 
 [node name="Artifact" parent="Artifact_Spot" instance=ExtResource( 6 )]
+type = 1
