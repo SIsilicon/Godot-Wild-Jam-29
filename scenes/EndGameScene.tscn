@@ -426,7 +426,7 @@ params_billboard_keep_scale = true
 albedo_color = Color( 3, 3, 3, 1 )
 albedo_texture = ExtResource( 14 )
 
-[sub_resource type="DynamicFont" id=17]
+[sub_resource type="DynamicFont" id=18]
 size = 32
 font_data = ExtResource( 18 )
 
@@ -644,14 +644,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Ending"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Ending"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 177.0
+margin_left = 178.0
 margin_top = 18.0
-margin_right = -177.0
-margin_bottom = -157.0
-custom_fonts/font = SubResource( 17 )
+margin_right = -178.0
+margin_bottom = -158.0
+custom_fonts/normal_font = SubResource( 18 )
 text = "John and Margaret arrive to their destination to spread
 the good word of vacuums.
 
@@ -662,7 +662,6 @@ However, as the story may end here, their journey certainly does not. John and M
 And who knows? Maybe John and Margaret might come to your town someday, knock on your door, and tell you about the greatness that is vacuum cleaners.
 
 (Hit ESC to return to main menu)"
-autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
