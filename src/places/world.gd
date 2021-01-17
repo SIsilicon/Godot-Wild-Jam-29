@@ -20,6 +20,7 @@ onready var current_map_region := $Map/Viewport/StormIsland
 
 func _ready() -> void:
 	Global.connect("setting_changed", self, "_on_Global_setting_changed")
+	GameState.connect("artifacts_all_collected", self, "_on_GameState_artifacts_all_collected")
 	get_tree().connect("screen_resized", self, "_on_tree_screen_resized")
 	_on_Global_setting_changed("msaa", Global.get_setting("msaa", 0))
 	_on_tree_screen_resized()
@@ -220,3 +221,12 @@ func _on_Global_setting_changed(setting: String, value) -> void:
 		$Level/Viewport.msaa = value
 		$Map/Viewport.msaa = value
 		$Level/Viewport/Background/Viewport.msaa = value
+
+
+func _on_GameState_artifacts_all_collected() -> void:
+	_transitioning = true
+	$Level.modulate.a = 1.0
+	tween.interpolate_property($Level, "modulate:a", 1.0, 0.0, 0.4)
+	tween.start()
+	yield(tween, "tween_all_completed")
+	get_tree().change_scene_to(load("res://scenes/EndGameScene.tscn"))

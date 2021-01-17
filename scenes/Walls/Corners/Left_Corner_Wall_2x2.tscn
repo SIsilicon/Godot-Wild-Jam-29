@@ -1,8 +1,9 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://models/modularwalls/modular_pillar2x.obj" type="ArrayMesh" id=1]
-[ext_resource path="res://models/modularwalls/modular_wall2x.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://models/modularwalls/triangulated/modular_pillar2x.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://models/modularwalls/triangulated/modular_wall2x.obj" type="ArrayMesh" id=2]
 [ext_resource path="res://scenes/Decorations/Modlar2x2.material" type="Material" id=3]
+
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 1, 8.56012, 11.7453 )

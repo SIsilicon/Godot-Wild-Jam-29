@@ -80,7 +80,7 @@ run/main_scene="res://scenes/ui/MainMenu.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="Windward"
 boot_splash/image="res://UI/wild_jam_logo.png"
-boot_splash/bg_color=Color( 0.054902, 0.0862745, 0.156863, 1 )
+boot_splash/bg_color=Color( 0.0509804, 0.117647, 0.160784, 1 )
 config/icon="res://UI/icon.png"
 config/macos_native_icon="res://UI/icon.icns"
 config/windows_native_icon="res://UI/icon.ico"
@@ -102,7 +102,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "Todo_Manager", "cloud" )
+enabled=PoolStringArray( "ImportCleaner", "Todo_Manager", "cloud" )
 
 [filesystem]
 

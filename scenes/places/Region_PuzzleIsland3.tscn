@@ -1,8 +1,17 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=13 format=2]
 
+[ext_resource path="res://scenes/places/L_Islands/Island2.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/entities/Artifact.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/Puzzles/puzzle3_levers.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/places/L_Islands/Island4.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/Decorations/rocks/Rock8.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/places/S_Islands/S_Island2.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/Decorations/rocks/Rock4.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/Decorations/rocks/Rock3.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/Decorations/rocks/Rock2.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/Decorations/rocks/Rock7.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/Decorations/rocks/Rock9.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/logic/CloudGenerator.tscn" type="PackedScene" id=13]
 
 [node name="Region_PuzzleIsland3" type="Spatial"]
 
@@ -17,3 +26,54 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -309.846, -104.036, -140.594 )
 
 [node name="puzzle3_levers" parent="Island4" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0865469, 0 )
+
+[node name="Rock2" parent="Island4" instance=ExtResource( 9 )]
+transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, 17.1727, 0.654259, -21.002 )
+
+[node name="Rock4" parent="Island4" instance=ExtResource( 7 )]
+transform = Transform( 3.96885, -0.485074, 0.113675, -0.309384, -1.68422, 3.61492, -0.390513, -3.59557, -1.70862, 25.73, -0.309891, -50.1743 )
+
+[node name="Rock8" parent="Island4" instance=ExtResource( 5 )]
+transform = Transform( 15, 0, 0, 0, -5.49046, -13.959, 0, 13.959, -5.49046, -22.6227, -0.497917, -45.52 )
+
+[node name="Rock3" parent="Island4" instance=ExtResource( 8 )]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, -14.4818, 0, -18.2325 )
+
+[node name="CloudGenerator" parent="." instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 0.999998, 0.00205949, 0, -0.00205949, 0.999998, -276.326, -101.779, -156.654 )
+
+[node name="Island2" parent="." instance=ExtResource( 1 )]
+transform = Transform( 0.248149, 0, 0.54628, 0, 0.6, 0, -0.54628, 0, 0.248149, -167.85, -171.166, 41.2421 )
+
+[node name="Rock7" parent="Island2" instance=ExtResource( 10 )]
+transform = Transform( 8.92852, -4.47713, 0.486724, 4.47713, 8.70742, -2.03374, 0.486723, 2.03374, 9.7789, 0, 11.1096, 0 )
+
+[node name="Rock8" parent="Island2" instance=ExtResource( 10 )]
+transform = Transform( -2.05841, -8.10922, 5.47755, 8.10922, -4.54659, -3.68363, 5.47755, 3.68363, 7.51181, 11.9966, 7.07382, -50.8045 )
+
+[node name="Rock9" parent="Island2" instance=ExtResource( 10 )]
+transform = Transform( 3.34496, 8.88683, 3.13619, 6.54244, 0.205417, -7.56006, -6.78291, 4.58063, -5.74543, -44.3852, 3.29218, -25.193 )
+
+[node name="S_Island2" parent="." instance=ExtResource( 6 )]
+transform = Transform( 0.486448, 0, -0.351238, 0, 0.6, 0, 0.351238, 0, 0.486448, -239.775, -109.843, -377.45 )
+
+[node name="S_Island3" parent="." instance=ExtResource( 6 )]
+transform = Transform( 0.486448, 0, -0.351238, 0, 0.6, 0, 0.351238, 0, 0.486448, -326.699, -176.654, -31.149 )
+
+[node name="S_Island4" parent="." instance=ExtResource( 6 )]
+transform = Transform( 0.486448, 0, -0.351238, 0, 0.6, 0, 0.351238, 0, 0.486448, -169.157, -138.039, -113.201 )
+
+[node name="Island3" parent="." instance=ExtResource( 1 )]
+transform = Transform( 0.486448, 0, -0.351238, 0, 0.6, 0, 0.351238, 0, 0.486448, -167.85, -149.24, -253.76 )
+
+[node name="Rock4" parent="Island3" instance=ExtResource( 7 )]
+transform = Transform( 8.42465, -4.92595, -2.18178, 4.92595, 5.40299, 6.82222, -2.18178, -6.82222, 6.97833, 14.9389, 11.9952, -18.8945 )
+
+[node name="Rock5" parent="Island3" instance=ExtResource( 7 )]
+transform = Transform( 1.69951, -0.391805, 9.84673, 5.91711, -7.94975, -1.3376, 7.88032, 6.05375, -1.11923, 13.543, 3.16188, -58.344 )
+
+[node name="Rock6" parent="Island3" instance=ExtResource( 7 )]
+transform = Transform( -0.736446, -0.815603, -9.93944, -6.95362, 7.1862, -0.0744643, 7.14875, 6.90603, -1.09636, -50.0763, 3.16188, -42.1564 )
+
+[node name="Rock9" parent="Island3" instance=ExtResource( 11 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, -26.9422, 4.56645, -6.08638 )

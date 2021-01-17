@@ -1,5 +1,7 @@
 extends Node
 
+signal artifacts_all_collected
+
 var parts_collected: Array = []
 var parts_on_altar : Array = []
 
@@ -41,10 +43,5 @@ func piece_to_altar(part_number: int):
 	#check_end_game()
 
 func check_end_game():
-	
 	if parts_on_altar.size() == 3:
-		
-		get_tree().change_scene_to(load("res://scenes/EndGameScene.tscn"))
-		
-	else:
-		pass
+		emit_signal("artifacts_all_collected")

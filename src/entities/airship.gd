@@ -30,8 +30,8 @@ func _input(event: InputEvent) -> void:
 			get_node("../../..").transition_to_map()
 		elif in_map:
 			disable_ship_collider(false)
-			$EKeyPopop.hide_popup()
 			get_node("../../..").transition_to_world()
+			$EKeyPopop.hide_popup()
 
 
 func _physics_process(delta: float) -> void:

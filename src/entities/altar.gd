@@ -12,17 +12,7 @@ onready var artifact = preload("res://scenes/entities/Artifact.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	setup()
 	update_altar()
-
-
-
-func setup() -> void:
-	var material : SpatialMaterial = SpatialMaterial.new()
-	material.albedo_texture = load("res://models/artifact/altar_diffuse.png")
-	
-	mesh.set_surface_material(0, material)
-
 
 
 func look_for_artifact_piece(part: int, spot: Spatial):
@@ -85,7 +75,6 @@ func _on_ArtifactPiece3_body_entered(body):
 	if body is Player:
 		look_for_artifact_piece(2, Artifact_Spot3)
 		$Timer.start(1)
-
 
 
 func _on_Timer_timeout():

@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/entities/altar.gd" type="Script" id=1]
 [ext_resource path="res://models/artifact/object_altar.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://models/artifact/altar_diffuse.png" type="Texture" id=3]
+[ext_resource path="res://models/artifact/altar_normal.png" type="Texture" id=4]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.2, 0.2, 0.5 )
@@ -9,7 +11,13 @@ extents = Vector3( 0.2, 0.2, 0.5 )
 [sub_resource type="CubeMesh" id=2]
 size = Vector3( 0.2, 0.2, 0.2 )
 
-[sub_resource type="BoxShape" id=3]
+[sub_resource type="SpatialMaterial" id=3]
+albedo_texture = ExtResource( 3 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 4 )
+
+[sub_resource type="BoxShape" id=4]
 extents = Vector3( 2.87126, 1.79001, 1.34912 )
 
 [node name="Altar" type="Spatial"]
@@ -57,7 +65,7 @@ material/0 = null
 [node name="object_altar" type="MeshInstance" parent="Altar_Mesh"]
 transform = Transform( 0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0, 0 )
 mesh = ExtResource( 2 )
-material/0 = null
+material/0 = SubResource( 3 )
 
 [node name="Piece1_Spot" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, -1.175, 1.81227, 0.9 )
@@ -72,7 +80,7 @@ transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 1.175, 
 
 [node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.64013, 0 )
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true

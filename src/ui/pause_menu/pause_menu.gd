@@ -36,7 +36,9 @@ onready var credits_panel : Control = new_panel([
 	new_label("Game design"),
 	new_label("\t- Everyone!\n"),
 	new_label("Additional Help"),
+#	new_label("\t- Kenney Vleugels (Particle Textures)"),
 	new_label("\t- Skyward"),
+#	new_label("\t- arlez80 (Background Clouds)"),
 	new_button("Return", null, ButtonTypes.RETURN)
 ])
 
