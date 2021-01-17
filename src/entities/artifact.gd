@@ -20,6 +20,9 @@ func _ready() -> void:
 			gem_mat.albedo_color = Color(0.2, 1.0, 0.1)
 		Type.FIRST:
 			gem_mat.albedo_color = Color(0.1, 0.2, 1.0)
+	
+	if type in GameState.parts_collected:
+		queue_free()
 
 
 func _process(delta: float) -> void:
